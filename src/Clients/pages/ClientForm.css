@@ -1,0 +1,35 @@
+.new-client__form {
+  list-style: none;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 90%;
+  max-width: 40rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  background: #565656
+}
+
+.new-client__form hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+  width: 80%
+}
+.new-client__form label {
+  text-align: center;
+}
+
+.new-client__inputs {
+  margin: auto;
+  width: 80%
+}
+.new-client-button__box {
+  display: flex;
+  width: 100%;
+  justify-content: center
+}
+.new-client-button {
+  display: flex;
+  justify-content: center;
+  margin: 0
+}
