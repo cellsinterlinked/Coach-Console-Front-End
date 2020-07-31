@@ -6,12 +6,10 @@ import Button from '../../Shared/components/FormElements/Button';
 import './CheckinList.css'
 
 
+
 const CheckinList = props => {
-
-  const totalBf = props.items[0].bodyfat - props.items[props.items.length - 1].bodyfat
-    console.log(totalBf)
-
-  if (props.items.length === 0) {
+    console.log(props.items)
+  if (!props.items) {
     return (
       <div className="client-list center">
       <Card>
@@ -22,27 +20,32 @@ const CheckinList = props => {
     )
   }
 
-return <React.Fragment> 
- <CheckinTotals 
+return (
+<React.Fragment> 
+ <CheckinTotals
+    clientId={props.clientId} 
     name={props.items[0].name}
-    client={props.items[0].client} /> 
+    client={props.items[0].client} />
+
+
 <ul className="client-list">
   {props.items.map(checkin => (
     <CheckinItem
       key={checkin.id}
       id={checkin.id}
-      image={checkin.imageUrl}
+      image={checkin.image}
       date={checkin.date}
       weight={checkin.weight}
-      weeks_in={checkin.weeks_in}
-      bodyfat={checkin.bodyfat}
-      week_loss={checkin.week_loss}
-      creator={checkin.creator} 
-      notes={checkin.notes}
+      weeksOut={checkin.weeksOut}
+      bodyFat={checkin.bodyFat}
+      // week_loss={checkin.week_loss}
+      athlete={checkin.athlete} 
+      // notes={checkin.notes}
+      onDelete={props.onDeleteCheckin}
       />
   ))}
 </ul>
 </React.Fragment>
-
+)
 }
 export default CheckinList;

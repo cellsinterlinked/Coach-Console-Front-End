@@ -30,7 +30,7 @@ const MainNavigation = props => {
       <span />
       <span />
     </button>
-     <h1 className="header-title">Icon</h1>
+     <h1 className="header-title">Coach Console</h1>
 
      <nav className="main-navigation__header-nav">
       <NavLinks />

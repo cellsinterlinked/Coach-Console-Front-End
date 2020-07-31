@@ -1,12 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Card from '../../Shared/components/UIElements/Card';
 import Button from '../../Shared/components/FormElements/Button';
 import Modal from '../../Shared/components/UIElements/Modal';
 import './CheckinItem.css';
+import { useHttpClient } from '../../Shared/hooks/http-hook';
+import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
+import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
+import { DarkModeContext } from '../../Shared/context/dark-mode-context';
+import InfoDisplayLeft from '../../Shared/components/UIElements/InfoDisplayLeft';
+import InfoDisplayRight from '../../Shared/components/UIElements/InfoDisplayRight';
+import { GiPincers } from 'react-icons/gi';
+import { FaWeight } from 'react-icons/fa';
+import { GoCalendar } from 'react-icons/go';
+import { FaCalendarWeek } from 'react-icons/fa';
+import { GiMuscularTorso } from 'react-icons/gi';
+import NotesDisplay from '../../Shared/components/UIElements/NotesDisplay';
 
 
 
 const CheckinItem = props => {
+const mode = useContext(DarkModeContext);
+
+const { isLoading, error, sendRequest, clearError } = useHttpClient();
 const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 const showDeleteWarningHandler = () => {
@@ -16,48 +31,128 @@ const showDeleteWarningHandler = () => {
 const cancelDeleteHandler = () => {
   setShowConfirmModal(false);
 }
-const confirmDeleteHandler = () => {
+const confirmDeleteHandler = async () => {
+  console.log(props.id);
   setShowConfirmModal(false);
-  console.log('DELETING...');
+  try {
+    await sendRequest(
+      `http://localhost:5000/api/checkins/${props.id}`, 
+      'DELETE'
+      );
+      props.onDelete(props.id)
+  } catch (err) {}
+  ;
 }
 
 
   return (
   <React.Fragment>
+    <ErrorModal error={error} onClear={clearError}/>
     <Modal 
       show={showConfirmModal}
       onCancel={cancelDeleteHandler}
       header="Are you sure?" 
-      footerClass="place-item__modal-actions" 
+      footerClass="checkin-item__modal-actions" 
       footer={
       <React.Fragment>
         <Button inverse onClick={cancelDeleteHandler}>Cancel</Button>
-        <Button danger onCLick={confirmDeleteHandler}>Delete</Button>
+        <Button danger onClick={confirmDeleteHandler}>Delete</Button>
 
       </React.Fragment>
     }>
-    <p>Do you want to proceed and delete this checkin?</p>
+    <p className={mode.darkMode ? "dark-warning-text" : "light-warning-text"}>Do you want to proceed and delete this checkin?</p>
     </Modal>
-    <li className="checkin-item">
-    <Card className="checkin-item__content">
-      <div className="checkin-item__image">
-        <img src={props.image} alt={props.title} />
+    <li className={mode.darkMode ? "dark-checkin-item" : "light-checkin-item"}>
+    <Card className={mode.darkMode ? "dark-checkin-item__content" : "light-checkin-item__content"}>
+    {isLoading && <LoadingSpinner asOverlay />}
+      <div className={mode.darkMode ? "dark-checkin-item__image" : "light-checkin-item__image"}>
+            <img src={"https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg2.wikia.nocookie.net%2F__cb20120103161626%2Ffinalfantasy%2Fimages%2F5%2F5b%2FJessie-ffvii-highres.png&f=1&nofb=1"} />
+        {/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
+        <br />
+        <br />
       </div>
-      <div className="checkin-item__info">
+      <InfoDisplayLeft 
+      title="Date Of Checkin"
+      data="9/9/2020"
+        ><GoCalendar
+        className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
+        size="1.4rem" 
+        color={mode.darkMode ? "#2dbdb1" : "#009edd"} 
+        align-self="center"
+        />
+    </InfoDisplayLeft>
+    <InfoDisplayRight
+    title="Body Weight"
+    data="140lbs"
+    ><FaWeight
+    className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
+    size="1.4rem" 
+    color={mode.darkMode ? "#2dbdb1" : "#009edd"}  
+    align-self="center"
+    />
+    </InfoDisplayRight>
+    <InfoDisplayLeft 
+    title="Weeks In"
+    data="4Wks"
+    ><FaCalendarWeek
+    className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
+        size="1.4rem" 
+        color={mode.darkMode ? "#2dbdb1" : "#009edd"}  
+        align-self="center"
+        />
+    </InfoDisplayLeft>
+    <InfoDisplayRight
+    title="Body Fat Percentage"
+    data="15%"
+    ><GiPincers 
+    className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
+    size="1.4rem" 
+    color={mode.darkMode ? "#2dbdb1" : "#009edd"} 
+    align-self="center"
+    />
+    </InfoDisplayRight>
+    <InfoDisplayLeft 
+      title="Lean Body Mass"
+      data="119lbs"
+        ><GiMuscularTorso 
+        className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
+        size="1.4rem" 
+        color={mode.darkMode ? "#2dbdb1" : "#009edd"} 
+        align-self="center"
+        />
+    </InfoDisplayLeft>
+    <NotesDisplay
+      notes="When in doubt, wash try to jump onto window and fall while scratching at 
+      wall good now the other hand, too for pet right here, no not there, here, no fool,
+       right here that other cat smells funny you should really give me all the treats 
+       because i smell the best and omg you finally got the right spot and i love you 
+       right now cats woo chase mice. Floof tum, tickle bum, jellybean footies curly 
+       toes purrrrrr and run outside as soon as door open slap kitten brother with paw. 
+       Get scared by sudden appearance of cucumber eat and than sleep on your face yet 
+       ."
+      >
+      
+
+    </NotesDisplay>
+
+
+
+
+
+
+      {/* <div className="checkin-item__info">
         <h2>Date: {props.date} </h2>
         <hr />
         <p>Weight: {props.weight} lbs</p>
         <hr />
-        <p>Weeks In: {props.weeks_in} weeks</p>
+        <p>Weeks In: {props.weeksOut} weeks</p>
         <hr/>
-        <p>Bodyfat: {props.bodyfat} %</p>
-        <hr/>
-        <p>Loss this week: {props.week_loss} %Bodyfat</p>
+        <p>Bodyfat: {props.bodyFat} %</p>
         <hr />
         <p>Notes: {props.notes}</p>
         <p></p>
-      </div>
-      <div className="checkin-item__actions">
+      </div> */}
+      <div className={mode.darkMode ? "dark-checkin-item__actions" : "light-checkin-item__actions"}>
         <Button to={`/${props.id}/updateCheckin`}>Update</Button>
         <Button danger onClick={showDeleteWarningHandler}>Delete</Button>
       </div>

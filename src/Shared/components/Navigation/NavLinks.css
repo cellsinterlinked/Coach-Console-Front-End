@@ -1,4 +1,4 @@
-.nav-links {
+.dark-nav-links {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -8,69 +8,172 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 
-.nav-links li {
+.dark-nav-links li {
   margin: 1rem;
 }
 
-.nav-links a {
+.dark-nav-links a {
+  background: #333333;
+  background-image: linear-gradient(to bottom right, #444343, #242424 );
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  color: #2dbdb1;
+  text-decoration: none;
+  padding: 0.8rem 0.6rem 0.6rem 0.6rem;
+  box-shadow:   -2px -2px 3px rgba(238, 238, 238, 0.452),
+                2px 2px 6px rgba(0,0,0,0.8);
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.dark-nav-links a:hover,
+.dark-nav-links a:active,
+.dark-nav-links a.active {
+  background: #2dbdb1;
+  background-image: linear-gradient(to bottom right, rgb(69, 246, 246), rgb(58, 204, 204));
+  color: #292929;
+}
+
+.dark-nav-links button {
+  background: #333333;
+  background-image: linear-gradient(to bottom right, #444343, #242424 );
+  border-radius: 1rem;
   border: 1px solid transparent;
   color: #292929;
   text-decoration: none;
   padding: 0.5rem;
+  box-shadow:   -2px -2px 3px rgba(238, 238, 238, 0.452),
+                2px 2px 6px rgba(0,0,0,0.8);
 }
 
-.nav-links a:hover,
-.nav-links a:active,
-.nav-links a.active {
-  background: #f8df00;
-  border-color: #292929;
-  color: #292929;
-}
 
-.nav-links button {
-  cursor: pointer;
-  border: 1px solid #292929;
-  color: #292929;
-  background: transparent;
-  padding: 0.5rem;
-  font: inherit;
-}
-
-.nav-links button:focus {
+.dark-nav-links button:focus {
   outline: none;
 }
 
-.nav-links button:hover,
-.nav-links button:active {
-  background: #292929;
-  color: white;
+.dark-nav-links button:hover,
+.dark-nav-links button:active {
+  background: rgba(67, 240, 240, 0.5);
+  color: #292929;
 }
 
 @media (min-width: 768px) {
-  .nav-links {
+  .dark-nav-links {
     flex-direction: row;
   }
 
-  .nav-links li {
+  .dark-nav-links li {
     margin: 0 0.5rem;
   }
 
-  .nav-links a {
+  .dark-nav-links a {
     color: white;
     text-decoration: none;
   }
 
-  .nav-links button {
+  /* .dark-nav-links button {
     border: 1px solid white;
     color: white;
     background: transparent;
-  }
+  } */
   
-  .nav-links button:hover,
-  .nav-links button:active {
-    background: #f8df00;
+  .dark-nav-links button:hover,
+  .dark-nav-links button:active {
+    /* background: rgba(67, 240, 240, 0.5); */
+    color: #292929;
+  }
+}
+
+/* Light Stuff */
+
+.light-nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.light-nav-links li {
+  margin: 1rem;
+}
+
+.light-nav-links a {
+  background: #333333;
+  background-image: linear-gradient(to bottom right, rgb(250, 250, 250), rgb(204, 204, 204));
+  border-radius: 1rem;
+
+  color: #919191;
+  text-decoration: none;
+  padding: .8rem  0.6rem 0.6rem 0.6rem;
+  box-shadow:   -5px -5px 6px rgba(255, 255, 255, 0.911),
+                5px 5px 6px rgba(0, 0, 0, 0.329);
+  font-family: 'Josefin Sans', sans-serif;
+  
+  
+}
+
+.light-nav-links a:hover,
+.light-nav-links a:active,
+.light-nav-links a.active {
+  background: rgb(231, 231, 231);
+  background-image: linear-gradient(to bottom right, rgb(250, 250, 250), rgb(204, 204, 204));
+  color: rgb(10, 157, 241);
+  /* text-shadow: -1px -1px 1px rgb(255, 255, 255) */
+}
+
+.light-nav-links button {
+  background: #333333;
+  background-image: linear-gradient(to bottom right, rgb(250, 250, 250), rgb(204, 204, 204));
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  color: #696969;
+  text-decoration: none;
+  padding: 0.5rem;
+  box-shadow:   -2px -2px 3px rgba(238, 238, 238, 0.452),
+                2px 2px 6px rgba(0,0,0,0.8);
+}
+
+
+.light-nav-links button:focus {
+  outline: none;
+}
+
+.light-nav-links button:hover,
+.light-nav-links button:active {
+  
+  color: #292929;
+}
+
+@media (min-width: 768px) {
+  .light-nav-links {
+    flex-direction: row;
+  }
+
+  .light-nav-links li {
+    margin: 0 0.5rem;
+  }
+
+  .light-nav-links a {
+    text-decoration: none;
+  }
+
+  /* .light-nav-links button {
+    border: 1px solid white;
+    color: white;
+    background: transparent;
+  } */
+  
+  .light-nav-links button:hover,
+  .light-nav-links button:active {
+    /* background: rgba(67, 240, 240, 0.5); */
     color: #292929;
   }
 }

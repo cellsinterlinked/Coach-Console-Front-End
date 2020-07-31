@@ -3,11 +3,34 @@
   text-align: center;
 }
 
-.authentication {
+.dark-authentication {
+  border-radius: 1.5em;
   width: 90%;
   max-width: 25rem;
   margin: 7rem auto;
   text-align: center;
+  background: #333333;
+  background-image: linear-gradient(to bottom right, #444343, #242424 );
+  box-shadow:
+  -8px -8px 8px 0 rgba(151, 150, 150, 0.267),
+  12px 12px 12px 0 rgba(0, 0, 0, 0.589);
+  transition: background-image 2s ease-out;
+  
+  
+}
+
+.light-authentication {
+  border-radius: 1.5em;
+  width: 90%;
+  max-width: 25rem;
+  margin: 7rem auto;
+  text-align: center;
+  /* background: #EEEEEE; */
+  background-image: linear-gradient(to bottom right, rgb(240, 240, 240), rgb(223, 223, 223) );
+  box-shadow:
+    -5px -5px 6px 0 rgb(255, 255, 255),
+    5px 5px 6px 0 rgba(0, 0, 0, 0.527);
+    
 }
 
 .authentication form {
@@ -15,4 +38,14 @@
 }
 .box {
   width: 100%;
+}
+
+.light-authentication h2 {
+  color: #747474;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.dark-authentication h2 {
+  color: #b8b6b6;
+  font-family: 'Josefin Sans', sans-serif;
 }
