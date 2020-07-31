@@ -124,6 +124,7 @@ const NewCheckin = () => {
       console.log('athlete', client);
       console.log('image', formState.inputs.image.value);
       console.log(formData.get('date'));
+      // something differnt
       await sendRequest(
         'http://localhost:5000/api/checkins',
         'POST',
