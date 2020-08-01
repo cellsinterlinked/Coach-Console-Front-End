@@ -56,7 +56,7 @@ const Input = props => {
   <div className={mode.darkMode ? "dark-form" : "light-form" }>
   <input
     required
-    autocomplete="off"  
+    autoComplete="off"  
     id={props.id}
     name={props.id} 
     type={props.type} 
@@ -66,7 +66,7 @@ const Input = props => {
     value={inputState.value}
     className={props.importedStyle}
     /> 
-    <label for={props.id} className={"label-name"}>
+    <label htmlFor={props.id} className={"label-name"}>    
       <span className="content-name">{props.labelText}</span>
     </label>
     </div>

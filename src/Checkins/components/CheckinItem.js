@@ -66,7 +66,7 @@ const confirmDeleteHandler = async () => {
     <Card className={mode.darkMode ? "dark-checkin-item__content" : "light-checkin-item__content"}>
     {isLoading && <LoadingSpinner asOverlay />}
       <div className={mode.darkMode ? "dark-checkin-item__image" : "light-checkin-item__image"}>
-            <img src={"https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg2.wikia.nocookie.net%2F__cb20120103161626%2Ffinalfantasy%2Fimages%2F5%2F5b%2FJessie-ffvii-highres.png&f=1&nofb=1"} />
+            <img src={"https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg2.wikia.nocookie.net%2F__cb20120103161626%2Ffinalfantasy%2Fimages%2F5%2F5b%2FJessie-ffvii-highres.png&f=1&nofb=1"} alt="this is temporary" />
         {/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
         <br />
         <br />

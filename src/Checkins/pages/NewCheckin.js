@@ -116,6 +116,7 @@ const NewCheckin = () => {
       formData.append('bodyFat', theFat);
       formData.append('weeksOut', formState.inputs.weeks.value);
       formData.append('athlete', client);
+      formData.append('image', formState.inputs.image.value);
       
       console.log('date', formState.inputs.date.value);
       console.log('weight', formState.inputs.weight.value);
@@ -129,7 +130,7 @@ const NewCheckin = () => {
         'http://localhost:5000/api/checkins',
         'POST',
         formData);
-      history.push(`/${client}/checkins`)
+      history.push('/' + client + '/checkins')
     } catch (err) {
       console.log(err);
     }
@@ -184,7 +185,7 @@ const NewCheckin = () => {
       </React.Fragment>
     }>
     <div className="instructions-image__box">
-          <img src="http://www.dhresource.com/albu_770902509_00-1.0x0/body-fat-measurement-testing-calipers-skinfold.jpg"></img>
+          <img src="http://www.dhresource.com/albu_770902509_00-1.0x0/body-fat-measurement-testing-calipers-skinfold.jpg" alt="pinch here"></img>
           </div>
     </Modal>
 
@@ -206,7 +207,7 @@ const NewCheckin = () => {
       id="date"
       labelText="Date" 
       element="input" 
-      type="date" 
+      type="text" 
       errorText="Please enter valid date" 
       validators={[VALIDATOR_REQUIRE()]} 
       onInput={inputHandler}
@@ -219,7 +220,7 @@ const NewCheckin = () => {
       id="age"
       labelText="Age" 
       element="input" 
-      type="number" 
+      type="text" 
       errorText="Please enter valid age" 
       validators={[VALIDATOR_REQUIRE()]} 
       onInput={inputHandler}
@@ -234,7 +235,7 @@ const NewCheckin = () => {
       id="weeks"
       labelText="Week#" 
       element="input" 
-      type="number"  
+      type="text"  
       importedStyle=""
       validators={[VALIDATOR_REQUIRE()]}
       onInput={inputHandler}
@@ -246,7 +247,7 @@ const NewCheckin = () => {
     <Input
       id="weight" 
       element="input" 
-      type="number" 
+      type="text" 
       labelText="Weight"
       validators={[VALIDATOR_REQUIRE()]}
       onInput={inputHandler}
@@ -435,6 +436,7 @@ const NewCheckin = () => {
       center
       id="image"
       onInput={inputHandler}
+      errorText=""
       
       />
     </div>

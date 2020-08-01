@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Input from '../../Shared/components/FormElements/Input';
 import Button from '../../Shared/components/FormElements/Button';
@@ -18,6 +18,8 @@ import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 
 const UpdateCheckin = () => {
   const mode = useContext(DarkModeContext);
+
+  const loadedClient = useRef(null)
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -51,14 +53,13 @@ const UpdateCheckin = () => {
   }, false)
 
 
-let loadedClient;
 
   useEffect(() => {
     const fetchCheckin = async () => {
       try {
         const responseData = await sendRequest(`http://localhost:5000/api/checkins/${checkinId}`);
         setLoadedCheckin(responseData.checkin)
-        loadedClient = responseData.checkin.athlete
+        loadedClient.current = responseData.checkin.athlete
         console.log(responseData.checkin.athlete);
         console.log(loadedClient);
         setFormData(
@@ -108,10 +109,13 @@ let loadedClient;
             'Content-Type': 'application/json'
           }
         );
-        history.push('/' + loadedClient + '/checkins');
+        console.log('/' + loadedClient.current + '/checkins');
+        history.push('/' + loadedClient.current + '/checkins');
         
 
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     };
 
     

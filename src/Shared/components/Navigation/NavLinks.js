@@ -10,9 +10,6 @@ const NavLinks = props => {
   const auth = useContext(AuthContext);
   const mode = useContext(DarkModeContext)
 
-  const clickFunc = () => {
-    console.log("clicked")
-  };
 
  return (
   <ul className={mode.darkMode ? "dark-nav-links" : "light-nav-links"}>
@@ -45,9 +42,7 @@ const NavLinks = props => {
   <li>
       <ModeToggle  onClick={mode.darkMode ? mode.toggleLight : mode.toggleDark}/>
   </li>
-  <li>
-    <button onClick={mode.darkMode ? mode.toggleLight : mode.toggleDark}></button>
-  </li>
+  
   
   </ul>
 

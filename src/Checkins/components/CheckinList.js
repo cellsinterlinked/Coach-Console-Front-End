@@ -9,7 +9,7 @@ import './CheckinList.css'
 
 const CheckinList = props => {
     console.log(props.items)
-  if (!props.items) {
+  if (props.items.length === 0 || !props.items) {
     return (
       <div className="client-list center">
       <Card>

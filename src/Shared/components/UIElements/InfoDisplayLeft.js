@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { DarkModeContext } from '../../../Shared/context/dark-mode-context';
 import './InfoDisplayLeft.css'
-import { GiPincers } from 'react-icons/gi'
 
 const InfoDisplayLeft = props => {
   const mode = useContext(DarkModeContext)

@@ -11,6 +11,7 @@ import EditClient from './Clients/pages/EditClient';
 import Landing from './User/pages/Landing';
 import { AuthContext } from './Shared/context/auth-context';
 import { DarkModeContext } from './Shared/context/dark-mode-context';
+
 /// look at video 50 on react front end about letting only the user's clients be displayed. 
 function App() {
 
@@ -99,12 +100,13 @@ function App() {
       logout: logout
       }}>
   <Router>
-
+      
     <MainNavigation />
     <main>
       {routes}
     </main>
   </Router>
+
   </AuthContext.Provider>
   </DarkModeContext.Provider>
   )

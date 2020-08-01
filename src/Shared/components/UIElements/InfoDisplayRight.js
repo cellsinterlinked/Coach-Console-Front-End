@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { DarkModeContext } from '../../../Shared/context/dark-mode-context';
 import './InfoDisplayRight.css'
-import { FaWeight } from 'react-icons/fa'
+
 
 const InfoDisplayRight = props => {
   const mode = useContext(DarkModeContext)

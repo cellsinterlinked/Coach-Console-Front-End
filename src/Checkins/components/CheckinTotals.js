@@ -1,21 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './CheckinTotals.css';
 import Card from '../../Shared/components/UIElements/Card'
-import { Link } from 'react-router-dom';
 import Button from '../../Shared/components/FormElements/Button';
 import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import { useHttpClient } from '../../Shared/hooks/http-hook';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Modal from '../../Shared/components/UIElements/Modal';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context';
-import InfoDisplayLeft from '../../Shared/components/UIElements/InfoDisplayLeft';
-import InfoDisplayRight from '../../Shared/components/UIElements/InfoDisplayRight';
-import { GiPincers } from 'react-icons/gi';
-import { FaWeight } from 'react-icons/fa';
-import { GoCalendar } from 'react-icons/go';
-import { FaCalendarWeek } from 'react-icons/fa';
-import { GiMuscularTorso } from 'react-icons/gi';
 import StatsCompare from './StatsCompare';
 import MeasurementsCompare from './MeasurementsCompare';
 import Chart from '../components/Chart';
@@ -84,6 +76,7 @@ const CheckinTotals = props => {
 
 
     <Card className={mode.darkMode ? "dark-totals-card" : "light-totals-card"} >
+    {isLoading && <LoadingSpinner asOverlay />}
     <div className="totals-info">
 
     <hr />

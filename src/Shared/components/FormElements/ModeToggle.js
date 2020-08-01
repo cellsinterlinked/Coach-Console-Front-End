@@ -13,7 +13,7 @@ return (
             <input
 
               checked={mode.darkMode}
-              // onChange={() => mode.setDarkMode(prevMode => !prevMode)}
+              onChange={mode.darkMode ? mode.toggleLight : mode.toggleDark}
 
               id="checkbox"
               className="checkbox"
