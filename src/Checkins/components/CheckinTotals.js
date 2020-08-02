@@ -79,8 +79,9 @@ const CheckinTotals = props => {
     {isLoading && <LoadingSpinner asOverlay />}
     <div className="totals-info">
 
-    <hr />
+    <div className={mode.darkMode ? "dark-chart-container" : "light-chart-container"}>
     <Chart />
+    </div>
 
     <h1 className="client-name">{loadedAthlete}</h1>
     
@@ -94,12 +95,14 @@ const CheckinTotals = props => {
     </div>
     <StatsCompare />
     <StatsCompare />
+    <div className={mode.darkMode ? "dark-for-shadow" : "light-for-shadow"}>
     <div className={mode.darkMode ? "dark-stat-totals" : "light-stat-totals"}>
       <p>TOTALS</p>
       <p>0%</p>
       <p>0lbs</p>
       <p>4</p>
       <p>0</p>
+    </div>
     </div>
 
     <div className={mode.darkMode ? "dark-compare-labels" : "light-compare-labels"}>
@@ -114,6 +117,7 @@ const CheckinTotals = props => {
     </div>
     <MeasurementsCompare />
     <MeasurementsCompare />
+    <div className={mode.darkMode ? "dark-for-shadow" : "light-for-shadow"}>
     <div className={mode.darkMode ? "dark-measure-totals" : "light-measure-totals"}>
       <p>TOTALS</p>
       <p>0</p>
@@ -123,6 +127,7 @@ const CheckinTotals = props => {
       <p>0</p>
       <p>o</p>
       <p>0</p>
+    </div>
     </div>
     <br />
     <br />

@@ -33,7 +33,7 @@
   border-radius: 1.5em;
   padding: 0em;
   box-shadow:
-    -4px -4px 4px 0 rgba(151, 150, 150, 0.267),
+    -3px -3px 3px 0 rgba(151, 150, 150, 0.397),
     6px 6px 6px 0 rgba(0, 0, 0, 0.589);
 
 }
@@ -46,7 +46,7 @@
 
 .dark-client-item__info h2 {
   font-style: bold;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 1.2rem;
   margin: 0 0 0.5rem 0;
   font-weight: normal;

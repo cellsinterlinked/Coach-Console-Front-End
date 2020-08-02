@@ -1,4 +1,4 @@
-.toggle {
+.light-toggle {
   position: relative;
   padding: 0 4px;
   display: flex;
@@ -12,12 +12,12 @@
 
 }
 
-input[type="checkbox"].checkbox {
+.light-toggle input[type="checkbox"].checkbox {
   display: flex;
   margin: auto;
   width: 7em;
   height: 1.8em;
-  background: #555;
+  background:linear-gradient(to bottom right, rgb(66, 240, 211), rgb(33, 168, 139) );;
   position: relative;
   border-radius: 1em;
   -webkit-appearance: none;
@@ -26,17 +26,19 @@ input[type="checkbox"].checkbox {
   cursor: pointer;
   vertical-align: 2px;
   outline: none;
+  box-shadow: inset -2px -2px 2px rgba(129, 245, 216, 0.753),
+               inset 4px 4px 5px rgba(0, 73, 63, 0.8);
 }
 
-input[type="checkbox"].checkbox:checked + label {
+.light-toggle input[type="checkbox"].checkbox:checked + label {
   left: 3em;
 }
 
-input[type="checkbox"].checkbox:focus-visible {
+.light-toggle input[type="checkbox"].checkbox:focus-visible {
   outline: solid 2px white;
 }
 
-input[type="checkbox"].checkbox + label {
+.light-toggle input[type="checkbox"].checkbox + label {
   z-index: 5;
   display: inline-block;
   width: 2.5em;
@@ -54,12 +56,12 @@ input[type="checkbox"].checkbox + label {
 }
 
 
-.toggle-container {
+.light-toggle-container {
   display: flex;
   margin: 0 auto;
 }
 
-.toggle-container > span {
+.light-toggle-container > span {
   font-size: 1.2em;
   background: none;
   border: none;
@@ -69,10 +71,96 @@ input[type="checkbox"].checkbox + label {
   margin-right: 2px;
 }
 
-.toggle-container > span:last-child {
+.light-toggle-container > span:last-child {
   margin-top: 5px;
 }
 
-.toggle-container > p {
+.light-toggle-container > p {
+  z-index: 4;
+}
+
+
+
+
+/* DARK STUFF */
+.dark-toggle {
+  position: relative;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 2em;
+  width: 6em;
+  height: 2em;
+  background: #424242;
+  box-shadow: inset -2px -2px 3px rgba(253, 253, 253, 0.301),
+              inset 2px 2px 6px rgba(0,0,0,0.8); 
+
+}
+
+.dark-toggle input[type="checkbox"].checkbox {
+  display: flex;
+  margin: auto;
+  width: 7em;
+  height: 1.8em;
+  background:linear-gradient(to bottom right, rgb(66, 240, 211), rgb(33, 168, 139) );;
+  position: relative;
+  border-radius: 1em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  vertical-align: 2px;
+  outline: none;
+  box-shadow: inset -2px -2px 2px rgba(253, 253, 253, 0.164),
+               inset 4px 4px 5px rgba(0, 73, 63, 0.8); 
+}
+
+.dark-toggle input[type="checkbox"].checkbox:checked + label {
+  left: 3em;
+}
+
+.dark-toggle input[type="checkbox"].checkbox:focus-visible {
+  outline: solid 2px white;
+}
+
+.dark-toggle input[type="checkbox"].checkbox + label {
+  z-index: 5;
+  display: inline-block;
+  width: 2.5em;
+  height: 1.2em;
+  border-radius: 2em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+  right: 2px;
+  background: #fff;
+  background-color: #2e2e2e;
+  box-shadow: -2px -2px 2px rgba(253, 253, 253, 0.164),
+               2px 2px 3px rgba(0,0,0,0.8); 
+}
+
+
+
+.dark-toggle-container {
+  display: flex;
+  margin: 0 auto;
+}
+
+.dark-toggle-container > span {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-top: 4px;
+  margin-right: 2px;
+}
+
+.dark-toggle-container > span:last-child {
+  margin-top: 5px;
+}
+
+.dark-toggle-container > p {
   z-index: 4;
 }

@@ -14,6 +14,13 @@
 
 }
 
+.light-checkin-title {
+  color: #747474;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  margin-bottom: 0;
+}
+
 .checkin-basics {
   display: flex;
   margin: auto;
@@ -135,14 +142,14 @@
 .caliper-directions-box {
   padding: 1rem;
   border-radius: 1.5rem;
-  border: 1px solid #007896;
-  border-left: 1px solid #007896;
-  border-right: 1px solid #007896;
+  border: 1px solid #5fa8d3;
+  border-left: 1px solid #5fa8d3;
+  border-right: 1px solid #5fa8d3;
   border-top: transparent;
   border-bottom: transparent;
 }
 .caliper-directions-box p {
-  color: #007896;
+  color: #5fa8d3;
   font-family: 'Josefin Sans', sans-serif;
   
 }
@@ -309,13 +316,42 @@
 
 
 .dark-selectors {
-  padding: 10px;
+  padding:10px;
   position: relative;
   border-radius: 1rem;
-  background: #414141
+  background: transparent;
+  font-family: 'Josefin Sans', sans-serif;
+  width: 80%;
+  height: 3rem;
+  box-shadow: -3px -3px 4px rgba(255, 255, 255, 0.192),
+              3px 3px 4px rgba(0, 0, 0, 0.733);
 }
 
+.dark-selectors select{
+  border-radius: 1rem;
+  width: 100%;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border:none;
+  height:2rem;
+  width:100%;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #999999;
+  
 
+}
+
+.dark-checkin-title {
+  color: #b8b6b6;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  margin-bottom: 0;
+}
 
 
 

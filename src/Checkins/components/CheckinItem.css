@@ -5,7 +5,7 @@
 .dark-checkin-item__content {
   border-radius: 1.5rem;
   margin: 1rem auto;
-  margin-top: 7rem;
+  margin-top: 3rem;
   width: 100%;
   max-width: 40rem;
   background-image: linear-gradient(to bottom right, #444343, #242424 );
@@ -50,7 +50,7 @@
 .dark-checkin-item__actions {
   padding: 1rem;
   text-align: center;
-  border-top: 1px solid #ccc;
+  /* border-top: 1px solid #ccc; */
 }
 
 .dark-checkin-item__modal-content {

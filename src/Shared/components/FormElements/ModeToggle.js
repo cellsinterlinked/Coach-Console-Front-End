@@ -7,9 +7,9 @@ const mode = useContext(DarkModeContext);
 
 
 return (
-  <div className="toggle-container">
+  <div className={mode.darkMode ? "dark-toggle-container" : "light-toggle-container"}>
           <span style={{ color: mode.darkMode ? "grey" : "yellow" }}>☀︎</span>
-          <span className="toggle">
+          <span className={mode.darkMode ? "dark-toggle" : "light-toggle"}>
             <input
 
               checked={mode.darkMode}
@@ -22,9 +22,6 @@ return (
             <label htmlFor="checkbox" />
           </span>
           <span style={{ color: mode.darkMode ? "slateblue" : "grey" }}>☾</span>
-          {/* <button onClick={() => setDarkMode(prevMode => !prevMode)}>
-          Toggle
-        </button> */}
         </div>
 )
 }

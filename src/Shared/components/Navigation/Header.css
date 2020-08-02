@@ -35,7 +35,7 @@
   padding: 0 1rem;
   z-index: 5;
   box-shadow:
-    -4px -4px 4px 0 rgb(255, 255, 255, 0.3),
+    -3px -3px 3px 0 rgba(255, 255, 255, 0.226),
     6px 6px 6px 0 rgba(0, 0, 0, 0.746);
 }
 

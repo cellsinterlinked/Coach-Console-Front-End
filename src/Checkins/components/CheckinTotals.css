@@ -83,6 +83,13 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 
+.light-for-shadow {
+  border-radius: 1rem;
+  background: transparent;
+  box-shadow: -2px -2px 2px rgba(253, 253, 253, 0.986),
+               3px 3px 3px rgba(0, 0, 0, 0.308); 
+}
+
 .client-name {
   text-align: center;
 }
@@ -120,7 +127,14 @@
   margin-right: 10px;
 }
 
-
+.light-chart-container {
+  border-radius: 1rem;
+  box-shadow:
+  -2px -2px 3px rgba(255, 254, 254, 0.959),
+  4px 4px 4px rgba(0, 0, 0, 0.37)
+    
+  
+}
 
 
 
@@ -136,7 +150,7 @@
   max-width: 40rem;
   background-image: linear-gradient(to bottom right, #444343, #242424 );
   box-shadow:
-  -8px -8px 8px 0 rgba(151, 150, 150, 0.267),
+  -2px -2px 4px 0 rgba(151, 150, 150, 0.493),
   12px 12px 12px 0 rgba(0, 0, 0, 0.589);
 }
 
@@ -194,6 +208,7 @@
 }
 
 .dark-stat-totals {
+
   margin-top: 1rem;
   display: grid;
   grid-template-columns: 31% 18% 18% 18% 18%;
@@ -201,6 +216,9 @@
   font-size: .8rem;
   color: white;
   font-family: 'Josefin Sans', sans-serif;
+  background: transparent;
+  box-shadow: -2px -2px -2px rgba(0, 0, 0, 0.3),
+              3px 3px 3px rgba(255, 255, 255, 0.75)
 }
 
 
@@ -214,4 +232,20 @@
   color: white;
   justify-items: center;
  font-family: 'Josefin Sans', sans-serif;
+}
+
+.dark-chart-container {
+  border-radius: 1rem;
+  box-shadow:
+  -3px -3px 3px rgba(151, 150, 150, 0.26),
+  4px 4px 4px rgba(0,0,0,0.6)
+    
+  
+}
+
+.dark-for-shadow {
+  border-radius: 1rem;
+  background: transparent;
+  box-shadow: -2px -2px 2px rgba(253, 253, 253, 0.164),
+               2px 2px 3px rgba(0,0,0,0.8); 
 }

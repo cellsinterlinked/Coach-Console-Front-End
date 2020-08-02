@@ -140,7 +140,7 @@ const UpdateCheckin = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
     {!isLoading && loadedCheckin && <form className={mode.darkMode ? "dark-checkin-form" : "light-checkin-form"} onSubmit={checkinUpdateSubmitHandler}>
-    <h2 className="checkin-title">What would you like to change?</h2>
+    <h2 className={mode.darkMode ? "dark-checkin-title" : "light-checkin-title"}>What would you like to change?</h2>
     <br />
     <br />
     <div className="input-group__4">
