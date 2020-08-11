@@ -15,7 +15,7 @@ import { GoCalendar } from 'react-icons/go';
 import { FaCalendarWeek } from 'react-icons/fa';
 import { GiMuscularTorso } from 'react-icons/gi';
 import NotesDisplay from '../../Shared/components/UIElements/NotesDisplay';
-
+import ImageRotate from '../../Shared/components/UIElements/ImageRotate';
 
 
 const CheckinItem = props => {
@@ -23,6 +23,15 @@ const mode = useContext(DarkModeContext);
 
 const { isLoading, error, sendRequest, clearError } = useHttpClient();
 const [showConfirmModal, setShowConfirmModal] = useState(false);
+const [expand, setExpand] = useState(false);
+
+const extend = () => {
+  setExpand(true);
+}
+
+const shrink = () => {
+  setExpand(false);
+}
 
 const showDeleteWarningHandler = () => {
   setShowConfirmModal(true)
@@ -62,15 +71,22 @@ const confirmDeleteHandler = async () => {
     }>
     <p className={mode.darkMode ? "dark-warning-text" : "light-warning-text"}>Do you want to proceed and delete this checkin?</p>
     </Modal>
-    <li className={mode.darkMode ? "dark-checkin-item" : "light-checkin-item"}>
+    <li className={mode.darkMode ? "dark-checkin-item" : "light-checkin-item"} >
     <Card className={mode.darkMode ? "dark-checkin-item__content" : "light-checkin-item__content"}>
     {isLoading && <LoadingSpinner asOverlay />}
-      <div className={mode.darkMode ? "dark-checkin-item__image" : "light-checkin-item__image"}>
-            <img src={"https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg2.wikia.nocookie.net%2F__cb20120103161626%2Ffinalfantasy%2Fimages%2F5%2F5b%2FJessie-ffvii-highres.png&f=1&nofb=1"} alt="this is temporary" />
-        {/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
-        <br />
-        <br />
+      <div className={mode.darkMode ? "dark-date__display" : "light-date__display"} onClick={expand ? shrink: extend}>
+        <p>November 23 2019</p>
       </div>
+      <div className={"input-shrinky " + (expand ? "input-expanded" : "")}>
+
+      <ImageRotate/>
+
+      {/* <div className={mode.darkMode ? "dark-checkin-item__image" : "light-checkin-item__image"}>
+            <img src={"https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg2.wikia.nocookie.net%2F__cb20120103161626%2Ffinalfantasy%2Fimages%2F5%2F5b%2FJessie-ffvii-highres.png&f=1&nofb=1"} alt="this is temporary" /> */}
+        {/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
+        {/* <br />
+        <br />
+      </div> */}
       <InfoDisplayLeft 
       title="Date Of Checkin"
       data="9/9/2020"
@@ -157,7 +173,7 @@ const confirmDeleteHandler = async () => {
         <Button danger onClick={showDeleteWarningHandler}>Delete</Button>
       </div>
       
-    
+    </div>
     
     
     </Card>

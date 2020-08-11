@@ -59,10 +59,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 1.5rem;
   background: #333333;
-  background-image: linear-gradient(to bottom right, #414141, #2b2a2a );
+  background-image: linear-gradient(to bottom right, #414141, #1d1d1d );
   box-shadow:
-    -10px -10px 10px 0 rgba(255, 255, 255, 0.137),
-    12px 12px 12px 0 rgba(27, 27, 27, 0.931);
+    -3px -3px 4px 0 rgba(255, 255, 255, 0.185),
+    10px 10px 10px 0 rgb(0, 0, 0, 0.9);
 }
 
 .dark-new-client__form hr {

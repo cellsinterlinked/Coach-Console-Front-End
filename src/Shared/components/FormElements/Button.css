@@ -12,6 +12,8 @@
   box-shadow: -2px -2px 4px rgb(255, 255, 255),
               2px 2px 4px rgba(0,0,0,0.6);
   font-family: 'Josefin Sans', sans-serif;
+  border: none;
+  
 }
 
 .light-button:focus {

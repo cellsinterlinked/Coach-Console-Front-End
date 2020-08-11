@@ -209,6 +209,29 @@
 
 }
 
+.light-input__Check {
+  display: flex;
+  margin: auto;
+  margin-top: 2rem;
+  justify-self: center;
+  padding:10px;
+  position: relative;
+  border-radius: 1rem;
+  background: transparent;
+  font-family: 'Josefin Sans', sans-serif;
+  width: 95%;
+  height: 3rem;
+  box-shadow: -3px -3px 4px rgba(255, 255, 255, 0.856),
+              3px 3px 4px rgba(0, 0, 0, 0.383);
+
+}
+
+.light-input__Check p {
+  align-self: center;
+  margin-left: 1rem;
+  color: #999999;
+}
+
 
 .drop-down {
   margin-top: 1.8rem;
@@ -289,6 +312,22 @@
   height: 30vh
 }
 
+.input-shrinky {
+  opacity: 0;
+  max-height: 0;
+  overflow-y: hidden;
+  transition: all 0.8s ease;
+}
+
+.input-expanded {
+  max-height: 2000px;
+  opacity: 1;
+  transition: all 0.8s ease;
+  padding: 0;
+  width: 100%;
+}
+
+
 /* DARK STUFF */
 
 
@@ -353,5 +392,186 @@
   margin-bottom: 0;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/* FORM TOGGLE  */
+
+
+.light-input-toggle {
+  position: relative;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 2em;
+  width: 3.5em;
+  height: 1.7em;
+  background: #d6d6d6;
+  box-shadow: inset -2px -2px 6px rgb(253, 253, 253),
+              inset 2px 2px 6px rgba(0,0,0,0.8); 
+
+}
+
+.light-input-toggle input[type="checkbox"].checkbox {
+  display: flex;
+  margin: auto;
+  width: 4em;
+  height: 1.8em;
+  background:transparent;
+  position: relative;
+  border-radius: 1em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  vertical-align: 2px;
+  outline: none;
+  box-shadow: inset -2px -2px 2px rgb(255, 255, 255),
+               inset 4px 4px 5px rgba(0, 0, 0, 0.349);
+}
+
+.light-input-toggle input[type="checkbox"].checkbox:checked + label {
+  left: 2em;
+}
+
+.light-input-toggle input[type="checkbox"].checkbox:focus-visible {
+  outline: solid 2px white;
+}
+
+.light-input-toggle input[type="checkbox"].checkbox + label {
+  z-index: 5;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: absolute;
+  left: 4px;
+  right: 2px;
+  background: #fff;
+  background-color: #d6d6d6;
+  box-shadow: -2px -2px 2px rgb(253, 253, 253),
+               1px 1px 3px rgba(0,0,0,0.8); 
+}
+
+
+.light-input-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-self: flex-start;
+}
+
+.light-input-toggle-container > span {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-top: 4px;
+  margin-right: 2px;
+}
+
+.light-input-toggle-container > span:last-child {
+  margin-top: 5px;
+}
+
+.light-input-toggle-container > p {
+  z-index: 4;
+}
+
+
+
+
+/* DARK STUFF */
+.dark-input-toggle {
+  position: relative;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 2em;
+  width: 6em;
+  height: 2em;
+  background: #424242;
+  box-shadow: inset -2px -2px 3px rgba(253, 253, 253, 0.301),
+              inset 2px 2px 6px rgba(0,0,0,0.8); 
+
+}
+
+.dark-input-toggle input[type="checkbox"].checkbox {
+  display: flex;
+  margin: auto;
+  width: 7em;
+  height: 1.8em;
+  background:linear-gradient(to bottom right, rgb(66, 240, 211), rgb(33, 168, 139) );;
+  position: relative;
+  border-radius: 1em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  vertical-align: 2px;
+  outline: none;
+  box-shadow: inset -2px -2px 2px rgba(253, 253, 253, 0.164),
+               inset 4px 4px 5px rgba(0, 73, 63, 0.8); 
+}
+
+.dark-input-toggle input[type="checkbox"].checkbox:checked + label {
+  left: 3em;
+}
+
+.dark-input-toggle input[type="checkbox"].checkbox:focus-visible {
+  outline: solid 2px white;
+}
+
+.dark-input-toggle input[type="checkbox"].checkbox + label {
+  z-index: 5;
+  display: inline-block;
+  width: 2.5em;
+  height: 1.2em;
+  border-radius: 2em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+  right: 2px;
+  background: #fff;
+  background-color: #2e2e2e;
+  box-shadow: -2px -2px 2px rgba(253, 253, 253, 0.164),
+               2px 2px 3px rgba(0,0,0,0.8); 
+}
+
+
+
+.dark-input-toggle-container {
+  display: flex;
+  margin: 0 auto;
+}
+
+.dark-input-toggle-container > span {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-top: 4px;
+  margin-right: 2px;
+}
+
+.dark-input-toggle-container > span:last-child {
+  margin-top: 5px;
+}
+
+.dark-input-toggle-container > p {
+  z-index: 4;
+}
 
 

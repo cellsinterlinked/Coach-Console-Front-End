@@ -5,7 +5,7 @@
 .dark-checkin-item__content {
   border-radius: 1.5rem;
   margin: 1rem auto;
-  margin-top: 3rem;
+  margin-top: 2rem;
   width: 100%;
   max-width: 40rem;
   background-image: linear-gradient(to bottom right, #444343, #242424 );
@@ -72,6 +72,16 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 
+.dark-date__display {
+  color: #d4d4d4;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.dark-date__display {
+  margin: auto;
+}
+
 /* @media (min-width: 768px) {
   .checkin-item__image {
     height: 20rem;
@@ -80,6 +90,18 @@
 
 /* LIGHT STUFF */
 
+.light-date__display {
+  display: flex;
+  justify-content: center;
+  color: #969696;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.light-date__display p {
+  margin-top: 0;
+}
+
 .light-checkin-item {
   margin: 1rem 0;
 }
@@ -87,7 +109,7 @@
 .light-checkin-item__content {
   border-radius: 1.5rem;
   margin: 1rem auto;
-  margin-top: 3rem;
+  margin-top: 2rem;
   width: 100%;
   max-width: 40rem;
   background-image: linear-gradient(to bottom right, rgb(240, 240, 240), rgb(196, 196, 196) );

@@ -11,6 +11,7 @@ import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 import StatsCompare from './StatsCompare';
 import MeasurementsCompare from './MeasurementsCompare';
 import Chart from '../components/Chart';
+import Slider from '../../Shared/components/UIElements/Slider';
 
 const CheckinTotals = props => {
   const mode = useContext(DarkModeContext);
@@ -79,9 +80,13 @@ const CheckinTotals = props => {
     {isLoading && <LoadingSpinner asOverlay />}
     <div className="totals-info">
 
-    <div className={mode.darkMode ? "dark-chart-container" : "light-chart-container"}>
-    <Chart />
-    </div>
+    
+
+
+   
+    <Slider />
+    
+    
 
     <h1 className="client-name">{loadedAthlete}</h1>
     
