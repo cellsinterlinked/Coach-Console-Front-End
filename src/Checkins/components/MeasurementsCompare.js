@@ -7,14 +7,14 @@ const MeasurementsCompare = props => {
 
   return (
     <div className={mode.darkMode ? "dark-measurement-compare-container" : "light-measurement-compare-container" }>
-        <p>10/10/2020</p>
-        <p>6</p>
-        <p>7</p>
-        <p>14</p>
-        <p>10</p>
-        <p>5</p>
-        <p>9</p>
-        <p>11</p>
+        <p>{props.date}</p>
+        <p>{props.chest}</p>
+        <p>{props.axilla}</p>
+        <p>{props.tricep}</p>
+        <p>{props.subscapular}</p>
+        <p>{props.abdominal}</p>
+        <p>{props.suprailiac}</p>
+        <p>{props.thigh}</p>
     </div>
   )
 }

@@ -25,7 +25,9 @@ return (
  <CheckinTotals
     clientId={props.clientId} 
     name={props.items[0].name}
-    client={props.items[0].client} />
+    client={props.items[0].client}
+    items = {props.items}
+    />
 
 
 <ul className="client-list">
@@ -38,9 +40,10 @@ return (
       weight={checkin.weight}
       weeksOut={checkin.weeksOut}
       bodyFat={checkin.bodyFat}
-      // week_loss={checkin.week_loss}
+      leanBodyMass={checkin.leanBodyMass}
+      fatMass={checkin.fatMass}
       athlete={checkin.athlete} 
-      // notes={checkin.notes}
+      notes={checkin.notes}
       onDelete={props.onDeleteCheckin}
       />
   ))}

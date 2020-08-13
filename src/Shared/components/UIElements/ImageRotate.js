@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import './ImageRotate.css';
-import Chart from '../../../Checkins/components/Chart';
 import {FaChevronLeft} from 'react-icons/fa';
 import {FaChevronRight} from 'react-icons/fa';
 import {DarkModeContext} from '../../context/dark-mode-context';

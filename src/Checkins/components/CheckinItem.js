@@ -24,6 +24,8 @@ const mode = useContext(DarkModeContext);
 const { isLoading, error, sendRequest, clearError } = useHttpClient();
 const [showConfirmModal, setShowConfirmModal] = useState(false);
 const [expand, setExpand] = useState(false);
+// const date = props.date;
+// const sDate = date.toString();
 
 const extend = () => {
   setExpand(true);
@@ -75,7 +77,7 @@ const confirmDeleteHandler = async () => {
     <Card className={mode.darkMode ? "dark-checkin-item__content" : "light-checkin-item__content"}>
     {isLoading && <LoadingSpinner asOverlay />}
       <div className={mode.darkMode ? "dark-date__display" : "light-date__display"} onClick={expand ? shrink: extend}>
-        <p>November 23 2019</p>
+        <p>put in responsive date</p>
       </div>
       <div className={"input-shrinky " + (expand ? "input-expanded" : "")}>
 
@@ -89,7 +91,7 @@ const confirmDeleteHandler = async () => {
       </div> */}
       <InfoDisplayLeft 
       title="Date Of Checkin"
-      data="9/9/2020"
+      data={props.date}
         ><GoCalendar
         className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
         size="1.4rem" 
@@ -99,7 +101,7 @@ const confirmDeleteHandler = async () => {
     </InfoDisplayLeft>
     <InfoDisplayRight
     title="Body Weight"
-    data="140lbs"
+    data={props.weight}
     ><FaWeight
     className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
     size="1.4rem" 
@@ -109,7 +111,7 @@ const confirmDeleteHandler = async () => {
     </InfoDisplayRight>
     <InfoDisplayLeft 
     title="Weeks In"
-    data="4Wks"
+    data={props.weeksOut}
     ><FaCalendarWeek
     className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
         size="1.4rem" 
@@ -119,7 +121,7 @@ const confirmDeleteHandler = async () => {
     </InfoDisplayLeft>
     <InfoDisplayRight
     title="Body Fat Percentage"
-    data="15%"
+    data={props.bodyFat}
     ><GiPincers 
     className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
     size="1.4rem" 
@@ -129,7 +131,7 @@ const confirmDeleteHandler = async () => {
     </InfoDisplayRight>
     <InfoDisplayLeft 
       title="Lean Body Mass"
-      data="119lbs"
+      data={props.weight}
         ><GiMuscularTorso 
         className={mode.darkMode ? "dark-infoLeft-icon" : "light-infoLeft-icon"} 
         size="1.4rem" 
@@ -138,14 +140,7 @@ const confirmDeleteHandler = async () => {
         />
     </InfoDisplayLeft>
     <NotesDisplay
-      notes="When in doubt, wash try to jump onto window and fall while scratching at 
-      wall good now the other hand, too for pet right here, no not there, here, no fool,
-       right here that other cat smells funny you should really give me all the treats 
-       because i smell the best and omg you finally got the right spot and i love you 
-       right now cats woo chase mice. Floof tum, tickle bum, jellybean footies curly 
-       toes purrrrrr and run outside as soon as door open slap kitten brother with paw. 
-       Get scared by sudden appearance of cucumber eat and than sleep on your face yet 
-       ."
+      notes={props.notes}
       >
       
 

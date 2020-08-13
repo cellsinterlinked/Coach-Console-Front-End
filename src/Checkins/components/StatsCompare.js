@@ -7,11 +7,11 @@ const StatsCompare = props => {
 
   return(
     <div className={mode.darkMode ? "dark-compare-container" : "light-compare-container"} >
-      <p>10/10/2020</p>
-      <p>15%</p>
-      <p>140</p>
-      <p>4</p>
-      <p>119</p>
+      <p>{props.date}</p>
+      <p>{Math.round(props.bodyFat * 10) / 10}</p>
+      <p>{props.weight}</p>
+      <p>{props.weeksOut}</p>
+      <p>{Math.round(props.leanBodyMass * 10) / 10}</p>
 
     </div>
   )

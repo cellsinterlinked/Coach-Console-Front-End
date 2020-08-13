@@ -24,6 +24,7 @@ const NewCheckin = () => {
   const [ bfDisplay, setBfDisplay ] = useState(false);
   const [ notesDisplay, setNotesDisplay] = useState(false);
   const [ picDisplay, setPicDisplay] = useState(false);
+  const [measureDisplay, setMeasureDisplay] = useState(false);
 
   const client = useParams().clientId;
 
@@ -80,7 +81,35 @@ const NewCheckin = () => {
       image: {
         value: null,
         isValid: false
-      }
+      },
+      neck_inch: {
+        value: 0,
+        isValid: false
+      },
+      arm_inch: {
+        value: 0,
+        isValid: false
+      },
+      chest_inch: {
+        value: 0,
+        isValid: false
+      },
+      waist_inch: {
+        value: 0,
+        isValid: false
+      },
+      hips_inch: {
+        value: 0,
+        isValid: false
+      },
+      thigh_inch: {
+        value: 0,
+        isValid: false
+      },
+      calf_inch: {
+        value: 0,
+        isValid: false
+      },
     },
     false
   );
@@ -123,18 +152,29 @@ const NewCheckin = () => {
     setPicDisplay(false)
   }
 
+  const measurementsChecked = () => {
+    setMeasureDisplay(true);
+  }
+
+  const measurementsUnchecked = () => {
+    setMeasureDisplay(false);
+  }
+
 
   const checkinSubmitHandler = async event => {
     event.preventDefault();
     const theFat = findSum(formState);
-
+    const fatMass = formState.inputs.weight.value * (theFat * .01);
+    const leanBodyMass = formState.inputs.weight.value - (formState.inputs.weight.value * (theFat * .01));
     console.log({
       date: formState.inputs.date.value,
       weight: formState.inputs.weight.value,
       bodyFat: theFat,
       weeksOut: formState.inputs.weeks.value,
       athlete: client,
-      image: formState.inputs.image.value
+      image: formState.inputs.image.value,
+      bodyMass : leanBodyMass,
+      fatMass
     });
     try {
       const formData = new FormData();
@@ -144,6 +184,17 @@ const NewCheckin = () => {
       formData.append("weeksOut", formState.inputs.weeks.value);
       formData.append("athlete", client);
       formData.append("image", formState.inputs.image.value);
+      formData.append("chest", formState.inputs.chest.value);
+      formData.append("axilla", formState.inputs.axilla.value);
+      formData.append("tricep", formState.inputs.tricep.value);
+      formData.append("subscapular", formState.inputs.subscapular.value);
+      formData.append("abdominal", formState.inputs.abdominal.value);
+      formData.append("suprailiac", formState.inputs.suprailiac.value);
+      formData.append("thigh", formState.inputs.thigh.value);
+      formData.append("notes", formState.inputs.notes.value);
+      formData.append("fatMass", fatMass);
+      formData.append("leanBodyMass", leanBodyMass);
+
 
       console.log("date", formState.inputs.date.value);
       console.log("weight", formState.inputs.weight.value);
@@ -184,19 +235,18 @@ const NewCheckin = () => {
     let yourFatAss;
     if (gender === "1") {
       yourFatAss =
-        1.112 -
-        0.00043499 * total +
-        ((0.00000055 * total) ^ 2) -
-        0.00028826 * age.value;
+        495 / (1.112 - (0.00043499 * total) + (0.00000055 * total * total) - (0.00028826 * age.value)) - 450 ;
     } else if (gender === "2") {
       yourFatAss =
-        1.097 -
-        0.00046971 * total +
-        0.00000056 * total -
-        0.00012828 * age.value;
+        495 / (1.097 - (0.00046971 * total) + (0.00000056 * total * total) - (0.00012828 * age.value)) - 450 ;
+        
     }
+
+    
     // console.log(yourFatAss)
     return yourFatAss;
+
+    
   };
 
   return (
@@ -261,7 +311,7 @@ const NewCheckin = () => {
               id="age"
               labelText="Age"
               element="input"
-              type="text"
+              type="number"
               errorText="Please enter valid age"
               validators={[VALIDATOR_REQUIRE()]}
               onInput={inputHandler}
@@ -274,10 +324,11 @@ const NewCheckin = () => {
               id="weeks"
               labelText="Week#"
               element="input"
-              type="text"
+              type="number"
               importedStyle=""
               validators={[VALIDATOR_REQUIRE()]}
               onInput={inputHandler}
+              errorText="Please enter the week of training "
             />
             <p className="measure">Wks</p>
           </div>
@@ -286,10 +337,11 @@ const NewCheckin = () => {
             <Input
               id="weight"
               element="input"
-              type="text"
+              type="number"
               labelText="Weight"
               validators={[VALIDATOR_REQUIRE()]}
               onInput={inputHandler}
+              errorText="Please enter weight in pounds"
             />
             <p className="measure">Lbs</p>
           </div>
@@ -562,7 +614,218 @@ const NewCheckin = () => {
         </div>
         </div>
 
+
+{/* TESTING */}
+
+        <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
+          <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
+          <span style={{ color: notesDisplay ? "grey" : "#5fa8d3" }}>No</span>
+          <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
+              <input  
+              checked={measureDisplay}
+              onChange={measureDisplay ? measurementsUnchecked : measurementsChecked} 
+              id="measurementsCheckbox"
+              className="checkbox"
+              type="checkbox"
+            />
+          <label htmlFor="measurementsCheckbox" />
+          </span>
+          <span style={{ color: measureDisplay ? "#5fa8d3" : "grey" }}>Yes</span>
+        </div>
+
+        <p>Log Measurements?</p>
+        </div>
+
+
+
         
+        <div className={"input-shrinky " + (measureDisplay ? "input-expanded" : "")}>
+        <div className="caliper-directions-box">
+          <p>
+            Take measurements in inches of each area of the body
+          </p>
+        </div>
+
+
+        <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="neck_inch"
+                element="input"
+                type="number"
+                labelText="Neck"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter valid measurement in inches"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+
+
+
+
+          <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="arm_inch"
+                element="input"
+                type="number"
+                labelText="Arm"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter valid measurement in inches"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+
+
+
+
+
+          <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="chest_inch"
+                element="input"
+                type="number"
+                labelText="Chest"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter valid measurement in inches"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+
+
+
+
+
+          <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="waist_inch"
+                element="input"
+                type="number"
+                labelText="Waist"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter valid measurement in inches"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+
+
+
+
+
+          <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="hips_inch"
+                element="input"
+                type="number"
+                labelText="Hips"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter valid measurement in inches"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+
+
+
+          <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="thigh_inch"
+                element="input"
+                type="number"
+                labelText="Thigh"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter valid measurement in inches"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+
+
+
+          <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="calf_inch"
+                element="input"
+                type="number"
+                labelText="Calf"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter valid measurement in inches"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+        
+
+    {/* END TESTING     */}
         
         <div className="submit-checkin" style={{marginTop: "2rem"}}>
           <Button
