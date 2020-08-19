@@ -56,17 +56,18 @@ const WeightChart = props => {
       //   pointHoverRadius: 5,
       //   pointHoverBackgroundColor: "rgba(255,255,255, 0.5)"
       // }
-    ]
-    },
-    // options: {
-    //   scales: {
-    //     yAxes: [{
-    //       ticks: {
-    //         beginAtZero: true
-    //       }
-    //     }]
-    //   }
-    // }
+    ],
+    options: {
+      scaleShowLavels: false,
+      scales: {
+        xAxes: [{
+          ticks: {
+            display: false
+          }
+        }]
+      }
+    }
+    }
   }) 
 
   return (
@@ -74,8 +75,16 @@ const WeightChart = props => {
       <Line 
         data={infoGraph.chartData}
         options={{
-
-        }}
+            scaleShowLavels: false,
+            scales: {
+              xAxes: [{
+                ticks: {
+                  display: false
+                }
+              }]
+            }
+          }  
+        }
       
       />
     </div>

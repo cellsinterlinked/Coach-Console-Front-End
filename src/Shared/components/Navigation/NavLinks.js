@@ -16,25 +16,39 @@ const NavLinks = props => {
 
   {auth.isLoggedIn && (
   <li>
-    <NavLink to="/clients" exact>MY CLIENTS</NavLink>
+    <NavLink to="/clients" exact>
+    <div>{props.peopleIcon}</div>
+    MY CLIENTS
+    
+    </NavLink>
+    <div>{props.arrow}</div>
   </li>
   )}
 
   {auth.isLoggedIn && (
   <li>
-    <NavLink to="/newclient" exact>NEW CLIENT</NavLink>
+    <NavLink to="/newclient" exact>
+    <div>{props.addPersonIcon}</div>
+    NEW CLIENT</NavLink>
   </li>
   )}
 
 {!auth.isLoggedIn && (
     <li>
-      <NavLink to="/auth">AUTHENTICATE</NavLink>
+      <NavLink to="/auth">
+      <div>
+        {props.authIcon}
+      </div>
+      AUTHENTICATE
+      </NavLink>
     </li>
   )}
 
     {auth.isLoggedIn && (
       <li>
-        <NavLink to="/auth" onClick={auth.logout}>LOGOUT</NavLink>
+        <NavLink to="/auth" onClick={auth.logout}>
+        <div>{props.logoutIcon}</div>
+        LOGOUT</NavLink>
       </li>
 
       // for some reason we had this as a button ^ may cause issues

@@ -25,6 +25,7 @@ const NewCheckin = () => {
   const [ notesDisplay, setNotesDisplay] = useState(false);
   const [ picDisplay, setPicDisplay] = useState(false);
   const [measureDisplay, setMeasureDisplay] = useState(false);
+  const [cardioDisplay, setCardioDisplay] = useState(false);
 
   const client = useParams().clientId;
 
@@ -110,6 +111,14 @@ const NewCheckin = () => {
         value: 0,
         isValid: false
       },
+      cardio_duration: {
+        value: 0,
+        isValid: false
+      },
+      cardio_calories: {
+        value: 0,
+        isValid: false
+      }
     },
     false
   );
@@ -159,6 +168,14 @@ const NewCheckin = () => {
   const measurementsUnchecked = () => {
     setMeasureDisplay(false);
   }
+
+  const cardioChecked = () => {
+    setCardioDisplay(true)
+  };
+
+  const cardioUnchecked = () => {
+    setCardioDisplay(false)
+  };
 
 
   const checkinSubmitHandler = async event => {
@@ -824,8 +841,87 @@ const NewCheckin = () => {
 
 
         
+        {/* END TESTING */}
+    {/* BIGIN TESTING AGAIN     */}
+    <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
+          <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
+          <span style={{ color: notesDisplay ? "grey" : "#5fa8d3" }}>No</span>
+          <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
+              <input  
+              checked={cardioDisplay}
+              onChange={cardioDisplay ? cardioUnchecked : cardioChecked} 
+              id="cardioCheckbox"
+              className="checkbox"
+              type="checkbox"
+            />
+          <label htmlFor="cardioCheckbox" />
+          </span>
+          <span style={{ color: cardioDisplay ? "#5fa8d3" : "grey" }}>Yes</span>
+        </div>
 
-    {/* END TESTING     */}
+        <p>Log Cardio Activity?</p>
+        </div>
+
+
+
+        
+        <div className={"input-shrinky " + (cardioDisplay ? "input-expanded" : "")}>
+        <div className="caliper-directions-box">
+          <p>
+            Enter the duration of cardio done this week and or calories burnt doing cardio. 
+          </p>
+        </div>
+
+
+        <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="cardio_duration"
+                element="input"
+                type="number"
+                labelText="Duration (minutes)"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter total cardio in minutes"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+
+
+
+
+          <div className="inputLine">
+            <div className="info-circle__border">
+              <div className="info-circle">
+                <FaInfoCircle className="info-icon" size="1.7em" />
+              </div>
+            </div>
+            <div className="typeBox">
+              <Input
+                id="cardio_calories"
+                element="input"
+                type="number"
+                labelText="Calories"
+                importedStyle="num"
+                validators={[VALIDATOR_REQUIRE()]}
+                onInput={inputHandler}
+                errorText="Please enter total calories burnt"
+              />
+            </div>
+            <p className="measure">"</p>
+          </div>
+          </div>
+
+
+
+    {/* TESTING END */}
         
         <div className="submit-checkin" style={{marginTop: "2rem"}}>
           <Button

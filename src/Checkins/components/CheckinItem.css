@@ -82,6 +82,21 @@
   margin: auto;
 }
 
+.checkin-item-data__Box {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 760px) {
+  .checkin-item-data__Box {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
 /* @media (min-width: 768px) {
   .checkin-item__image {
     height: 20rem;
@@ -91,15 +106,20 @@
 /* LIGHT STUFF */
 
 .light-date__display {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
   color: #969696;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1rem;
+  width: 100%;
+  
 }
 
 .light-date__display p {
+  grid-column: 2/2;
   margin-top: 0;
+  justify-self: center;
+  
 }
 
 .light-checkin-item {
@@ -112,7 +132,7 @@
   margin-top: 2rem;
   width: 100%;
   max-width: 40rem;
-  background-image: linear-gradient(to bottom right, rgb(240, 240, 240), rgb(196, 196, 196) );
+  background-image: linear-gradient(to bottom right, rgb(246, 246, 246), rgb(224, 224, 224) );
   box-shadow: -4px -4px 6px rgb(255, 255, 255),
               4px 4px 6px rgba(0,0,0,0.6);
 
@@ -174,4 +194,24 @@
   text-align: center;
   color: #666666;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.down-Arrow-Box {
+  transition: all 0.8s ease;
+  height: 1rem;
+  width:1rem;
+  grid-column: 3/3;
+  justify-self:center;
+  
+  }
+
+.up-Arrow-Box {
+  transition: all 0.8s ease;
+  overflow: hidden;
+  transform: rotate(-180deg);
+  height:1rem;
+  width: 1rem;
+  justify-self: center;
+  
 }

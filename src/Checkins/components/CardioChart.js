@@ -39,22 +39,33 @@ const CardioChart = props => {
           pointHoverRadius: 5,
           pointHoverBackgroundColor: "rgba(255,255,255, 0.5)"
         }
-      ]
-    }
-    // options: {
-    //   scales: {
-    //     yAxes: [{
-    //       ticks: {
-    //         beginAtZero: true
-    //       }
-    //     }]
-    //   }
-    // }
+      ],
+    },
+        options: {
+          legend: {
+            display: false
+          },
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem) {
+                      return tooltipItem.yLabel;
+              }
+            }
+          }
+        }
+    
   });
 
   return (
     <div className="chart">
-      <Line data={infoGraph.chartData} options={{}} />
+      <Line data={infoGraph.chartData} options={{scaleShowLavels: false,
+            scales: {
+              xAxes: [{
+                ticks: {
+                  display: false
+                }
+              }]
+            }}} />
     </div>
   );
 };

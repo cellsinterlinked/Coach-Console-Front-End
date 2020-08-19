@@ -34,7 +34,14 @@ const BodyFatChart = props => {
 
   return (
     <div className="chart">
-      <Line data={infoGraph.chartData} options={{}} />
+      <Line data={infoGraph.chartData} options={{scaleShowLavels: false,
+            scales: {
+              xAxes: [{
+                ticks: {
+                  display: false
+                }
+              }]
+            }}} />
     </div>
   );
 };
