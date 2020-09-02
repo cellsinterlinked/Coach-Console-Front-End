@@ -117,7 +117,6 @@
 .new-checkin-box {
   display: flex;
   justify-content: center;
-  width: 100%
 
 }
 .new-checkin__button {
@@ -138,7 +137,12 @@
   
 }
 
-
+.totals-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 4rem;
+}
 
 
 

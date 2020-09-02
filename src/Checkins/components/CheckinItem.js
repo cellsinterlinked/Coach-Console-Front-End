@@ -12,10 +12,10 @@ import { FaWeight } from "react-icons/fa";
 import { GoCalendar } from "react-icons/go";
 import { FaCalendarWeek } from "react-icons/fa";
 import { GiMuscularTorso } from "react-icons/gi";
-import NotesDisplay from "../../Shared/components/UIElements/NotesDisplay";
 import ImageRotate from "../../Shared/components/UIElements/ImageRotate";
 import CheckinData from "../components/CheckinData";
 import {FaArrowDown} from 'react-icons/fa';
+import CheckinItemCarousel from '../components/checkin-item-carousel/CheckinItemCarousel';
 
 const CheckinItem = props => {
   const mode = useContext(DarkModeContext);
@@ -105,55 +105,40 @@ const CheckinItem = props => {
           <div className={"input-shrinky " + (expand ? "input-expanded" : "")}>
             <ImageRotate />
             <div className="checkin-item-data__Box">
-              <CheckinData
-                children={
-                  <GoCalendar
-                    style={{ height: "2rem", width: "auto", color: "#bf00ff" }}
-                  />
-                }
-                dataTitle="Date of Checkin"
-                data={props.date.toString().slice(0, 10)}
-              />
 
-              <CheckinData
-                children={
-                  <FaWeight
-                    style={{ height: "2rem", width: "auto", color: "#2fc6a6" }}
-                  />
-                }
-                dataTitle="Weight at Checkin"
-                data={props.weight}
-              />
 
-              <CheckinData
-                children={
-                  <FaCalendarWeek
-                    style={{ height: "2rem", width: "auto", color: "#db8515" }}
-                  />
-                }
-                dataTitle="Week of Checkin"
-                data={props.weeksOut}
-              />
 
-              <CheckinData
-                children={
-                  <GiPincers
-                    style={{ height: "2rem", width: "auto", color: "#ff0000" }}
-                  />
-                }
-                dataTitle="Body Fat%"
-                data={Math.round(props.bodyFat)}
-              />
 
-              <CheckinData
-                children={
-                  <GiMuscularTorso
-                    style={{ height: "2rem", width: "auto", color: "#006eff" }}
-                  />
-                }
-                dataTitle="Lean Body Mass"
-                data={Math.round(props.leanBodyMass)}
-              />
+
+
+          <CheckinItemCarousel
+           date={props.date.toString().slice(0, 10)}
+           weight={props.weight}
+           weeksOut={props.weeksOut}
+           bodyFat={Math.round(props.bodyFat)}
+           leanBodyMass={Math.round(props.leanBodyMass)}
+           notes={props.notes}
+           neckMeasure={props.neckMeasure}
+           armMeasure={props.armMeasure}
+           chestMeasure={props.chestMeasure}
+           waistMeasure={props.waistMeasure}
+           hipsMeasure={props.hipsMeasure}
+           thighMeasure={props.thighMeasure}
+           calfMeasure={props.calfMeasure}
+           chest={props.chest}
+           axilla={props.axilla}
+           tricep={props.tricep}
+           subscapular={props.subscapular}
+           abdominal={props.abdominal}
+           suprailiac={props.suprailiac}
+           thigh={props.thigh}
+           cardioDuration={props.cardioDuration}
+           cardioCalories={props.cardioCalories}
+
+          
+          />
+
+
             </div>
 
             {/* <div className={mode.darkMode ? "dark-checkin-item__image" : "light-checkin-item__image"}>

@@ -83,131 +83,11 @@ const CheckinTotals = props => {
         className={mode.darkMode ? "dark-totals-card" : "light-totals-card"}
       >
         {isLoading && <LoadingSpinner asOverlay />}
+          <h1 className="client-name">{loadedAthlete}</h1>
         <div className="totals-info">
           <Slider items={props.items} />
 
-          <h1 className="client-name">{loadedAthlete}</h1>
-
-          <div
-            className={
-              mode.darkMode ? "dark-stats-labels" : "light-stats-labels"
-            }
-          >
-            <p className="stats-date__Label">Date</p>
-            <p className="stats-bodyfat__Label">Body Fat</p>
-            <p className="stats-weight__Label">Weight</p>
-            <p className="stats-week__Label">Week</p>
-            <p className="stats-leanbm__Label">Lean BM</p>
-          </div>
-          {props.items.map(checkin => (
-            <StatsCompare
-              key={checkin.id}
-              date={checkin.date.toString().slice(0, 10)}
-              weight={checkin.weight}
-              bodyFat={checkin.bodyFat}
-              leanBodyMass={checkin.leanBodyMass}
-              weeksOut={checkin.weeksOut}
-            />
-          ))}
-          <div
-            className={mode.darkMode ? "dark-for-shadow" : "light-for-shadow"}
-          >
-            <div
-              className={
-                mode.darkMode ? "dark-stat-totals" : "light-stat-totals"
-              }
-            >
-              <p>TOTALS</p>
-              <p>
-                {Math.round(
-                  props.items[0].bodyFat -
-                    props.items[props.items.length - 1].bodyFat
-                )}
-                %
-              </p>
-              <p>
-                {props.items[0].weight -
-                  props.items[props.items.length - 1].weight}
-                lbs
-              </p>
-              <p>{props.items[props.items.length - 1].weeksOut}</p>
-              <p>
-                {Math.round(
-                  props.items[0].leanBodyMass -
-                    props.items[props.items.length - 1].leanBodyMass
-                )}
-              </p>
-            </div>
-          </div>
-
-          <div
-            className={
-              mode.darkMode ? "dark-compare-labels" : "light-compare-labels"
-            }
-          >
-            <p className="compare-date__Label">Date</p>
-            <p className="compare-chest__Label">Ch</p>
-            <p className="compare-axilla__Label">Ax</p>
-            <p className="compare-tricep__Label">Tr</p>
-            <p className="compare-subscapular__Label">Sub</p>
-            <p className="compare-abdominal__Label">Ab</p>
-            <p className="compare-suprailiac__Label">Sup</p>
-            <p className="compare-thigh__Label">Th</p>
-          </div>
-          {props.items.map(checkin => (
-            <MeasurementsCompare
-              date={checkin.date.toString().slice(0, 10)}
-              key={checkin.id}
-              chest={checkin.chest}
-              axilla={checkin.axilla}
-              tricep={checkin.tricep}
-              subscapular={checkin.subscapular}
-              abdominal={checkin.abdominal}
-              suprailiac={checkin.suprailiac}
-              thigh={checkin.thigh}
-            />
-          ))}
-          <div
-            className={mode.darkMode ? "dark-for-shadow" : "light-for-shadow"}
-          >
-            <div
-              className={
-                mode.darkMode ? "dark-measure-totals" : "light-measure-totals"
-              }
-            >
-              <p>TOTALS</p>
-              <p>
-                {props.items[0].chest -
-                  props.items[props.items.length - 1].chest}
-              </p>
-              <p>
-                {props.items[0].axilla -
-                  props.items[props.items.length - 1].axilla}
-              </p>
-              <p>
-                {props.items[0].tricep -
-                  props.items[props.items.length - 1].tricep}
-              </p>
-              <p>
-                {props.items[0].subscapular -
-                  props.items[props.items.length - 1].subscapular}
-              </p>
-              <p>
-                {props.items[0].abdominal -
-                  props.items[props.items.length - 1].abdominal}
-              </p>
-              <p>
-                {props.items[0].suprailiac -
-                  props.items[props.items.length - 1].suprailiac}
-              </p>
-              <p>
-                {props.items[0].thigh -
-                  props.items[props.items.length - 1].thigh}
-              </p>
-            </div>
-          </div>
-          <br />
-          <br />
+          
         </div>
         <footer>
           <div
@@ -217,16 +97,16 @@ const CheckinTotals = props => {
                 : "light-checkin-item__actions"
             }
           >
-            <Button danger onClick={showDeleteWarningHandler}>
+            <Button danger onClick={showDeleteWarningHandler} size="small">
               Delete Client
             </Button>
-          </div>
 
           <div className="new-checkin-box">
             <Button
               to={`/${props.clientId}/newcheckin`}
               buttonStyle="new-checkin__button"
-            >
+              size="small"
+              >
               New Checkin
             </Button>
           </div>
@@ -237,10 +117,13 @@ const CheckinTotals = props => {
             <Button
               to={`/${props.clientId}/editclient`}
               buttonStyle="new-checkin__button"
-            >
+              size="small"
+              >
               Update Client
             </Button>
           </div>
+              </div>
+          
         </footer>
       </Card>
     </React.Fragment>

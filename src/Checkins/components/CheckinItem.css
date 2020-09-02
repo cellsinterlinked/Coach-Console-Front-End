@@ -48,6 +48,9 @@
 }
 
 .dark-checkin-item__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   padding: 1rem;
   text-align: center;
   /* border-top: 1px solid #ccc; */
@@ -73,13 +76,18 @@
 }
 
 .dark-date__display {
-  color: #d4d4d4;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  color: #969696;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1rem;
+  width: 100%;
 }
 
-.dark-date__display {
-  margin: auto;
+.dark-date__display p {
+  grid-column: 2/2;
+  margin-top: 0;
+  justify-self: center;
 }
 
 .checkin-item-data__Box {
@@ -172,9 +180,13 @@
 }
 
 .light-checkin-item__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   padding: 1rem;
   text-align: center;
-  border-top: 1px solid #ccc;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .light-checkin-item__modal-content {

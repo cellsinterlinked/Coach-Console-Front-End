@@ -211,6 +211,15 @@ const NewCheckin = () => {
       formData.append("notes", formState.inputs.notes.value);
       formData.append("fatMass", fatMass);
       formData.append("leanBodyMass", leanBodyMass);
+      formData.append("neckMeasure", formState.inputs.neck_inch.value);
+      formData.append("armMeasure", formState.inputs.arm_inch.value);
+      formData.append("chestMeasure", formState.inputs.chest_inch.value);
+      formData.append("waistMeasure", formState.inputs.waist_inch.value);
+      formData.append("hipsMeasure", formState.inputs.hips_inch.value);
+      formData.append("thighMeasure", formState.inputs.thigh_inch.value);
+      formData.append("calfMeasure", formState.inputs.calf_inch.value);
+      formData.append("cardioDuration", formState.inputs.cardio_duration.value);
+      formData.append("cardioCalories", formState.inputs.cardio_calories.value);
 
 
       console.log("date", formState.inputs.date.value);
@@ -295,7 +304,7 @@ const NewCheckin = () => {
         onSubmit={checkinSubmitHandler}
       >
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2 className="title-checkin">New Checkin</h2>
+        <h2 className={mode.darkMode ? "dark-title-checkin" : "light-title-checkin"}>New Checkin</h2>
         <div className="selectors-container">
           <div className={mode.darkMode ? "dark-selectors" : "light-selectors"}>
             <select

@@ -44,6 +44,24 @@ return (
       fatMass={checkin.fatMass}
       athlete={checkin.athlete} 
       notes={checkin.notes}
+      neckMeasure={checkin.neckMeasure}
+      armMeasure={checkin.armMeasure}
+      chestMeasure={checkin.chestMeasure}
+      waistMeasure={checkin.waistMeasure}
+      hipsMeasure={checkin.hipsMeasure}
+      thighMeasure={checkin.thighMeasure}
+      calfMeasure={checkin.calfMeasure}
+      chest={checkin.chest}
+      axilla={checkin.axilla}
+      tricep={checkin.tricep}
+      subscapular={checkin.subscapular}
+      abdominal={checkin.abdominal}
+      suprailiac={checkin.suprailiac}
+      thigh={checkin.thigh}
+      cardioDuration={checkin.cardioDuration}
+      cardioCalories={checkin.cardioCalories}
+
+    
       onDelete={props.onDeleteCheckin}
       />
   ))}
