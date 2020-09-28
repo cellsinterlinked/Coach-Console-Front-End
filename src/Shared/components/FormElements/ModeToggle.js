@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { DarkModeContext } from 'src/App.js';
+import { DarkModeContext } from '../../../App';
 import './ModeToggle.css'
 
 const ModeToggle = () => {

@@ -12,7 +12,6 @@ import Landing from './User/pages/Landing';
 import { AuthContext } from './Shared/context/auth-context';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles, theme } from './styles';
-// import { DarkModeContext } from './Shared/context/dark-mode-context';
 
 export const DarkModeContext = createContext();
 
@@ -28,8 +27,10 @@ const AppProvider = ({children}) => {
   const toggleTheme = () => {
     setThemeMode((prevState) => {
       if (prevState === 'lightTheme') {
+        console.log("toggling to dark theme");
         return 'darkTheme';
       } else {
+        console.log("toggling to light theme");
         return 'lightTheme';
       }
     });
