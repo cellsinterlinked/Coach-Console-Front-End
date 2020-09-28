@@ -10,7 +10,9 @@ html {
 
 body {
   margin: 0;
-  background: #2B2B2B;
+  /* background: #333333; */
+  background: #d6d6d6;
+  /* background: #272727; */
 }
 
 .slide-in-left-enter {
@@ -40,3 +42,20 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/* DARK MODE STUFF */
+
+/* .light-back-color {
+  background: #d6d6d6
+}
+
+.dark-back-color {
+  background: #333333
+}
+
+.lg-light-top {
+  background-image: linear-gradient(to bottom right, rgb(240, 240, 240), rgb(223, 223, 223) );
+  box-shadow:
+    -12px -12px 12px 0 rgb(255, 255, 255, 1),
+    12px 12px 12px 0 rgba(0, 0, 0, 0.3);
+} */

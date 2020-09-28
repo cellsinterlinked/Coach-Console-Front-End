@@ -14,7 +14,7 @@
   display: block;
   width: 3rem;
   height: 2.5px;
-  background: white;
+  background: rgb(102, 102, 102);
 }
 
 .main-navigation__title {
@@ -46,4 +46,11 @@ main {
   .main-navigation__header-nav {
     display: block;
   }
+}
+
+.header-title {
+  color: #555555;
+  font-size: 1.2rem;
+  /* text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7); */
+  font-family: 'Josefin Sans', sans-serif;
 }

@@ -10,16 +10,33 @@ import NewClient from './Clients/pages/NewClient';
 import EditClient from './Clients/pages/EditClient';
 import Landing from './User/pages/Landing';
 import { AuthContext } from './Shared/context/auth-context';
+import { DarkModeContext } from './Shared/context/dark-mode-context';
+
 /// look at video 50 on react front end about letting only the user's clients be displayed. 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = useCallback(() => {
+  const [darkMode, setDarkMode] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // change to true?
+  const [userId, setUserId] = useState(false);
+
+  const login = useCallback((uid) => {
     setIsLoggedIn(true)
+    setUserId(uid);
   }, []);
 
   const logout = useCallback(() => {
     setIsLoggedIn(false)
+    setUserId(null);
+  }, []);
+
+  const toggleDark = useCallback(() => {
+    setDarkMode(true)
+    console.log("going dark!")
+  }, []);
+
+  const toggleLight = useCallback(() => {
+    setDarkMode(false)
+    console.log("get lit!")
   }, []);
 
   let routes;
@@ -56,28 +73,42 @@ function App() {
   } else {
     routes = (
       <Switch>
-        <Route path="/" exact>
-        <Landing />
+        <Route path="/landing" exact>
+        <Landing  />
       </Route>
 
         <Route path="/auth" exact>
         <Auth />
       </Route>
-      <Redirect to="/" />
+      <Redirect to="/auth" />
       </Switch>
     )
   }
 
   return (
-  <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout}}>
+  <DarkModeContext.Provider
+    value={{
+      darkMode: darkMode,
+      toggleDark: toggleDark,
+      toggleLight: toggleLight
+    }}>
+  <AuthContext.Provider 
+    value={{
+      isLoggedIn: isLoggedIn, 
+      userId: userId,
+      login: login, 
+      logout: logout
+      }}>
   <Router>
-
+      
     <MainNavigation />
     <main>
       {routes}
     </main>
   </Router>
+
   </AuthContext.Provider>
+  </DarkModeContext.Provider>
   )
 };
 

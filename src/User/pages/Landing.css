@@ -1,0 +1,22 @@
+.dark-text {
+  color: green;
+}
+
+.dark-background {
+  background: #333333;
+  margin: 0;
+  background-size: cover;
+}
+
+.light-text {
+  color: blue;
+}
+
+.light-background {
+  background: #dfdfdf;
+  margin: 0;
+  background-size: cover;
+}
+
+
+

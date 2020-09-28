@@ -1,0 +1,37 @@
+.light-measurement-compare-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 30% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: auto;
+  justify-items: center;
+  height: 1.2rem;
+}
+
+.light-measurement-compare-container p {
+  display:flex;
+  font-size: .9rem;
+  color: #2dbdb1;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
+
+
+
+/* DARK STUFF */
+
+.dark-measurement-compare-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 30% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: auto;
+  justify-items: center;
+  height: 1.2rem;
+}
+
+.dark-measurement-compare-container p {
+  display:flex;
+  font-size: .9rem;
+  color: #2dbdb1;
+  font-family: 'Josefin Sans', sans-serif;
+}

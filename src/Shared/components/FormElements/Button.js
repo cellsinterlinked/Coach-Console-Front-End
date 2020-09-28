@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { DarkModeContext } from '../../context/dark-mode-context';
 
 import './Button.css';
 
 const Button = props => {
+  const mode = useContext(DarkModeContext);
+
   if (props.href) {
     return (
       <a
-        className={`button button--${props.size || 'default'} ${props.inverse &&
-          'button--inverse'} ${props.danger && 'button--danger'}`}
+        className={mode.darkMode ? `dark-button button--${props.size || 'default'} ${props.inverse &&
+          'dark-button--inverse'} ${props.danger && 'dark-button--danger'}` : `light-button button--${props.size || 'default'} ${props.inverse &&
+            'light-button--inverse'} ${props.danger && 'light-button--danger'}`}
         href={props.href}
       >
         {props.children}
@@ -20,8 +24,9 @@ const Button = props => {
       <Link
         to={props.to}
         exact={props.exact}
-        className={`button button--${props.size || 'default'} ${props.inverse &&
-          'button--inverse'} ${props.danger && 'button--danger'}`}
+        className={mode.darkMode ? `dark-button button--${props.size || 'default'} ${props.inverse &&
+          'dark-button--inverse'} ${props.danger && 'dark-button--danger'}` : `light-button button--${props.size || 'default'} ${props.inverse &&
+            'light-button--inverse'} ${props.danger && 'light-button--danger'}`}
       >
         {props.children}
       </Link>
@@ -29,8 +34,9 @@ const Button = props => {
   }
   return (
     <button
-      className={`button button--${props.size || 'default'} ${props.inverse &&
-        'button--inverse'} ${props.danger && 'button--danger'} ${props.buttonStyle}`}
+    className={mode.darkMode ? `dark-button button--${props.size || 'default'} ${props.inverse &&
+      'dark-button--inverse'} ${props.danger && 'dark-button--danger'}` : `light-button button--${props.size || 'default'} ${props.inverse &&
+        'light-button--inverse'} ${props.danger && 'light-button--danger'}`}
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
