@@ -116,7 +116,7 @@
 .light-date__display {
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  color: #969696;
+  color: #f0f0f0;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1rem;
   width: 100%;

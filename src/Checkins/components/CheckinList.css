@@ -1,7 +1,27 @@
 .client-list {
+  margin-top: 20rem;
   list-style: none;
   margin: 1rem auto;
   padding: 0;
   width: 90%;
   max-width: 40rem;
 }
+
+.dark-no-checkins-card {
+  background: rgb(48, 48, 48);
+}
+
+.dark-no-checkins-card h2 {
+  color: rgb(184, 184, 184);
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.light-no-checkins-card {
+ background: rgb(225, 225, 225);
+}
+
+.light-no-checkins-card h2 {
+color:rgb(72, 72, 72);
+font-family: 'Josefin Sans', sans-serif;
+}
+

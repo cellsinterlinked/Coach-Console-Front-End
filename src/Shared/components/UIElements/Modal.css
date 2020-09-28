@@ -31,6 +31,8 @@
 
 .light-modal__content {
   padding: 1rem 0.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  color: rgb(53, 53, 53);
 }
 
 .light-modal__footer {
@@ -112,6 +114,8 @@
 
 .dark-modal__content {
   padding: 1rem 0.5rem;
+  color: rgb(220, 220, 220);
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .dark-modal__footer {

@@ -2,6 +2,22 @@
   margin: 1rem;
   width: calc(45% - 2rem);
   min-width: 17.5rem;
+  border-radius: 1.5em;
+  box-shadow:
+    -3px -3px 3px 0 rgba(151, 150, 150, 0.397),
+    6px 6px 6px 0 rgba(0, 0, 0, 0.589),
+    inset -7px -7px 7px 0 rgba(151, 150, 150, 0),
+    inset 10px 10px 10px 0 rgba(0, 0, 0, 0);
+}
+
+.dark-client-item:hover,
+.dark-client-item:active {
+  box-shadow:
+  inset -7px -7px 7px 0 rgba(151, 150, 150, 0.267),
+  inset 10px 10px 10px 0 rgba(0, 0, 0, 0.589),
+  -4px -4px 4px 0 rgba(151, 150, 150, 0),
+  10px 10px 10px 0 rgba(0, 0, 0, 0);
+             
 }
 
 .dark-client-item h3 {
@@ -10,6 +26,7 @@
 }
 
 .dark-client-item a {
+  border-radius: 1.5em;
   display: flex;
   align-items: center;
   width: 100%;
@@ -18,25 +35,23 @@
   padding: 1rem;
   color: white;
   background: #333333;
-  background-image: linear-gradient(to bottom right, #444343, #242424 )
+  background-image: linear-gradient(to bottom right, #444343, #242424 );
 }
-
 .dark-client-item a:hover,
 .dark-client-item a:active {
-  box-shadow: -4px -4px 4px 0 rgba(151, 150, 150, 0.267),
-              10px 10px 10px 0 rgba(0, 0, 0, 0.589),
-              inset -7px -7px 7px 0 rgba(151, 150, 150, 0.267),
-              inset 10px 10px 10px 0 rgba(0, 0, 0, 0.589);
+
+  box-shadow:
+  inset -7px -7px 7px 0 rgba(151, 150, 150, 0.267),
+  inset 10px 10px 10px 0 rgba(0, 0, 0, 0.589),
+  -4px -4px 4px 0 rgba(151, 150, 150, 0),
+  10px 10px 10px 0 rgba(0, 0, 0, 0);
+             
 }
 
 .dark-client-item__content {
   border-radius: 1.5em;
   padding: 0em;
-  box-shadow:
-    -3px -3px 3px 0 rgba(151, 150, 150, 0.397),
-    6px 6px 6px 0 rgba(0, 0, 0, 0.589);
-
-}
+  }
 
 .dark-client-item__image {
   width: 4rem;
@@ -71,10 +86,23 @@
 
 
 .light-client-item {
+  background: rgb(208, 208, 208);
+  border-radius: 1.5em;
   margin: 1rem;
   width: calc(45% - 2rem);
   min-width: 17.5rem;
+  box-shadow:
+    -4px -4px 4px 0 rgb(255, 255, 255),
+    6px 6px 6px 0 rgba(0, 0, 0, 0.39);
 }
+
+.light-client-item:hover,
+.light-client-item:active {
+  box-shadow: 
+  inset -3px -3px 3px 0 rgba(250, 250, 250, 0.993),
+  inset 4px 4px 5px 0 rgba(0, 0, 0, 0.589);
+}
+
 
 .light-client-item h3 {
   color:#777777;
@@ -83,6 +111,7 @@
 }
 
 .light-client-item a {
+  border-radius: 1.5em;
   display: flex;
   align-items: center;
   width: 100%;
@@ -105,10 +134,7 @@
 .light-client-item__content {
   border-radius: 1.5em;
   padding: 0em;
-  box-shadow:
-    -4px -4px 4px 0 rgb(255, 255, 255),
-    6px 6px 6px 0 rgba(0, 0, 0, 0.39);
-
+  
 }
 
 .light-client-item__image {

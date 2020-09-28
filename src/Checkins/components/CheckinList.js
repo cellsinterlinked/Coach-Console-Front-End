@@ -1,20 +1,24 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import CheckinItem from './CheckinItem';
 import Card from '../../Shared/components/UIElements/Card';
 import CheckinTotals from '../components/CheckinTotals';
 import Button from '../../Shared/components/FormElements/Button';
 import './CheckinList.css'
+import {DarkModeContext} from '../../Shared/context/dark-mode-context';
 
 
 
 const CheckinList = props => {
-    console.log(props.items)
-  if (props.items.length === 0 || !props.items) {
+  const mode = useContext(DarkModeContext);
+  const clientId = props.clientId; 
+  
+  if (props.items.length === 0) {
     return (
-      <div className="client-list center">
-      <Card>
+      <div className= "client-list center">
+      <Card className={mode.darkMode ? "dark-no-checkins-card" : "light-no-checkins-card"}>
         <h2>No checkins found. Maybe create one?</h2>
-        <Button to="/checkins/new">Log Progress</Button>
+        <Button to={`/${clientId}/newcheckin`}>Log Progress</Button> 
+        {/* SEND TO CORRECT URL */}
       </Card>
       </div>
     )

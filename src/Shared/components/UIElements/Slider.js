@@ -107,10 +107,10 @@ const Slider = props => {
             );
           })}
           <button id="goLeft" onClick={goLeft}>
-            <FaChevronLeft style={{ height: "5rem" }} />
+            <FaChevronLeft style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
           </button>
           <button id="goRight" onClick={goRight}>
-            <FaChevronRight style={{ height: "5rem" }} />
+            <FaChevronRight style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
           </button>
         </div>
       </div>
@@ -132,10 +132,10 @@ const Slider = props => {
             );
           })}
           <button id="goLeft" onClick={goLeft}>
-            <FaChevronLeft style={{ height: "5rem" }} />
+            <FaChevronLeft style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
           </button>
           <button id="goRight" onClick={goRight}>
-            <FaChevronRight style={{ height: "5rem" }} />
+            <FaChevronRight style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"}/>
           </button>
         </div>
 

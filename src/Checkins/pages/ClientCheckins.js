@@ -7,7 +7,7 @@ import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 
 
 
-const Checkins = props => {
+const ClientCheckins = props => {
   const[loadedCheckins, setLoadedCheckins] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -27,7 +27,7 @@ const Checkins = props => {
 
 
 const checkinDeleteHandler = (deletedCheckinId) => {
-    console.log(deletedCheckinId)
+    // console.log(deletedCheckinId)
     setLoadedCheckins(prevCheckins => 
       prevCheckins.filter(checkin => checkin.id !==deletedCheckinId)
       );
@@ -42,13 +42,12 @@ return (
     <LoadingSpinner />
   </div>
 )}
-
-
-{!isLoading && loadedCheckins && <CheckinList items={loadedCheckins} onDeleteCheckin={checkinDeleteHandler} clientId={clientId} />}
+{!isLoading && loadedCheckins && (<CheckinList items={loadedCheckins} onDeleteCheckin={checkinDeleteHandler} clientId={clientId} />)}
+{!isLoading && !loadedCheckins && (<CheckinList items={[]} onDeleteCheckin={checkinDeleteHandler} clientId={clientId} />)}
 </React.Fragment>
 )
 };
 
-export default Checkins;
+export default ClientCheckins;
 
 

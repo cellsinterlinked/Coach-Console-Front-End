@@ -104,7 +104,7 @@ const [x, setX] = useState(0);
                 </div>
             );
           })}
-          <button id="checkinItem__goLeft" onclick={goLeft}></button>
+          <button id="checkinItem__goLeft" onClick={goLeft}></button>
           <button id="checkinItem__goRight" onClick={goRight}></button>
         
         </div>
