@@ -1,25 +1,25 @@
 import React, { useContext } from "react";
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/auth-context';
-import { DarkModeContext } from '../../context/dark-mode-context';
+import { DarkModeContext } from '../../../App';
 import ModeToggle from '../FormElements/ModeToggle';
 import './NavLinks.css'
 
 
 const NavLinks = props => {
   const auth = useContext(AuthContext);
-  const mode = useContext(DarkModeContext)
+  const {themeMode} = useContext(DarkModeContext);
 
 
  return (
-  <ul className={mode.darkMode ? "dark-nav-links" : "light-nav-links"}>
+  <ul className={themeMode === 'darkTheme' ? "dark-nav-links" : "light-nav-links"}>
 
   {auth.isLoggedIn && (
   <li>
     <NavLink to="/clients" exact>
     <div>{props.peopleIcon}</div>
     MY CLIENTS
-    
+
     </NavLink>
     <div>{props.arrow}</div>
   </li>
@@ -54,10 +54,10 @@ const NavLinks = props => {
       // for some reason we had this as a button ^ may cause issues
     )}
   <li>
-      <ModeToggle  onClick={mode.darkMode ? mode.toggleLight : mode.toggleDark}/>
+      <ModeToggle/>
   </li>
-  
-  
+
+
   </ul>
 
 

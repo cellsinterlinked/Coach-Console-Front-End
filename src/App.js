@@ -51,7 +51,6 @@ const AppProvider = ({children}) => {
 /// look at video 50 on react front end about letting only the user's clients be displayed.
 function App() {
 
-  // const [darkMode, setDarkMode] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);  // change to true?
   const [userId, setUserId] = useState(false);
 
@@ -64,16 +63,6 @@ function App() {
     setIsLoggedIn(false)
     setUserId(null);
   }, []);
-
-  // const toggleDark = useCallback(() => {
-  //   setDarkMode(true)
-  //   console.log('going dark!')
-  // }, []);
-
-  // const toggleLight = useCallback(() => {
-  //   setDarkMode(false)
-  //   console.log('get lit!')
-  // }, []);
 
   let routes;
 

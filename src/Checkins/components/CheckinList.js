@@ -4,20 +4,20 @@ import Card from '../../Shared/components/UIElements/Card';
 import CheckinTotals from '../components/CheckinTotals';
 import Button from '../../Shared/components/FormElements/Button';
 import './CheckinList.css'
-import {DarkModeContext} from '../../Shared/context/dark-mode-context';
+import {DarkModeContext} from '../../App';
 
 
 
 const CheckinList = props => {
-  const mode = useContext(DarkModeContext);
-  const clientId = props.clientId; 
-  
+  const {themeMode} = useContext(DarkModeContext);
+  const clientId = props.clientId;
+
   if (props.items.length === 0) {
     return (
       <div className= "client-list center">
-      <Card className={mode.darkMode ? "dark-no-checkins-card" : "light-no-checkins-card"}>
+      <Card className={themeMode === 'darkTheme' ? "dark-no-checkins-card" : "light-no-checkins-card"}>
         <h2>No checkins found. Maybe create one?</h2>
-        <Button to={`/${clientId}/newcheckin`}>Log Progress</Button> 
+        <Button to={`/${clientId}/newcheckin`}>Log Progress</Button>
         {/* SEND TO CORRECT URL */}
       </Card>
       </div>
@@ -25,9 +25,9 @@ const CheckinList = props => {
   }
 
 return (
-<React.Fragment> 
+<React.Fragment>
  <CheckinTotals
-    clientId={props.clientId} 
+    clientId={props.clientId}
     name={props.items[0].name}
     client={props.items[0].client}
     items = {props.items}
@@ -46,7 +46,7 @@ return (
       bodyFat={checkin.bodyFat}
       leanBodyMass={checkin.leanBodyMass}
       fatMass={checkin.fatMass}
-      athlete={checkin.athlete} 
+      athlete={checkin.athlete}
       notes={checkin.notes}
       neckMeasure={checkin.neckMeasure}
       armMeasure={checkin.armMeasure}
@@ -65,7 +65,7 @@ return (
       cardioDuration={checkin.cardioDuration}
       cardioCalories={checkin.cardioCalories}
 
-    
+
       onDelete={props.onDeleteCheckin}
       />
   ))}

@@ -9,12 +9,12 @@ import { useHttpClient } from '../../Shared/hooks/http-hook';
 import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import './ClientForm.css';
-import { DarkModeContext } from '../../Shared/context/dark-mode-context';
+import { DarkModeContext } from '../../App';
 
 
 
 const EditClient = () => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -29,7 +29,7 @@ const EditClient = () => {
       value: '',
       isValid: true
     },
-    
+
   }, false)
 
   useEffect(() => {
@@ -51,8 +51,8 @@ const EditClient = () => {
   }, [sendRequest, clientId, setFormData])
 
 
-  
-  
+
+
   const clientUpdateSubmitHandler = async event => {
     event.preventDefault();
     try {
@@ -89,10 +89,10 @@ const EditClient = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-    {!isLoading && loadedClient && 
-    <form className={mode.darkMode ? "dark-new-client__form" : "light-new-client__form"} onSubmit={clientUpdateSubmitHandler}>
-    <h2 className={mode.darkMode ? "dark-create-client-head" : "light-create-client-head"}>What would you like to change?</h2>
-    
+    {!isLoading && loadedClient &&
+    <form className={themeMode === 'darkTheme' ? "dark-new-client__form" : "light-new-client__form"} onSubmit={clientUpdateSubmitHandler}>
+    <h2 className={themeMode === 'darkTheme' ? "dark-create-client-head" : "light-create-client-head"}>What would you like to change?</h2>
+
     <div className="input-group__4">
     <Input
       id="name"
@@ -114,7 +114,7 @@ const EditClient = () => {
       buttonStyle="update-button"
       >UPDATE CLIENT</Button>
     </div>
-    
+
     </form>}
     </React.Fragment>
   )

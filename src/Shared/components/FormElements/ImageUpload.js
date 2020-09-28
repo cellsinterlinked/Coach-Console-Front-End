@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import './ImageUpload.css';
 import Button from './Button';
-import { DarkModeContext} from '../../context/dark-mode-context';
+import { DarkModeContext} from '../../../App';
 
 const ImageUpload = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
@@ -49,16 +49,16 @@ const ImageUpload = props => {
 
   return (
     <div className="form-control">
-      <input 
-        id={props.id} 
+      <input
+        id={props.id}
         ref={filePickerRef}
-        style={{ display: 'none' }} 
-        type="file" 
+        style={{ display: 'none' }}
+        type="file"
         accept=".jpg,.png,.jpeg"
         onChange={pickedHandler}
         />
         <div className={`image-upload ${props.center && 'center'}`}>
-          <div className={mode.darkMode ? "dark-image-upload__preview" : "light-image-upload__preview"}>
+          <div className={themeMode === 'darkTheme' ? "dark-image-upload__preview" : "light-image-upload__preview"}>
             {previewUrl && <img src={previewUrl} alt="Preview" />}
             {!previewUrl && <p>Please pick an image.</p>}
             </div>

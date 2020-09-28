@@ -7,13 +7,13 @@ import ErrorModal from "../../Shared/components/UIElements/ErrorModal";
 import { useHttpClient } from "../../Shared/hooks/http-hook";
 import { useHistory } from "react-router-dom";
 import Modal from "../../Shared/components/UIElements/Modal";
-import { DarkModeContext } from "../../Shared/context/dark-mode-context";
+import { DarkModeContext } from "../../App";
 import StatsCompare from "./StatsCompare";
 import MeasurementsCompare from "./MeasurementsCompare";
 import Slider from "../../Shared/components/UIElements/Slider";
 
 const CheckinTotals = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -73,26 +73,26 @@ const CheckinTotals = props => {
         }
       >
         <p
-          className={mode.darkMode ? "dark-warning-text" : "light-warning-text"}
+          className={themeMode === 'darkTheme' ? "dark-warning-text" : "light-warning-text"}
         >
           Do you want to delete this client?
         </p>
       </Modal>
 
       <Card
-        className={mode.darkMode ? "dark-totals-card" : "light-totals-card"}
+        className={themeMode === 'darkTheme' ? "dark-totals-card" : "light-totals-card"}
       >
         {isLoading && <LoadingSpinner asOverlay />}
           <h1 className="client-name">{loadedAthlete}</h1>
         <div className="totals-info">
           <Slider items={props.items} />
 
-          
+
         </div>
         <footer>
           <div
             className={
-              mode.darkMode
+              themeMode === 'darkTheme'
                 ? "dark-checkin-item__actions"
                 : "light-checkin-item__actions"
             }
@@ -123,7 +123,7 @@ const CheckinTotals = props => {
             </Button>
           </div>
               </div>
-          
+
         </footer>
       </Card>
     </React.Fragment>

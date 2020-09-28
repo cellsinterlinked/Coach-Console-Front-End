@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
-import { DarkModeContext } from '../../Shared/context/dark-mode-context';
+import { DarkModeContext } from '../../App';
 import './CheckinData.css';
 
 const CheckinData = props => {
-  const mode = useContext(DarkModeContext)
+  const {themeMode} = useContext(DarkModeContext);
   return (
-    <div className={mode.darkMode ? "dark-checkin-item__dataBox" : "light-checkin-item__dataBox"}>
-      <div className={mode.darkMode ? "dark-dataBox__iconContainer" : "light-dataBox__iconContainer"}>
+    <div className={themeMode === 'darkTheme' ? "dark-checkin-item__dataBox" : "light-checkin-item__dataBox"}>
+      <div className={themeMode === 'darkTheme' ? "dark-dataBox__iconContainer" : "light-dataBox__iconContainer"}>
         {props.children}
       </div>
     <div className="data-text__box">

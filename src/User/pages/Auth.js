@@ -14,7 +14,6 @@ import './Auth.css'
 const Auth = (props) => {
   const {themeMode} = useContext(DarkModeContext);
   const auth = useContext(AuthContext);
-  const mode = useContext(DarkModeContext)
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient()
 

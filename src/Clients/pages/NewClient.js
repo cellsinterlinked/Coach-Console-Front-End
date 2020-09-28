@@ -6,14 +6,14 @@ import { VALIDATOR_REQUIRE } from '../../Shared/util/validators';
 import './ClientForm.css';
 import { useHttpClient } from '../../Shared/hooks/http-hook';
 import { AuthContext } from '../../Shared/context/auth-context';
-import { DarkModeContext } from '../../Shared/context/dark-mode-context';
+import { DarkModeContext } from '../../App';
 import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import { useHistory } from 'react-router-dom';
 import ImageUpload from '../../Shared/components/FormElements/ImageUpload';
 
 const NewClient = () => {
-  const mode = useContext(DarkModeContext)
+  const {themeMode} = useContext(DarkModeContext);
   const auth = useContext(AuthContext)
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -42,49 +42,49 @@ const newClientSubmitHandler = async event => {
     formData.append('image', formState.inputs.image.value);
     formData.append('creator', auth.userId);
     await sendRequest(
-      'http://localhost:5000/api/athletes', 
-      'POST', 
+      'http://localhost:5000/api/athletes',
+      'POST',
       formData);
-      history.push('/clients');   
+      history.push('/clients');
   } catch (err) {}
-  
+
 }
 
 
 return(
   <React.Fragment>
     <ErrorModal error={error} onClear={clearError} />
-  <form className={mode.darkMode ? "dark-new-client__form" : "light-new-client__form"} onSubmit={newClientSubmitHandler}>
+  <form className={themeMode === 'darkTheme' ? "dark-new-client__form" : "light-new-client__form"} onSubmit={newClientSubmitHandler}>
     {isLoading && <LoadingSpinner asOverlay />}
-  <h2 className={mode.darkMode ? "dark-create-client-head" : "light-create-client-head"}>CREATE A NEW CLIENT</h2>
+  <h2 className={themeMode === 'darkTheme' ? "dark-create-client-head" : "light-create-client-head"}>CREATE A NEW CLIENT</h2>
   <br />
-    <Input 
+    <Input
       id="name"
-      labelText="Name" 
-      element="input" 
-      type="text"  
-      errorText="Please enter valid name" 
-      validators={[VALIDATOR_REQUIRE()]} 
+      labelText="Name"
+      element="input"
+      type="text"
+      errorText="Please enter valid name"
+      validators={[VALIDATOR_REQUIRE()]}
       onInput={inputHandler}
       importedStyle="new-client__inputs"
     />
 
-    <ImageUpload 
-      center 
-      id="image" 
-      onInput={inputHandler} 
-      errorText="" />
-    {/* <Input 
+    <ImageUpload
+      center
       id="image"
-      label="Photo" 
-      element="input" 
-      type="file" 
-      errorText="Please upload a photo" 
-      validators={[VALIDATOR_REQUIRE()]} 
+      onInput={inputHandler}
+      errorText="" />
+    {/* <Input
+      id="image"
+      label="Photo"
+      element="input"
+      type="file"
+      errorText="Please upload a photo"
+      validators={[VALIDATOR_REQUIRE()]}
       onInput={inputHandler}
       importedStyle="new-client__inputs"
       /> */}
-    <div className={mode.darkMode ? "dark-new-client-button__box" : "light-new-client-button__box"}>
+    <div className={themeMode === 'darkTheme' ? "dark-new-client-button__box" : "light-new-client-button__box"}>
     <Button
       type="submit"
       disabled={!formState.isValid}

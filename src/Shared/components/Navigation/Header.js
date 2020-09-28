@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { DarkModeContext } from '../../../Shared/context/dark-mode-context';
+import { DarkModeContext } from '../../../App';
 import './Header.css';
 
 const Header = props => {
-  const mode = useContext(DarkModeContext)
+  const {themeMode} = useContext(DarkModeContext);
 
   return (
-    <header className={mode.darkMode ? "dark-main-header" : "light-main-header" }>
+    <header className={themeMode === 'darkTheme' ? "dark-main-header" : "light-main-header" }>
     {props.children}
     </header>
   )

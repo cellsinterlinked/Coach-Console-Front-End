@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DarkModeContext } from '../../App';
 import './Landing.css';
 
-const Landing = (props) => {
-
- const darkMode = props.darkMode;
+const Landing = () => {
+  const {themeMode} = useContext(DarkModeContext);
   return (
-  <div className={darkMode ? "dark-background" : "light-background"}>
+  <div className={themeMode === 'darkTheme' ? "dark-background" : "light-background"}>
     <h1>Animation Input</h1>
    <div className="form">
-    
-    <h2 className={darkMode ? "dark-text" : "light-text"}>{darkMode ? "Dark Mode" : "Light Mode"}</h2>
-   
+
+    <h2 className={themeMode === 'darkTheme' ? "dark-text" : "light-text"}>{themeMode === 'darkTheme' ? "Dark Mode" : "Light Mode"}</h2>
+
    </div>
 
 

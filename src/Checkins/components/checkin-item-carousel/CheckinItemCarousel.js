@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import CheckinItemBasics from './CheckinItemBasics';
 import './CheckinItemCarousel.css';
-import {DarkModeContext} from '../../../Shared/context/dark-mode-context';
+import {DarkModeContext} from '../../../App';
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import CheckinItemNotes from "./CheckinItemNotes";
@@ -11,17 +11,17 @@ import CheckinItemCardio from './CheckinItemCardio';
 
 
 const CheckinItemCarousel = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
   let slideArr = [
     <CheckinItemBasics
     date={props.date}
     weeksOut={props.weeksOut}
-    bodyFat={props.bodyFat} 
+    bodyFat={props.bodyFat}
     weight={props.weight}
-    leanBodyMass={props.leanBodyMass}/>, 
+    leanBodyMass={props.leanBodyMass}/>,
     <CheckinItemNotes
-    notes={props.notes}/>, 
-    <CheckinItemMeasurements 
+    notes={props.notes}/>,
+    <CheckinItemMeasurements
     neckMeasure={props.neckMeasure}
     armMeasure={props.armMeasure}
     chestMeasure={props.chestMeasure}
@@ -29,7 +29,7 @@ const CheckinItemCarousel = props => {
     hipsMeasure={props.hipsMeasure}
     thighMeasure={props.thighMeasure}
     calfMeasure={props.calfMeasure}/>,
-    <CheckinItemCaliper 
+    <CheckinItemCaliper
     chest={props.chest}
     axilla={props.axilla}
     tricep={props.tricep}
@@ -82,7 +82,7 @@ const [x, setX] = useState(0);
 
   return (
     <React.Fragment>
-      <div className={mode.darkMode ? "dark-checkinInfo-selector" : "light-checkinInfo-selector"}>
+      <div className={themeMode === 'darkTheme' ? "dark-checkinInfo-selector" : "light-checkinInfo-selector"}>
         <FaChevronLeft onClick={goLeft} style={{height: "2rem", color: "#808080"}} />
         <div className={x === 0 ? "selection-light" : "selection-dark"} onClick={mainHandler}></div>
         <div className={x === -100 ? "selection-light" : "selection-dark"} onClick={caliperHandler}></div>
@@ -91,7 +91,7 @@ const [x, setX] = useState(0);
         <div className={x === -400 ? "selection-light" : "selection-dark"} onClick={notesHandler}></div>
         <FaChevronRight onClick={goRight} style={{height: "2rem", color: "#808080"}}/>
       </div>
-      <div className={mode.darkMode ? "dark-checkInfo-container" : "light-checkInfo-container"}>
+      <div className={themeMode === 'darkTheme' ? "dark-checkInfo-container" : "light-checkInfo-container"}>
         <div className="checkinInfo__Slider">
           {slideArr.map((item, index) => {
             return (
@@ -106,14 +106,14 @@ const [x, setX] = useState(0);
           })}
           <button id="checkinItem__goLeft" onClick={goLeft}></button>
           <button id="checkinItem__goRight" onClick={goRight}></button>
-        
+
         </div>
-      
-      
-      
-      
+
+
+
+
       </div>
-      
+
     </React.Fragment>
   );
 };

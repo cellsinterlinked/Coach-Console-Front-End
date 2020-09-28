@@ -10,13 +10,13 @@ import { useHistory } from "react-router-dom";
 import LoadingSpinner from "../../Shared/components/UIElements/LoadingSpinner";
 import ErrorModal from "../../Shared/components/UIElements/ErrorModal";
 import ImageUpload from "../../Shared/components/FormElements/ImageUpload";
-import { DarkModeContext } from "../../Shared/context/dark-mode-context";
+import { DarkModeContext } from "../../App";
 import { FaInfoCircle } from "react-icons/fa";
 import Modal from "../../Shared/components/UIElements/Modal";
 
 
 const NewCheckin = () => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   const [gender, setGender] = useState();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -147,7 +147,7 @@ const NewCheckin = () => {
 
   const notesChecked = () => {
      setNotesDisplay(true)
-  
+
   }
   const notesUnchecked = () => {
     setNotesDisplay(false);
@@ -265,14 +265,14 @@ const NewCheckin = () => {
     } else if (gender === "2") {
       yourFatAss =
         495 / (1.097 - (0.00046971 * total) + (0.00000056 * total * total) - (0.00012828 * age.value)) - 450 ;
-        
+
     }
 
-    
+
     // console.log(yourFatAss)
     return yourFatAss;
 
-    
+
   };
 
   return (
@@ -300,13 +300,13 @@ const NewCheckin = () => {
       </Modal>
 
       <form
-        className={mode.darkMode ? "dark-checkin-form" : "light-checkin-form"}
+        className={themeMode === 'darkTheme' ? "dark-checkin-form" : "light-checkin-form"}
         onSubmit={checkinSubmitHandler}
       >
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2 className={mode.darkMode ? "dark-title-checkin" : "light-title-checkin"}>New Checkin</h2>
+        <h2 className={themeMode === 'darkTheme' ? "dark-title-checkin" : "light-title-checkin"}>New Checkin</h2>
         <div className="selectors-container">
-          <div className={mode.darkMode ? "dark-selectors" : "light-selectors"}>
+          <div className={themeMode === 'darkTheme' ? "dark-selectors" : "light-selectors"}>
             <select
               value={gender}
               onChange={event => setGender(event.target.value)}
@@ -374,14 +374,14 @@ const NewCheckin = () => {
         </div>
 
         <div className="measurements-form">
-          <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
+          <div className={themeMode === 'darkTheme' ? "dark-input__Check" : "light-input__Check"}>
 
-          <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
+          <div className={themeMode === 'darkTheme' ? "dark-input-toggle-container" : "light-input-toggle-container"}>
           <span style={{ color: bfDisplay ? "grey" : "#5fa8d3" }}>No</span>
-          <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
-              <input  
+          <span className={themeMode === 'darkTheme' ? "dark-input-toggle" : "light-input-toggle"}>
+              <input
               checked={bfDisplay}
-              onChange={bfDisplay ? bfUnchecked : bfChecked } 
+              onChange={bfDisplay ? bfUnchecked : bfChecked }
               id="bfCheckbox"
               className="checkbox"
               type="checkbox"
@@ -397,7 +397,7 @@ const NewCheckin = () => {
 
           </div>
           <div className={"input-shrinky " + (bfDisplay ? "input-expanded" : "")}>
-        
+
           <div className="caliper-directions-box">
             <p>
               Using a caliper, please pinch the listed areas and input the
@@ -558,13 +558,13 @@ const NewCheckin = () => {
           </div>
           </div>
 
-          <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
-          <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
+          <div className={themeMode === 'darkTheme' ? "dark-input__Check" : "light-input__Check"}>
+          <div className={themeMode === 'darkTheme' ? "dark-input-toggle-container" : "light-input-toggle-container"}>
           <span style={{ color: notesDisplay ? "grey" : "#5fa8d3" }}>No</span>
-          <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
-              <input  
+          <span className={themeMode === 'darkTheme' ? "dark-input-toggle" : "light-input-toggle"}>
+              <input
               checked={notesDisplay}
-              onChange={notesDisplay ? notesUnchecked : notesChecked} 
+              onChange={notesDisplay ? notesUnchecked : notesChecked}
               id="notesCheckbox"
               className="checkbox"
               type="checkbox"
@@ -579,7 +579,7 @@ const NewCheckin = () => {
 
 
 
-        
+
         <div className={"input-shrinky " + (notesDisplay ? "input-expanded" : "")}>
         <div className="caliper-directions-box">
           <p>
@@ -600,13 +600,13 @@ const NewCheckin = () => {
 
 
 
-        <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
-          <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
+        <div className={themeMode === 'darkTheme' ? "dark-input__Check" : "light-input__Check"}>
+          <div className={themeMode === 'darkTheme' ? "dark-input-toggle-container" : "light-input-toggle-container"}>
           <span style={{ color: picDisplay ? "grey" : "#5fa8d3" }}>No</span>
-          <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
-              <input  
+          <span className={themeMode === 'darkTheme' ? "dark-input-toggle" : "light-input-toggle"}>
+              <input
               checked={picDisplay}
-              onChange={picDisplay ? imageUnchecked : imageChecked} 
+              onChange={picDisplay ? imageUnchecked : imageChecked}
               id="imageCheckbox"
               className="checkbox"
               type="checkbox"
@@ -643,13 +643,13 @@ const NewCheckin = () => {
 
 {/* TESTING */}
 
-        <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
-          <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
+        <div className={themeMode === 'darkTheme' ? "dark-input__Check" : "light-input__Check"}>
+          <div className={themeMode === 'darkTheme' ? "dark-input-toggle-container" : "light-input-toggle-container"}>
           <span style={{ color: notesDisplay ? "grey" : "#5fa8d3" }}>No</span>
-          <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
-              <input  
+          <span className={themeMode === 'darkTheme' ? "dark-input-toggle" : "light-input-toggle"}>
+              <input
               checked={measureDisplay}
-              onChange={measureDisplay ? measurementsUnchecked : measurementsChecked} 
+              onChange={measureDisplay ? measurementsUnchecked : measurementsChecked}
               id="measurementsCheckbox"
               className="checkbox"
               type="checkbox"
@@ -664,7 +664,7 @@ const NewCheckin = () => {
 
 
 
-        
+
         <div className={"input-shrinky " + (measureDisplay ? "input-expanded" : "")}>
         <div className="caliper-directions-box">
           <p>
@@ -849,16 +849,16 @@ const NewCheckin = () => {
         </div>
 
 
-        
+
         {/* END TESTING */}
     {/* BIGIN TESTING AGAIN     */}
-    <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
-          <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
+    <div className={themeMode === 'darkTheme' ? "dark-input__Check" : "light-input__Check"}>
+          <div className={themeMode === 'darkTheme' ? "dark-input-toggle-container" : "light-input-toggle-container"}>
           <span style={{ color: notesDisplay ? "grey" : "#5fa8d3" }}>No</span>
-          <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
-              <input  
+          <span className={themeMode === 'darkTheme' ? "dark-input-toggle" : "light-input-toggle"}>
+              <input
               checked={cardioDisplay}
-              onChange={cardioDisplay ? cardioUnchecked : cardioChecked} 
+              onChange={cardioDisplay ? cardioUnchecked : cardioChecked}
               id="cardioCheckbox"
               className="checkbox"
               type="checkbox"
@@ -873,11 +873,11 @@ const NewCheckin = () => {
 
 
 
-        
+
         <div className={"input-shrinky " + (cardioDisplay ? "input-expanded" : "")}>
         <div className="caliper-directions-box">
           <p>
-            Enter the duration of cardio done this week and or calories burnt doing cardio. 
+            Enter the duration of cardio done this week and or calories burnt doing cardio.
           </p>
         </div>
 
@@ -931,7 +931,7 @@ const NewCheckin = () => {
 
 
     {/* TESTING END */}
-        
+
         <div className="submit-checkin" style={{marginTop: "2rem"}}>
           <Button
             type="submit"

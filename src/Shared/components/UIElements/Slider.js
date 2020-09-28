@@ -3,7 +3,7 @@ import "./Slider.css";
 import WeightChart from "../../../Checkins/components/WeightChart";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
-import { DarkModeContext } from "../../context/dark-mode-context";
+import { DarkModeContext } from "../../../App";
 import { GiRun } from "react-icons/gi";
 import { FaWeight } from "react-icons/fa";
 import { GiBiceps } from "react-icons/gi";
@@ -19,7 +19,7 @@ import MeasurementTotalsCarousel from '../../../Checkins/components/checkin-tota
 
 
 const Slider = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
   let slideArr = [
     <WeightChart items={props.items} />,
     <BodyFatChart items={props.items} />,
@@ -27,7 +27,7 @@ const Slider = props => {
     <CardioChart items={props.items} />
   ];
   let slideArr2 = [
-  <BasicTotalsCarousel  items={props.items}/>, 
+  <BasicTotalsCarousel  items={props.items}/>,
   <CaliperTotalsCarousel items={props.items}/>,
   <MeasurementTotalsCarousel items={props.items}/>,
    3, 4];
@@ -66,7 +66,7 @@ const Slider = props => {
   return (
     <React.Fragment>
       <div
-        className={mode.darkMode ? "dark-selection-row" : "light-selection-row"}
+        className={themeMode === 'darkTheme' ? "dark-selection-row" : "light-selection-row"}
       >
         <button className={x === 0 ? "selector__inset" : "selector__normal" }  onClick={bfHandler}>
           <FaWeight
@@ -91,7 +91,7 @@ const Slider = props => {
       </div>
       <div
         className={
-          mode.darkMode ? "dark-chart-container" : "light-chart-container"
+          themeMode === 'darkTheme' ? "dark-chart-container" : "light-chart-container"
         }
       >
         <div className="slider">
@@ -107,10 +107,10 @@ const Slider = props => {
             );
           })}
           <button id="goLeft" onClick={goLeft}>
-            <FaChevronLeft style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
+            <FaChevronLeft style={{ height: "5rem" }} className={themeMode === 'darkTheme' ? "dark-chevron" : "light-chevron"} />
           </button>
           <button id="goRight" onClick={goRight}>
-            <FaChevronRight style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
+            <FaChevronRight style={{ height: "5rem" }} className={themeMode === 'darkTheme' ? "dark-chevron" : "light-chevron"} />
           </button>
         </div>
       </div>
@@ -118,7 +118,7 @@ const Slider = props => {
 
 
       {/* EDIT */}
-          <div className={mode.darkMode ? "dark-infoTotals__container" : "light-infoTotals__container"}>
+          <div className={themeMode === 'darkTheme' ? "dark-infoTotals__container" : "light-infoTotals__container"}>
           <div className="slider">
           {slideArr2.map((item, index) => {
             return (
@@ -132,10 +132,10 @@ const Slider = props => {
             );
           })}
           <button id="goLeft" onClick={goLeft}>
-            <FaChevronLeft style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
+            <FaChevronLeft style={{ height: "5rem" }} className={themeMode === 'darkTheme' ? "dark-chevron" : "light-chevron"} />
           </button>
           <button id="goRight" onClick={goRight}>
-            <FaChevronRight style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"}/>
+            <FaChevronRight style={{ height: "5rem" }} className={themeMode === 'darkTheme' ? "dark-chevron" : "light-chevron"}/>
           </button>
         </div>
 

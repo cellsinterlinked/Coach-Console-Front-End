@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import { DarkModeContext } from "../../../Shared/context/dark-mode-context";
+import { DarkModeContext } from "../../../App";
 import "../CheckinTotals.css";
 import TapeCompare from "../TapeCompare";
 
 const MeasurementTotalsCarousel = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   return (
     <React.Fragment>
       <div
         className={
-          mode.darkMode ? "dark-compare-labels" : "light-compare-labels"
+          themeMode === 'darkTheme' ? "dark-compare-labels" : "light-compare-labels"
         }
       >
         <p className="compare-date__Label">Date</p>
@@ -35,10 +35,10 @@ const MeasurementTotalsCarousel = props => {
           calfMeasure={checkin.calfMeasure}
         />
       ))}
-      <div className={mode.darkMode ? "dark-for-shadow" : "light-for-shadow"}>
+      <div className={themeMode === 'darkTheme' ? "dark-for-shadow" : "light-for-shadow"}>
         <div
           className={
-            mode.darkMode ? "dark-measure-totals" : "light-measure-totals"
+            themeMode === 'darkTheme' ? "dark-measure-totals" : "light-measure-totals"
           }
         >
           <p>TOTALS</p>

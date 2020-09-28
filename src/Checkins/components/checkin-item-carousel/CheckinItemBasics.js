@@ -17,7 +17,7 @@ const CheckinItemBasics = props => {
     <div className="checkinItem-inner-container">
      <CheckinData children={<GoCalendar style={{ height: "2rem", width: "auto", color: "#bf00ff" }}/>}
        dataTitle="Date of Checkin" data={props.date} style={margin}/>
-       
+
        <CheckinData
       children={
         <FaWeight style={{ height: "2rem", width: "auto", color: "#2fc6a6" }} />
@@ -61,7 +61,7 @@ const CheckinItemBasics = props => {
     />
        </div>
     )
-    
+
   }
 export default CheckinItemBasics;
 
@@ -69,7 +69,7 @@ export default CheckinItemBasics;
 
 
 // import React, {useContext}from 'react';
-//  import { DarkModeContext } from "../../Shared/context/dark-mode-context";
+//  import { DarkModeContext } from "../../App";
 //  import { GiPincers } from "react-icons/gi";
 //  import { FaWeight } from "react-icons/fa";
 //  import { GoCalendar } from "react-icons/go";
@@ -78,7 +78,7 @@ export default CheckinItemBasics;
 //  import CheckinData from "../CheckinData";
 
 // const CheckinItemBasics = props => {
-//   const mode = useContext(DarkModeContext);
+//   const {themeMode} = useContext(DarkModeContext);
 // return (
 //   <div className="checkinItem-inner-container">
 //     <CheckinData

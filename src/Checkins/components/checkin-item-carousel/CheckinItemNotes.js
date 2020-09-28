@@ -1,16 +1,16 @@
 import React, {useContext} from 'react';
-import { DarkModeContext } from '../../../Shared/context/dark-mode-context';
+import { DarkModeContext } from '../../../App';
 import './CheckinItemCarousel.css';
 import {IoIosPaper} from "react-icons/io";
 
 
 const CheckinData = props => {
-  
-  const mode = useContext(DarkModeContext)
+
+  const {themeMode} = useContext(DarkModeContext);
   return (
-    <div className={mode.darkMode ? "dark-checkin-notes__dataBox" : "light-checkin-notes__dataBox"}>
+    <div className={themeMode === 'darkTheme' ? "dark-checkin-notes__dataBox" : "light-checkin-notes__dataBox"}>
     <div className="notes-top-row">
-      <div className={mode.darkMode ? "dark-notesBox__iconContainer" : "light-notesBox__iconContainer"}>
+      <div className={themeMode === 'darkTheme' ? "dark-notesBox__iconContainer" : "light-notesBox__iconContainer"}>
         <IoIosPaper style={{ height: "2rem", width: "auto", color: "purple" }} />
       </div>
     <h2>Notes</h2>

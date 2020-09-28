@@ -6,7 +6,7 @@ import "./CheckinItem.css";
 import { useHttpClient } from "../../Shared/hooks/http-hook";
 import LoadingSpinner from "../../Shared/components/UIElements/LoadingSpinner";
 import ErrorModal from "../../Shared/components/UIElements/ErrorModal";
-import { DarkModeContext } from "../../Shared/context/dark-mode-context";
+import { DarkModeContext } from "../../App";
 import { GiPincers } from "react-icons/gi";
 import { FaWeight } from "react-icons/fa";
 import { GoCalendar } from "react-icons/go";
@@ -18,14 +18,14 @@ import {FaArrowDown} from 'react-icons/fa';
 import CheckinItemCarousel from '../components/checkin-item-carousel/CheckinItemCarousel';
 
 const CheckinItem = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [expand, setExpand] = useState(false);
   const [enlargeNotes, setEnlargeNotes] = useState(false);
   const [enlargeMeasurements, setEnlargeMeasurements] = useState(false);
-  
+
 
   const extend = () => {
     setExpand(true);
@@ -74,17 +74,17 @@ const CheckinItem = props => {
         }
       >
         <p
-          className={mode.darkMode ? "dark-warning-text" : "light-warning-text"}
+          className={themeMode === 'darkTheme' ? "dark-warning-text" : "light-warning-text"}
         >
           Do you want to proceed and delete this checkin?
         </p>
       </Modal>
       <li
-        className={mode.darkMode ? "dark-checkin-item" : "light-checkin-item"}
+        className={themeMode === 'darkTheme' ? "dark-checkin-item" : "light-checkin-item"}
       >
         <Card
           className={
-            mode.darkMode
+            themeMode === 'darkTheme'
               ? "dark-checkin-item__content"
               : "light-checkin-item__content"
           }
@@ -92,7 +92,7 @@ const CheckinItem = props => {
           {isLoading && <LoadingSpinner asOverlay />}
           <div
             className={
-              mode.darkMode ? "dark-date__display" : "light-date__display"
+              themeMode === 'darkTheme' ? "dark-date__display" : "light-date__display"
             }
             onClick={expand ? shrink : extend}
           >
@@ -135,19 +135,19 @@ const CheckinItem = props => {
            cardioDuration={props.cardioDuration}
            cardioCalories={props.cardioCalories}
 
-          
+
           />
 
 
             </div>
 
-            {/* <div className={mode.darkMode ? "dark-checkin-item__image" : "light-checkin-item__image"}>
-            
+            {/* <div className={themeMode === 'darkTheme' ? "dark-checkin-item__image" : "light-checkin-item__image"}>
+
         {/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
 
             <div
               className={
-                mode.darkMode
+                themeMode === 'darkTheme'
                   ? "dark-checkin-item__actions"
                   : "light-checkin-item__actions"
               }

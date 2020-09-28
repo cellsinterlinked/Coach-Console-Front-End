@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
-import { DarkModeContext } from "../../../Shared/context/dark-mode-context";
+import { DarkModeContext } from "../../../App";
 import "../CheckinTotals.css";
 import StatsCompare from "../StatsCompare";
 
 
 const BasicTotalsCarousel = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
   return (
     <React.Fragment>
       <div
-        className={mode.darkMode ? "dark-stats-labels" : "light-stats-labels"}
+        className={themeMode === 'darkTheme' ? "dark-stats-labels" : "light-stats-labels"}
       >
         <p className="stats-date__Label">Date</p>
         <p className="stats-bodyfat__Label">Body Fat</p>
@@ -27,9 +27,9 @@ const BasicTotalsCarousel = props => {
           weeksOut={checkin.weeksOut}
         />
       ))}
-      <div className={mode.darkMode ? "dark-for-shadow" : "light-for-shadow"}>
+      <div className={themeMode === 'darkTheme' ? "dark-for-shadow" : "light-for-shadow"}>
         <div
-          className={mode.darkMode ? "dark-stat-totals" : "light-stat-totals"}
+          className={themeMode === 'darkTheme' ? "dark-stat-totals" : "light-stat-totals"}
         >
           <p>TOTALS</p>
           <p>

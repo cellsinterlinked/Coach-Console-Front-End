@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import ClientItem from './ClientItem';
 import Button from '../../Shared/components/FormElements/Button';
-import { DarkModeContext } from '../../Shared/context/dark-mode-context';
+import { DarkModeContext } from '../../App';
 import './ClientList.css';
 
 const ClientList = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   if (props.items.length === 0) {
     return (
@@ -18,22 +18,22 @@ const ClientList = props => {
 
   return (
     <React.Fragment>
-    <h2 className={mode.darkMode ? "dark-clients-title" : "light-clients-title"}>Your Clients</h2>
-    <hr className={mode.darkMode ? "dark-break" : "light-break"} />
+    <h2 className={themeMode === 'darkTheme' ? "dark-clients-title" : "light-clients-title"}>Your Clients</h2>
+    <hr className={themeMode === 'darkTheme' ? "dark-break" : "light-break"} />
     <ul className="clients-list">
       {props.items.map(client => {
         return (
-        <ClientItem 
-          key={client.id} 
-          id={client.id} 
-          image={client.image} 
-          name={client.name} 
+        <ClientItem
+          key={client.id}
+          id={client.id}
+          image={client.image}
+          name={client.name}
           checkinCount={client.checkins.length}/>
       )})}
 
     </ul>
     <div className="new-client__button">
-      <Button 
+      <Button
         to="/newclient"
         buttonStyle="button-new-client"
         >ADD NEW CLIENT</Button>

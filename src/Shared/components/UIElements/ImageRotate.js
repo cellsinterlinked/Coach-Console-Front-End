@@ -2,13 +2,13 @@ import React, { useState, useContext } from 'react';
 import './ImageRotate.css';
 import {FaChevronLeft} from 'react-icons/fa';
 import {FaChevronRight} from 'react-icons/fa';
-import {DarkModeContext} from '../../context/dark-mode-context';
+import {DarkModeContext} from '../../../App';
 import Skinny from '../../Resources/Skinny.jpeg';
 import Buff from '../../Resources/buff.png';
 import ImgComp from '../../components/UIElements/ImgComp';
 
 const Slider = (props) => {
-  const mode = useContext(DarkModeContext)
+  const {themeMode} = useContext(DarkModeContext);
   let slideArr = [<ImgComp src={Skinny} />, <ImgComp src={Buff} />];
 
   const [x, setX] = useState(0);
@@ -25,8 +25,8 @@ const Slider = (props) => {
 
   return(
     <React.Fragment>
-    
-    <div className={mode.darkMode ? "dark-image-rotate-container" : "light-image-rotate-container"}>
+
+    <div className={themeMode === 'darkTheme' ? "dark-image-rotate-container" : "light-image-rotate-container"}>
     <div className="image-carousel">
       {
         slideArr.map((item,index) => {

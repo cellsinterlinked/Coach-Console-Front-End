@@ -1,7 +1,7 @@
-import React, { useReducer, useEffect, useContext } from 'react';     // use reducer for more complex or interconnected state. 
+import React, { useReducer, useEffect, useContext } from 'react';     // use reducer for more complex or interconnected state.
 import { validate } from '../../util/validators';
 import './Input.css';
-import { DarkModeContext } from '../../../Shared/context/dark-mode-context'; 
+import { DarkModeContext } from '../../../App';
 
 const inputReducer = (state, action) => {
   switch (action.type) {
@@ -16,13 +16,13 @@ const inputReducer = (state, action) => {
         ...state,
         isTouched: true
       };
-    default : 
+    default :
       return state
   }
 }
 
 const Input = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',               //initialize form with value(if it already has one like in the case of place update where it starts already having a value)if not, an empty string
@@ -39,7 +39,7 @@ const Input = props => {
 
   const changeHandler = event => {
     dispatch({
-      type: 'CHANGE', 
+      type: 'CHANGE',
       val: event.target.value,
       validators: props.validators
     })
@@ -51,42 +51,42 @@ const Input = props => {
     })
   }
 
-  const element = props.element === 'input' ? ( 
-  
-  <div className={mode.darkMode ? "dark-form" : "light-form" }>
+  const element = props.element === 'input' ? (
+
+  <div className={themeMode === 'darkTheme' ? "dark-form" : "light-form" }>
   <input
     required
-    autoComplete="off"  
+    autoComplete="off"
     id={props.id}
-    name={props.id} 
-    type={props.type} 
+    name={props.id}
+    type={props.type}
     placeholder=""
     onChange={changeHandler}
     onBlur={touchHandler}
     value={inputState.value}
     className={props.importedStyle}
-    /> 
-    <label htmlFor={props.id} className={"label-name"}>    
+    />
+    <label htmlFor={props.id} className={"label-name"}>
       <span className="content-name">{props.labelText}</span>
     </label>
     </div>
-   
-    
+
+
     ) : (
-  <div className={mode.darkMode ? "dark-form-text" : "light-form-text"}>
+  <div className={themeMode === 'darkTheme' ? "dark-form-text" : "light-form-text"}>
   <label>Notes</label>
-  <textarea 
-    id={props.id} 
-    rows={props.rows || 6} 
-    onChange={changeHandler} 
+  <textarea
+    id={props.id}
+    rows={props.rows || 6}
+    onChange={changeHandler}
     onBlur={touchHandler}
     value = {inputState.value}
     className={props.importedStyle}
     />
     </div>
-    
+
     )
-  
+
 
   return <div className={`form-control ${!inputState.isValid && inputState.isTouched && 'form-control--invalid'}`}>
   <label htmlFor={props.id}>{props.label}</label>

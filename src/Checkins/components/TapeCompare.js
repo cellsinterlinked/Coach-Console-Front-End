@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { DarkModeContext } from '../../Shared/context/dark-mode-context';
+import { DarkModeContext } from '../../App';
 import "./MeasurementsCompare.css"
 
 const TapeCompare = props => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   return (
-    <div className={mode.darkMode ? "dark-measurement-compare-container" : "light-measurement-compare-container" }>
+    <div className={themeMode === 'darkTheme' ? "dark-measurement-compare-container" : "light-measurement-compare-container" }>
         <p>{props.date}</p>
         <p>{props.neckMeasure}</p>
         <p>{props.armMeasure}</p>

@@ -9,7 +9,7 @@ import './CheckinForm.css';
 import { useHttpClient } from '../../Shared/hooks/http-hook';
 import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
-import { DarkModeContext } from '../../Shared/context/dark-mode-context';
+import { DarkModeContext } from '../../App';
 
 
 
@@ -17,7 +17,7 @@ import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 
 
 const UpdateCheckin = () => {
-  const mode = useContext(DarkModeContext);
+  const {themeMode} = useContext(DarkModeContext);
 
   const loadedClient = useRef(null)
 
@@ -91,7 +91,7 @@ const UpdateCheckin = () => {
     fetchCheckin();
   }, [sendRequest, checkinId, setFormData])
 
-   
+
 
     const checkinUpdateSubmitHandler = async event => {
       event.preventDefault();
@@ -111,15 +111,15 @@ const UpdateCheckin = () => {
         );
         console.log('/' + loadedClient.current + '/checkins');
         history.push('/' + loadedClient.current + '/checkins');
-        
+
 
       } catch (err) {
         console.log(err);
       }
     };
 
-    
-    
+
+
     if (isLoading) {
       return <div className="center">
       <Card>
@@ -139,12 +139,12 @@ const UpdateCheckin = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-    {!isLoading && loadedCheckin && <form className={mode.darkMode ? "dark-checkin-form" : "light-checkin-form"} onSubmit={checkinUpdateSubmitHandler}>
-    <h2 className={mode.darkMode ? "dark-checkin-title" : "light-checkin-title"}>What would you like to change?</h2>
+    {!isLoading && loadedCheckin && <form className={themeMode === 'darkTheme' ? "dark-checkin-form" : "light-checkin-form"} onSubmit={checkinUpdateSubmitHandler}>
+    <h2 className={themeMode === 'darkTheme' ? "dark-checkin-title" : "light-checkin-title"}>What would you like to change?</h2>
     <br />
     <br />
     <div className="input-group__4">
-    <Input 
+    <Input
       id="date"
       element= "input"
       type="date"
@@ -156,7 +156,7 @@ const UpdateCheckin = () => {
       initialValid={true}
       importedStyle="group-4"
     />
-    <Input 
+    <Input
       id="weight"
       element= "input"
       type="text"
@@ -168,7 +168,7 @@ const UpdateCheckin = () => {
       initialValid={true}
       importedStyle="group-4"
     />
-    <Input 
+    <Input
       id="weeksOut"
       element= "input"
       type="text"
@@ -180,7 +180,7 @@ const UpdateCheckin = () => {
       initialValid={true}
       importedStyle="group-4"
     />
-    <Input 
+    <Input
       id="bodyfat"
       element= "input"
       type="text"
@@ -193,7 +193,7 @@ const UpdateCheckin = () => {
       importedStyle="group-4"
     />
     </div>
-    {/* <Input 
+    {/* <Input
       id="notes"
       type="text"
       label="notes"
@@ -205,18 +205,18 @@ const UpdateCheckin = () => {
       importedStyle="text-box"
     /> */}
     <div className="button-box">
-    <Button 
-      type="submit" 
+    <Button
+      type="submit"
       disabled={!formState.isValid}
       buttonStyle="update-button"
       >UPDATE CHECKIN</Button>
     </div>
 
   </form>}
-  </React.Fragment> 
-  
+  </React.Fragment>
+
     )
-  
+
 }
 
 export default UpdateCheckin;
