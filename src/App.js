@@ -18,19 +18,19 @@ export const DarkModeContext = createContext();
 
 const AppProvider = ({children}) => {
   const [themeMode, setThemeMode] = useState(
-    localStorage.getItem("theme") || "lightTheme"
+    localStorage.getItem('theme') || 'lightTheme'
   );
 
   useEffect(() => {
-    localStorage.setItem("theme", themeMode);
+    localStorage.setItem('theme', themeMode);
   }, [themeMode]);
 
   const toggleTheme = () => {
     setThemeMode((prevState) => {
-      if (prevState === "lightTheme") {
-        return "darkTheme";
+      if (prevState === 'lightTheme') {
+        return 'darkTheme';
       } else {
-        return "lightTheme";
+        return 'lightTheme';
       }
     });
   };
@@ -47,7 +47,7 @@ const AppProvider = ({children}) => {
     </DarkModeContext.Provider>
   );
 }
-/// look at video 50 on react front end about letting only the user's clients be displayed. 
+/// look at video 50 on react front end about letting only the user's clients be displayed.
 function App() {
 
   // const [darkMode, setDarkMode] = useState(false);
@@ -66,12 +66,12 @@ function App() {
 
   // const toggleDark = useCallback(() => {
   //   setDarkMode(true)
-  //   console.log("going dark!")
+  //   console.log('going dark!')
   // }, []);
 
   // const toggleLight = useCallback(() => {
   //   setDarkMode(false)
-  //   console.log("get lit!")
+  //   console.log('get lit!')
   // }, []);
 
   let routes;
@@ -79,43 +79,43 @@ function App() {
   if (isLoggedIn) {
     routes = (
     <Switch>
-      <Route path="/:clientId/checkins" exact>
+      <Route path='/:clientId/checkins' exact>
         <ClientCheckins/>
       </Route>
-    
-      <Route path="/clients">
-        <Clients />
-      </Route> 
 
-      <Route path="/newclient">
+      <Route path='/clients'>
+        <Clients />
+      </Route>
+
+      <Route path='/newclient'>
         <NewClient />
       </Route>
 
-      <Route path="/:clientId/editclient">
+      <Route path='/:clientId/editclient'>
         <EditClient />
       </Route>
 
-      <Route path="/:clientId/newcheckin" exact>
+      <Route path='/:clientId/newcheckin' exact>
         <NewCheckin/>
-      </Route> 
+      </Route>
 
-      <Route path="/:checkinId/updateCheckin" exact>
+      <Route path='/:checkinId/updateCheckin' exact>
         <UpdateCheckin/>
-      </Route> 
-      <Redirect to="/clients" />
+      </Route>
+      <Redirect to='/clients' />
     </Switch>
     )
   } else {
     routes = (
       <Switch>
-        <Route path="/landing" exact>
+        <Route path='/landing' exact>
         <Landing  />
       </Route>
 
-        <Route path="/auth" exact>
+        <Route path='/auth' exact>
         <Auth />
       </Route>
-      <Redirect to="/auth" />
+      <Redirect to='/auth' />
       </Switch>
     )
   }
@@ -140,10 +140,3 @@ function App() {
 };
 
 export default App;
-
-
-
-
-
-
-
