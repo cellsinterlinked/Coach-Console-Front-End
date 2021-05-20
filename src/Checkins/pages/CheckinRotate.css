@@ -1,0 +1,259 @@
+.one1 {
+  transition: all 0.5s;
+}
+
+.one2 {
+  transform: rotate(-286deg);
+  transition: all 0.5s;
+}
+
+.one3 {
+  transform: rotate(-213deg);
+  transition: all 0.5s;
+}
+
+.one4 {
+  transform: rotate(-141deg);
+  transition: all 0.5s;
+}
+
+.one5 {
+  transform: rotate(-68deg);
+  transition: all 0.5s;
+}
+
+.two1 {
+  transform: rotate(-68deg);
+  transition: all 0.5s;
+}
+
+.two2 {
+  transition: all 0.5s;
+}
+
+.two3 {
+  transform: rotate(-286deg);
+  transition: all 0.5s;
+}
+
+.two4 {
+  transform: rotate(-213deg);
+  transition: all 0.5s;
+}
+.two5 {
+  transform: rotate(-141deg);
+  transition: all 0.5s;
+}
+
+.three2 {
+  transform: rotate(-69deg);
+  transition: all 0.5s;
+}
+
+.three3 {
+  transition: all 0.5s;
+}
+
+.three4 {
+  transform: rotate(-287deg);
+  transition: all 0.5s;
+}
+
+.three5 {
+  transform: rotate(-214deg);
+  transition: all 0.5s;
+}
+
+.three1 {
+  transform: rotate(-142deg);
+  transition: all 0.5s;
+}
+
+.four3 {
+  transform: rotate(-70deg);
+  transition: all 0.5s;
+}
+
+.four4 {
+  transition: all 0.5s;
+}
+
+.four5 {
+  transform: rotate(-288deg);
+  transition: all 0.5s;
+}
+
+.four1 {
+  transform: rotate(-218deg);
+  transition: all 0.5s;
+}
+
+.four2 {
+  transform: rotate(-143deg);
+  transition: all 0.5s;
+}
+
+.five4 {
+  transform: rotate(-72deg);
+  transition: all 0.5s;
+}
+
+.five5 {
+  transition: all 0.5s;
+}
+
+.five1 {
+  transform: rotate(-290deg);
+  transition: all 0.5s;
+}
+
+.five2 {
+  transform: rotate(-217deg);
+  transition: all 0.5s;
+}
+
+.five3 {
+  transform: rotate(-145deg);
+  transition: all 0.5s;
+}
+
+.wheel1 {
+  transform: rotate(0deg);
+}
+
+.wheel2 {
+  transform: rotate(286deg);
+}
+
+.wheel3 {
+  transform: rotate(213deg);
+}
+
+.wheel4 {
+  transform: rotate(141deg);
+}
+
+.wheel5 {
+  transform: rotate(68deg);
+}
+
+/* .onebar1 {
+  transition: box-shadow 0.5s;
+  box-shadow: inset 5px 0px 3px -2px rgba(0, 0, 0, 0.555);
+}
+
+.onebar2 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.onebar3 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.onebar4 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.onebar5 {
+  box-shadow: inset 5px 0px 3px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.twobar2 {
+  transition: box-shadow 0.5s;
+}
+
+.twobar3 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.twobar4 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.twobar5 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.twobar1 {
+  box-shadow: inset 5px 0px 3px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.threebar3 {
+  transition: box-shadow 0.5s;
+}
+
+.threebar4 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.threebar5 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.threebar1 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.threebar2 {
+  box-shadow: inset 5px 0px 3px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.fourbar4 {
+  transition: box-shadow 0.5s;
+}
+
+.fourbar5 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.fourbar1 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.fourbar2 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.fourbar3 {
+  box-shadow: inset 5px 0px 3px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.fivebar5 {
+  transition: box-shadow 0.5s;
+}
+
+.fivebar1 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.fivebar2 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.fivebar3 {
+  box-shadow: -6px 0px 6px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+}
+
+.fivebar4 {
+  box-shadow: inset 5px 0px 3px -2px rgba(0, 0, 0, 0.555);
+  transition: box-shadow 0.5s;
+} */

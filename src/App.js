@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { createContext, useState, useCallback, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Clients from './Clients/pages/Clients'
 import Auth from './User/pages/Auth';
@@ -10,13 +10,16 @@ import NewClient from './Clients/pages/NewClient';
 import EditClient from './Clients/pages/EditClient';
 import Landing from './User/pages/Landing';
 import { AuthContext } from './Shared/context/auth-context';
+// import { ThemeProvider } from 'styled-components';
+// import { GlobalStyles, theme } from './styles';
 import { DarkModeContext } from './Shared/context/dark-mode-context';
+import CheckinPage from './Checkins/pages/CheckinPage';
 
-/// look at video 50 on react front end about letting only the user's clients be displayed. 
+
 function App() {
 
   const [darkMode, setDarkMode] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);  // change to true?
+  const [isLoggedIn, setIsLoggedIn] = useState(true);  // change to true?
   const [userId, setUserId] = useState(false);
 
   const login = useCallback((uid) => {
@@ -31,12 +34,12 @@ function App() {
 
   const toggleDark = useCallback(() => {
     setDarkMode(true)
-    console.log("going dark!")
+    console.log('going dark!')
   }, []);
 
   const toggleLight = useCallback(() => {
     setDarkMode(false)
-    console.log("get lit!")
+    console.log('get lit!')
   }, []);
 
   let routes;
@@ -44,79 +47,77 @@ function App() {
   if (isLoggedIn) {
     routes = (
     <Switch>
-      <Route path="/:clientId/checkins" exact>
+      <Route path='/:clientId/checkins' exact>
         <ClientCheckins/>
       </Route>
-    
-      <Route path="/clients">
-        <Clients />
-      </Route> 
 
-      <Route path="/newclient">
+      <Route path='/clients'>
+        <Clients />
+      </Route>
+
+      <Route path='/newclient'>
         <NewClient />
       </Route>
 
-      <Route path="/:clientId/editclient">
+      <Route path='/:clientId/editclient'>
         <EditClient />
       </Route>
 
-      <Route path="/:clientId/newcheckin" exact>
+      <Route path='/:clientId/newcheckin' exact>
         <NewCheckin/>
-      </Route> 
+      </Route>
 
-      <Route path="/:checkinId/updateCheckin" exact>
+      <Route path='/:checkinId/updateCheckin' exact>
         <UpdateCheckin/>
-      </Route> 
-      <Redirect to="/clients" />
+      </Route>
+
+      <Route path='/:clientId/:checkinId' exact>
+        <CheckinPage/>
+      </Route>
+      <Redirect to='/clients' />
     </Switch>
     )
   } else {
     routes = (
       <Switch>
-        <Route path="/landing" exact>
+        <Route path='/landing' exact>
         <Landing  />
       </Route>
 
-        <Route path="/auth" exact>
+        <Route path='/auth' exact>
         <Auth />
       </Route>
-      <Redirect to="/auth" />
+      <Redirect to='/auth' />
       </Switch>
     )
   }
 
   return (
-  <DarkModeContext.Provider
+    <DarkModeContext.Provider
     value={{
       darkMode: darkMode,
       toggleDark: toggleDark,
       toggleLight: toggleLight
     }}>
-  <AuthContext.Provider 
-    value={{
-      isLoggedIn: isLoggedIn, 
-      userId: userId,
-      login: login, 
-      logout: logout
-      }}>
-  <Router>
-      
-    <MainNavigation />
-    <main>
-      {routes}
-    </main>
-  </Router>
 
-  </AuthContext.Provider>
-  </DarkModeContext.Provider>
-  )
+
+
+			<AuthContext.Provider
+				value={{
+					isLoggedIn: isLoggedIn,
+					userId: userId,
+					login: login,
+					logout: logout,
+				}}
+			>
+				<Router>
+					{/* <MainNavigation /> */}
+					<main>{routes}</main>
+				</Router>
+			</AuthContext.Provider>
+      </DarkModeContext.Provider>
+		
+  );
 };
 
 export default App;
-
-
-
-
-
-
-

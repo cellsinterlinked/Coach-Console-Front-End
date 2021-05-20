@@ -83,13 +83,13 @@ const [x, setX] = useState(0);
   return (
     <React.Fragment>
       <div className={mode.darkMode ? "dark-checkinInfo-selector" : "light-checkinInfo-selector"}>
-        <FaChevronLeft onClick={goLeft} style={{height: "2rem", color: "#808080"}} />
+        {/* <FaChevronLeft onClick={goLeft} style={{height: "2rem", color: "#808080"}} /> */}
         <div className={x === 0 ? "selection-light" : "selection-dark"} onClick={mainHandler}></div>
         <div className={x === -100 ? "selection-light" : "selection-dark"} onClick={caliperHandler}></div>
         <div className={x === -200 ? "selection-light" : "selection-dark"} onClick={measureHandler}></div>
         <div className={x === -300 ? "selection-light" : "selection-dark"} onClick={cardioHandler}></div>
         <div className={x === -400 ? "selection-light" : "selection-dark"} onClick={notesHandler}></div>
-        <FaChevronRight onClick={goRight} style={{height: "2rem", color: "#808080"}}/>
+        {/* <FaChevronRight onClick={goRight} style={{height: "2rem", color: "#808080"}}/> */}
       </div>
       <div className={mode.darkMode ? "dark-checkInfo-container" : "light-checkInfo-container"}>
         <div className="checkinInfo__Slider">

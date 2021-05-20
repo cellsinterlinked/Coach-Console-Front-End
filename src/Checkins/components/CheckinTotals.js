@@ -18,6 +18,7 @@ const CheckinTotals = props => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [loadedAthlete, setLoadedAthlete] = useState();
+  const [athleteInfo, setAthleteInfo] = useState();
 
   const history = useHistory();
   const clientId = props.clientId;
@@ -29,6 +30,7 @@ const CheckinTotals = props => {
           `http://localhost:5000/api/athletes/${clientId}`
         );
         setLoadedAthlete(responseData.athlete.name);
+        setAthleteInfo(responseData.athlete)
       } catch (err) {}
     };
     fetchAthlete();
@@ -79,17 +81,28 @@ const CheckinTotals = props => {
         </p>
       </Modal>
 
-      <Card
+      <div
         className={mode.darkMode ? "dark-totals-card" : "light-totals-card"}
       >
         {isLoading && <LoadingSpinner asOverlay />}
+
+          <div className="client-personal-bubble-header">
+            {athleteInfo && <img alt="" src={`http://localhost:5000/${athleteInfo.image}`}/>}
+
+          </div>
+
           <h1 className="client-name">{loadedAthlete}</h1>
+          <div className={mode.darkMode ? "dark-divider" : "light-divider"}></div>
+          {/* <button onClick={() => console.log(athleteInfo)}> Info</button> */}
+
         <div className="totals-info">
           <Slider items={props.items} />
 
           
         </div>
+        <div className={mode.darkMode ? "dark-divider" : "light-divider"}></div>
         <footer>
+
           <div
             className={
               mode.darkMode
@@ -125,7 +138,7 @@ const CheckinTotals = props => {
               </div>
           
         </footer>
-      </Card>
+      </div>
     </React.Fragment>
   );
 };

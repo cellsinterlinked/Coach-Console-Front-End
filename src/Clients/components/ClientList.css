@@ -12,8 +12,8 @@
 .light-clients-title {
   display: flex;
   justify-content: center;
-  color: rgb(80, 80, 80);
-  margin-top: 8rem;
+  color: rgb(0, 0, 0);
+  /* margin-top: 8rem; */
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -29,15 +29,18 @@
   justify-content: center;
   width: 70%;
   margin: 0;
-  
 }
 
 .light-break {
   border: 0;
   height: 2px;
-  background-image: linear-gradient(to right, rgba(228, 228, 228, 0.719), rgba(124, 124, 124, 0.75), rgba(228, 228, 228, 0.719));
+  background-image: linear-gradient(
+    to right,
+    rgba(228, 228, 228, 0.719),
+    rgba(124, 124, 124, 0.75),
+    rgba(228, 228, 228, 0.719)
+  );
   width: 80%;
-   
 }
 
 /* DARK STUFF */
@@ -45,14 +48,69 @@
 .dark-break {
   border: 0;
   height: 2px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
-  width: 80%
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(255, 255, 255, 0.75),
+    rgba(0, 0, 0, 0)
+  );
+  width: 80%;
 }
 
 .dark-clients-title {
   display: flex;
   justify-content: center;
-  color: rgb(199, 199, 199);
-  margin-top: 8rem;
+  color: rgb(255, 255, 255);
+  /* margin-top: 8rem; */
   font-family: 'Josefin Sans', sans-serif;
+  /* font-weight: lighter; */
+}
+
+.your-clients-number-light {
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  color: black;
+}
+
+.your-clients-number-dark {
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  color: white;
+}
+
+.light-page-split {
+  width: 100%;
+  height: 2px;
+  background-color: rgb(208, 208, 208);
+  box-shadow: 1px 1px 1px rgb(206, 206, 206);
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.dark-page-split {
+  width: 100%;
+  height: 2px;
+  background-color: rgb(33, 33, 33);
+  box-shadow: 1px 1px 1px rgb(41, 41, 41);
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.client-list-header__holder {
+  width: 100%;
+  height: 6rem;
+  position: relative;
+}
+
+.weight-lifter {
+  height: 12rem;
+  width: 12rem;
+  position: absolute;
+  color: rgba(228, 54, 255, 0.166);
+  margin-right: auto;
+  margin-left: auto;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  bottom: 0;
 }

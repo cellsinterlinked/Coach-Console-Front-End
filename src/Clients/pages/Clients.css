@@ -1,0 +1,12 @@
+.client-page {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: var(--light-background);
+  padding-bottom: 3rem;
+  padding-top: 6rem;
+}
+
+.dark-client-page {
+  background-color: var(--dark-background);
+}

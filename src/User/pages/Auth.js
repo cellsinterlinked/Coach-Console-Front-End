@@ -10,6 +10,8 @@ import { AuthContext } from '../../Shared/context/auth-context';
 import { useHttpClient } from '../../Shared/hooks/http-hook';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context'
 import './Auth.css'
+import MainNavigation from "../../Shared/components/Navigation/MainNavigation";
+import Waves from '../../Shared/components/UIElements/Waves';
 
 const Auth = (props) => {
   const auth = useContext(AuthContext);
@@ -92,11 +94,14 @@ const Auth = (props) => {
 
   return (
   <React.Fragment>
+    <div className={mode.darkMode ? "auth-container auth-dark-back" : "auth-container"}>
+  <Waves />
+      <MainNavigation />
   <ErrorModal error={error} onClear={clearError}/> 
-  <Card className={mode.darkMode ? "dark-authentication" : "light-authentication"}>
+  <Card className="authentication">
   {isLoading && <LoadingSpinner asOverlay />}
-    <h2>Login Required</h2>
-    {/* <hr /> */}
+    <h2 className={mode.darkMode ? "login-head-dark" : "login-head-light"}>Login Required</h2>
+    
     <br />
     <form onSubmit={authSubmitHandler}>
       {!isLoginMode && (
@@ -142,6 +147,7 @@ const Auth = (props) => {
       onClick={switchModeHandler}>
       {isLoginMode ? 'SIGNUP' : 'LOGIN'}</Button>
   </Card>
+  </div>
   </React.Fragment>
   )
 }

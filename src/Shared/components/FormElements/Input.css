@@ -1,24 +1,29 @@
+.form-control {
+  margin: 1rem 0;
+  position: relative;
+  margin-bottom: 25px;
 
-  .form-control {
-    margin: 1rem 0;
-    position: relative;
-    margin-bottom: 25px;
-   
-    width: 100%;
-    font-family: 'Josefin Sans', sans-serif;
-  }
+  width: 100%;
+  font-family: 'Josefin Sans', sans-serif;
+}
 
-  .form-control p {
-    color: #5fa8d3
-  }
-
+.form-control p {
+  position: absolute;
+  top: 2.8rem;
+  background: var(--first-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: lighter;
+}
 
 .light-form {
   width: 100%;
   position: relative;
   height: 50px;
   overflow: hidden;
-  
 }
 
 .light-form-text {
@@ -26,53 +31,51 @@
   position: relative;
   height: 140px;
   overflow: hidden;
-  
 }
 
 .light-form input {
-  border-radius: 1em;
+  /* border-radius: 1em; */
   width: 100%;
-  height:100%;
-  color: #5fa8d3;
+  height: 100%;
+  color: var(--first-gradient);
+
   padding-top: 20px;
   border: none;
   outline: none;
   background-color: transparent;
-  box-shadow:
-    inset -3px -3px 9px rgb(255, 255, 255),
-    inset 4px 4px 8px rgba(0,0,0,0.3);
-  
+  box-shadow: inset -3px -3px 5px rgb(255, 255, 255),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .light-form-text textarea {
-  border-radius: 1em;
+  /* border-radius: 1em; */
   width: 100%;
-  height:100%;
-  color: #5fa8d3;
+  height: 100%;
+  color: var(--first-gradient);
+
   padding-top: 20px;
   border: none;
   outline: none;
   background-color: transparent;
-  box-shadow:
-    inset -3px -3px 9px rgb(255, 255, 255),
-    inset 4px 4px 8px rgba(0,0,0,0.3);
-  
+  box-shadow: inset -3px -3px 9px rgb(255, 255, 255),
+    inset 4px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .light-form label {
   color: #838383;
-  position:absolute;
+  position: absolute;
   bottom: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  font-weight: lighter;
   /* border-bottom: 1px solid black; */
 }
 
 .light-form-text label {
   color: #838383;
-  position:absolute;
+  position: absolute;
   bottom: 0px;
   left: 0px;
   width: 100%;
@@ -83,14 +86,15 @@
 
 .light-form label::after {
   padding-right: 10px;
-  padding-left: 10px; 
-  content: "";
+  padding-left: 10px;
+  content: '';
   position: absolute;
   left: 0px;
   bottom: -1px;
   height: 100%;
   width: 100%;
-  border-bottom: 3px solid #5fa8d3;
+  border-bottom: 3px solid var(--first-gradient);
+
   transform: translateX(-100%);
   transition: transform 0.3s ease;
 }
@@ -103,34 +107,36 @@
   font-size: 20px;
 }
 
-.light-form input:focus + .label-name .content-name, 
-.light-form input:valid + .label-name .content-name { 
+.light-form input:focus + .label-name .content-name,
+.light-form input:valid + .label-name .content-name {
   /* works because we put isrequired on input */
   transform: translateY(-150%);
   font-size: 14px;
-  color: #5fa8d3;
-  
-  
+  /* color: #5fa8d3; */
+  background: var(--purple-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
-.light-form-text textarea:focus + .label-name .content-name, 
-.light-form-text textarea:valid + .label-name .content-name { 
+.light-form-text textarea:focus + .label-name .content-name,
+.light-form-text textarea:valid + .label-name .content-name {
   /* works because we put isrequired on input */
   transform: translateY(-150%);
   font-size: 14px;
   color: #5fa8d3;
-  
-  
 }
 
 .light-form input:focus + .label-name::after,
 .light-form input:valid + .label-name::after {
-  transform: translateX(0%)
+  transform: translateX(0%);
 }
 
 .light-form-text textarea:focus + .label-name::after,
 .light-form-text textarea:valid + .label-name::after {
-  transform: translateX(0%)
+  transform: translateX(0%);
 }
 
 /* DARK MODE */
@@ -143,40 +149,40 @@
 }
 
 .dark-form input {
-  border-radius: 1em;
+  /* border-radius: 1em; */
   width: 100%;
-  height:100%;
-  color: #5fa8d3;
+  height: 100%;
+  color: var(--first-gradient);
   padding-top: 20px;
   border: none;
   outline: none;
   background-color: transparent;
-  box-shadow:
-    inset -3px -3px 9px rgba(226,226,226, 0.226),
-    inset 6px 6px 12px rgba(0,0,0,0.8);
+  box-shadow: inset -2px -2px 2px rgba(226, 226, 226, 0.139),
+    inset 3px 3px 8px rgba(0, 0, 0, 0.858);
 }
 
 .dark-form label {
   color: #b8b6b6;
-  position:absolute;
+  position: absolute;
   bottom: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  font-weight: lighter;
   /* border-bottom: 1px solid black; */
 }
 
 .dark-form label::after {
   padding-right: 10px;
-  padding-left: 10px; 
-  content: "";
+  padding-left: 10px;
+  content: '';
   position: absolute;
   left: 0px;
   bottom: -1px;
   height: 100%;
   width: 100%;
-  border-bottom: 3px solid #5fa8d3;
+  border-bottom: 3px solid var(--first-gradient);
   transform: translateX(-100%);
   transition: transform 0.3s ease;
 }
@@ -186,34 +192,31 @@
   position: relative;
   height: 140px;
   overflow: hidden;
-  
 }
 
 .dark-form-text textarea {
   border-radius: 1em;
   width: 100%;
-  height:100%;
-  color: #5fa8d3;
+  height: 100%;
+  color: var(--first-gradient);
   padding-top: 20px;
   border: none;
   outline: none;
   background-color: transparent;
-  box-shadow:
-    inset  3px  3px 9px rgb(0, 0, 0),
+  box-shadow: inset 3px 3px 9px rgb(0, 0, 0),
     inset -3px -3px 6px rgba(255, 255, 255, 0.3);
-  
 }
 
 .dark-form-text label {
   color: #838383;
-  position:absolute;
+  position: absolute;
   bottom: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
   pointer-events: none;
   text-align: center;
- 
+
   /* border-bottom: 1px solid black; */
 }
 
@@ -225,17 +228,20 @@
   font-size: 20px;
 }
 
-.dark-form input:focus + .label-name .content-name, 
-.dark-form input:valid + .label-name .content-name { 
+.dark-form input:focus + .label-name .content-name,
+.dark-form input:valid + .label-name .content-name {
   /* works because we put isrequired on input */
   transform: translateY(-150%);
   font-size: 14px;
-  color: #5fa8d3;
-  
-  
+  background: var(--first-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .dark-form input:focus + .label-name::after,
 .dark-form input:valid + .label-name::after {
-  transform: translateX(0%)
+  transform: translateX(0%);
 }

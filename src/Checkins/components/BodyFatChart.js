@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
+import './Chart.css';
 
 const BodyFatChart = props => {
   const bodyFatArr = props.items.map(checkin => checkin.bodyFat);

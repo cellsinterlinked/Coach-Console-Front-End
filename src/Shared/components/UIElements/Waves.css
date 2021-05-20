@@ -1,0 +1,47 @@
+.custom-waves-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  /* overflow: hidden;
+  line-height: 0; */
+  height: 4%;
+  background: #1f7487;
+  /* transform: rotate(20deg); */
+}
+
+.wave {
+  background: url('../../Resources/wave.svg') repeat-x;
+  position: absolute;
+  width: 6400px;
+  height: 198px;
+  top: -143px;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate(0, 0, 0);
+  overflow: hidden;
+}
+
+.wave:nth-of-type(2) {
+  top: -155px;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite,
+    swell 7s ease -1.25s infinite;
+}
+
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@keyframes swell {
+  0%,
+  100% {
+    transform: translate3d(0, -25px, 0);
+  }
+  50% {
+    transform: translate3d(0, 5px, 0);
+  }
+}

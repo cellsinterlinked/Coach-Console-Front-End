@@ -11,6 +11,7 @@ import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import { useHistory } from 'react-router-dom';
 import ImageUpload from '../../Shared/components/FormElements/ImageUpload';
+import MainNavigation from '../../Shared/components/Navigation/MainNavigation';
 
 const NewClient = () => {
   const mode = useContext(DarkModeContext)
@@ -52,7 +53,8 @@ const newClientSubmitHandler = async event => {
 
 
 return(
-  <React.Fragment>
+    <div className={mode.darkMode ? "new-client-container dark-new-client" : "new-client-container"}>
+    <MainNavigation />
     <ErrorModal error={error} onClear={clearError} />
   <form className={mode.darkMode ? "dark-new-client__form" : "light-new-client__form"} onSubmit={newClientSubmitHandler}>
     {isLoading && <LoadingSpinner asOverlay />}
@@ -92,7 +94,7 @@ return(
     >CREATE NEW CLIENT</Button>
     </div>
   </form>
-  </React.Fragment>
+  </div>
 )
 }
 

@@ -34,9 +34,9 @@
   height: 100%;
 }
 
-main {
+/* main {
   margin-top: 5rem;
-}
+} */
 
 @media (min-width: 768px) {
   .main-navigation__menu-btn {
@@ -48,8 +48,15 @@ main {
   }
 }
 
-.header-title {
-  color: #555555;
+.light-header-title {
+  color: #000000;
+  font-size: 1.2rem;
+  /* text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7); */
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.dark-header-title {
+  color: #ffffff;
   font-size: 1.2rem;
   /* text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7); */
   font-family: 'Josefin Sans', sans-serif;

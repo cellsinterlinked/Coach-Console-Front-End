@@ -65,29 +65,56 @@ const Slider = props => {
   };
   return (
     <React.Fragment>
-      <div
-        className={mode.darkMode ? "dark-selection-row" : "light-selection-row"}
-      >
-        <button className={x === 0 ? "selector__inset" : "selector__normal" }  onClick={bfHandler}>
+      <div className={mode.darkMode ? "dark-selection-row" : "light-selection-row"}>
+        {mode.darkMode && <button className={x === 0 ? "selector-inset" : "selector-dark" }  onClick={bfHandler}>
           <FaWeight
             style={{ height: "1.8rem", color: "#969696", width: "auto" }}
           />
-        </button>
-        <button className={x === -100 ? "selector__inset" : "selector__normal" } onClick={measureHandler}>
+          </button>}
+
+        {!mode.darkMode && <button className={x === 0 ? "selector-inset" : "selector-normal" }  onClick={bfHandler}>
+          <FaWeight
+            style={{ height: "1.8rem", color: "#969696", width: "auto" }}
+          />
+          </button>}
+
+        {mode.darkMode && <button className={x === -100 ? "selector-inset" : "selector-dark" } onClick={measureHandler}>
           <GiPincers
             style={{ height: "1.8rem", color: "#969696", width: "auto" }}
           />
-        </button>
-        <button className={x === -200 ? "selector__inset" : "selector__normal" } onClick={psychHandler}>
+        </button>}
+
+        
+        {!mode.darkMode && <button className={x === -100 ? "selector-inset" : "selector-normal" } onClick={measureHandler}>
+          <GiPincers
+            style={{ height: "1.8rem", color: "#969696", width: "auto" }}
+          />
+        </button>}
+
+        {mode.darkMode && <button className={x === -200 ? "selector-inset" : "selector-dark" } onClick={psychHandler}>
           <GiBiceps
             style={{ height: "1.8rem", color: "#969696", width: "auto" }}
           />
-        </button>
-        <button className={x === -300 ? "selector__inset" : "selector__normal" }onClick={cardioHandler}>
+        </button>}
+
+        {!mode.darkMode && <button className={x === -200 ? "selector-inset" : "selector-normal" } onClick={psychHandler}>
+          <GiBiceps
+            style={{ height: "1.8rem", color: "#969696", width: "auto" }}
+          />
+        </button>}
+
+        {mode.darkMode && <button className={x === -300 ? "selector-inset" : "selector-dark" }onClick={cardioHandler}>
           <GiRun
             style={{ height: "1.8rem", color: "#969696", width: "auto" }}
           />
-        </button>
+        </button>}
+
+        {!mode.darkMode && <button className={x === -300 ? "selector-inset" : "selector-normal" }onClick={cardioHandler}>
+          <GiRun
+            style={{ height: "1.8rem", color: "#969696", width: "auto" }}
+          />
+        </button>}
+
       </div>
       <div
         className={
@@ -99,19 +126,19 @@ const Slider = props => {
             return (
               <div
                 key={index}
-                className="slide"
+                className={!mode.darkMode ? "slide slide-light" : "slide slide-dark"}
                 style={{ transform: `translateX(${x}%)` }}
               >
                 {item}
               </div>
             );
           })}
-          <button id="goLeft" onClick={goLeft}>
+          {/* <button id="goLeft" onClick={goLeft}>
             <FaChevronLeft style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
           </button>
           <button id="goRight" onClick={goRight}>
             <FaChevronRight style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -132,10 +159,10 @@ const Slider = props => {
             );
           })}
           <button id="goLeft" onClick={goLeft}>
-            <FaChevronLeft style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} />
+            {/* <FaChevronLeft style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"} /> */}
           </button>
           <button id="goRight" onClick={goRight}>
-            <FaChevronRight style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"}/>
+            {/* <FaChevronRight style={{ height: "5rem" }} className={mode.darkMode ? "dark-chevron" : "light-chevron"}/> */}
           </button>
         </div>
 
