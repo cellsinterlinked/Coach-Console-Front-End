@@ -13,6 +13,7 @@ import ImageUpload from "../../Shared/components/FormElements/ImageUpload";
 import { DarkModeContext } from "../../Shared/context/dark-mode-context";
 import { FaInfoCircle } from "react-icons/fa";
 import Modal from "../../Shared/components/UIElements/Modal";
+import MainNavigation from "../../Shared/components/Navigation/MainNavigation";
 
 
 const NewCheckin = () => {
@@ -276,7 +277,8 @@ const NewCheckin = () => {
   };
 
   return (
-    <React.Fragment>
+    <div className={mode.darkMode ? "new-checkin-container dark-new-checkin-container" : "new-checkin-container"}>
+      <MainNavigation />
       <ErrorModal error={error} onClear={clearError} />
       <Modal
         show={showConfirmModal}
@@ -377,7 +379,7 @@ const NewCheckin = () => {
           <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
 
           <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
-          <span style={{ color: bfDisplay ? "grey" : "#5fa8d3" }}>No</span>
+          <span style={{ color: bfDisplay ? "grey" : "#b618ff" }}>No</span>
           <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
               <input  
               checked={bfDisplay}
@@ -388,7 +390,7 @@ const NewCheckin = () => {
             />
           <label htmlFor="bfCheckbox" />
           </span>
-          <span style={{ color: bfDisplay ? "#5fa8d3" : "grey" }}>Yes</span>
+          <span style={{ color: bfDisplay ? "#b618ff" : "grey" }}>Yes</span>
         </div>
 
         <p>Log Caliper Data?</p>
@@ -560,7 +562,7 @@ const NewCheckin = () => {
 
           <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
           <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
-          <span style={{ color: notesDisplay ? "grey" : "#5fa8d3" }}>No</span>
+          <span style={{ color: notesDisplay ? "grey" : "#b618ff" }}>No</span>
           <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
               <input  
               checked={notesDisplay}
@@ -571,7 +573,7 @@ const NewCheckin = () => {
             />
           <label htmlFor="notesCheckbox" />
           </span>
-          <span style={{ color: notesDisplay ? "#5fa8d3" : "grey" }}>Yes</span>
+          <span style={{ color: notesDisplay ? "#b618ff" : "grey" }}>Yes</span>
         </div>
 
         <p>Log Notes?</p>
@@ -602,7 +604,7 @@ const NewCheckin = () => {
 
         <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
           <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
-          <span style={{ color: picDisplay ? "grey" : "#5fa8d3" }}>No</span>
+          <span style={{ color: picDisplay ? "grey" : "#b618ff" }}>No</span>
           <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
               <input  
               checked={picDisplay}
@@ -613,7 +615,7 @@ const NewCheckin = () => {
             />
           <label htmlFor="imageCheckbox" />
           </span>
-          <span style={{ color: picDisplay ? "#5fa8d3" : "grey" }}>Yes</span>
+          <span style={{ color: picDisplay ? "#b618ff" : "grey" }}>Yes</span>
         </div>
 
         <p>Upload Progess Photos?</p>
@@ -645,7 +647,7 @@ const NewCheckin = () => {
 
         <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
           <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
-          <span style={{ color: notesDisplay ? "grey" : "#5fa8d3" }}>No</span>
+          <span style={{ color: notesDisplay ? "grey" : "#b618ff" }}>No</span>
           <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
               <input  
               checked={measureDisplay}
@@ -656,7 +658,7 @@ const NewCheckin = () => {
             />
           <label htmlFor="measurementsCheckbox" />
           </span>
-          <span style={{ color: measureDisplay ? "#5fa8d3" : "grey" }}>Yes</span>
+          <span style={{ color: measureDisplay ? "#b618ff" : "grey" }}>Yes</span>
         </div>
 
         <p>Log Measurements?</p>
@@ -854,7 +856,7 @@ const NewCheckin = () => {
     {/* BIGIN TESTING AGAIN     */}
     <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
           <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
-          <span style={{ color: notesDisplay ? "grey" : "#5fa8d3" }}>No</span>
+          <span style={{ color: notesDisplay ? "grey" : "#b618ff" }}>No</span>
           <span className={mode.darkMode ? "dark-input-toggle" : "light-input-toggle"}> 
               <input  
               checked={cardioDisplay}
@@ -865,7 +867,7 @@ const NewCheckin = () => {
             />
           <label htmlFor="cardioCheckbox" />
           </span>
-          <span style={{ color: cardioDisplay ? "#5fa8d3" : "grey" }}>Yes</span>
+          <span style={{ color: cardioDisplay ? "#b618ff" : "grey" }}>Yes</span>
         </div>
 
         <p>Log Cardio Activity?</p>
@@ -941,7 +943,7 @@ const NewCheckin = () => {
           </Button>
         </div>
       </form>
-    </React.Fragment>
+    </div>
   );
 };
 

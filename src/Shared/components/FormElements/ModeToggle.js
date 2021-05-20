@@ -1,37 +1,27 @@
 import React, { useContext } from 'react';
-import { DarkModeContext } from 'src/App.js';
+import { DarkModeContext } from '../../context/dark-mode-context';
 import './ModeToggle.css'
 
 const ModeToggle = () => {
-  const {toggleTheme, themeMode} = useContext(DarkModeContext);
-  const handleThemeChange = (e) => {
-    console.log(e);
-    toggleTheme();
-  };
+  const mode = useContext(DarkModeContext);
 
 	return (
-		<div
-			className={
-				themeMode === 'darkTheme'
-					? 'dark-toggle-container'
-					: 'light-toggle-container'
-			}
-		>
-			<span style={{ color: themeMode === 'darkTheme' ? 'grey' : 'yellow' }}>☀︎</span>
-			<span className={themeMode === 'darkTheme' ? 'dark-toggle' : 'light-toggle'}>
-				<input
-					checked={themeMode === 'darkTheme'}
-					onChange={handleThemeChange}
-					id='checkbox'
-					className='checkbox'
-					type='checkbox'
-				/>
-				<label htmlFor='checkbox' />
-			</span>
-			<span style={{ color: themeMode === 'darkTheme' ? 'slateblue' : 'grey' }}>
-				☾
-			</span>
-		</div>
+		<div className={mode.darkMode ? "dark-toggle-container" : "light-toggle-container"}>
+          <span style={{ color: mode.darkMode ? "grey" : "#a4508b" }}>☀︎</span>
+          <span className={mode.darkMode ? "dark-toggle" : "light-toggle"}>
+            <input
+
+              checked={mode.darkMode}
+              onChange={mode.darkMode ? mode.toggleLight : mode.toggleDark}
+
+              id="checkbox"
+              className="checkbox"
+              type="checkbox"
+            />
+            <label htmlFor="checkbox" />
+          </span>
+          <span style={{ color: mode.darkMode ? "slateblue" : "slateblue" }}>☾</span>
+        </div>
 	);
 };
 

@@ -1,6 +1,6 @@
 export default {
-	lightTheme: {
+	lightTheme:  {colors: {background: "#d6d6d6"}
 	},
-	darkTheme: {
+	darkTheme: {colors: {background: "#272727"}
 	},
   };

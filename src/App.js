@@ -10,48 +10,16 @@ import NewClient from './Clients/pages/NewClient';
 import EditClient from './Clients/pages/EditClient';
 import Landing from './User/pages/Landing';
 import { AuthContext } from './Shared/context/auth-context';
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyles, theme } from './styles';
-// import { DarkModeContext } from './Shared/context/dark-mode-context';
+// import { ThemeProvider } from 'styled-components';
+// import { GlobalStyles, theme } from './styles';
+import { DarkModeContext } from './Shared/context/dark-mode-context';
+import CheckinPage from './Checkins/pages/CheckinPage';
 
-export const DarkModeContext = createContext();
 
-const AppProvider = ({children}) => {
-  const [themeMode, setThemeMode] = useState(
-    localStorage.getItem('theme') || 'lightTheme'
-  );
-
-  useEffect(() => {
-    localStorage.setItem('theme', themeMode);
-  }, [themeMode]);
-
-  const toggleTheme = () => {
-    setThemeMode((prevState) => {
-      if (prevState === 'lightTheme') {
-        return 'darkTheme';
-      } else {
-        return 'lightTheme';
-      }
-    });
-  };
-
-  const value = { themeMode, toggleTheme };
-  const costumTheme = theme[themeMode];
-
-  return (
-    <DarkModeContext.Provider value={value}>
-      <ThemeProvider theme={costumTheme}>
-        <GlobalStyles />
-        {children}
-      </ThemeProvider>
-    </DarkModeContext.Provider>
-  );
-}
-/// look at video 50 on react front end about letting only the user's clients be displayed.
 function App() {
 
-  // const [darkMode, setDarkMode] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);  // change to true?
+  const [darkMode, setDarkMode] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);  // change to true?
   const [userId, setUserId] = useState(false);
 
   const login = useCallback((uid) => {
@@ -64,15 +32,15 @@ function App() {
     setUserId(null);
   }, []);
 
-  // const toggleDark = useCallback(() => {
-  //   setDarkMode(true)
-  //   console.log('going dark!')
-  // }, []);
+  const toggleDark = useCallback(() => {
+    setDarkMode(true)
+    console.log('going dark!')
+  }, []);
 
-  // const toggleLight = useCallback(() => {
-  //   setDarkMode(false)
-  //   console.log('get lit!')
-  // }, []);
+  const toggleLight = useCallback(() => {
+    setDarkMode(false)
+    console.log('get lit!')
+  }, []);
 
   let routes;
 
@@ -102,6 +70,10 @@ function App() {
       <Route path='/:checkinId/updateCheckin' exact>
         <UpdateCheckin/>
       </Route>
+
+      <Route path='/:clientId/:checkinId' exact>
+        <CheckinPage/>
+      </Route>
       <Redirect to='/clients' />
     </Switch>
     )
@@ -121,7 +93,15 @@ function App() {
   }
 
   return (
-		<AppProvider>
+    <DarkModeContext.Provider
+    value={{
+      darkMode: darkMode,
+      toggleDark: toggleDark,
+      toggleLight: toggleLight
+    }}>
+
+
+
 			<AuthContext.Provider
 				value={{
 					isLoggedIn: isLoggedIn,
@@ -131,11 +111,12 @@ function App() {
 				}}
 			>
 				<Router>
-					<MainNavigation />
+					{/* <MainNavigation /> */}
 					<main>{routes}</main>
 				</Router>
 			</AuthContext.Provider>
-		</AppProvider>
+      </DarkModeContext.Provider>
+		
   );
 };
 

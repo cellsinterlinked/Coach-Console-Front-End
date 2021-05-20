@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Header from './Header';
 import NavLinks from './NavLinks';
 import SideDrawer from './SideDrawer';
@@ -9,9 +9,12 @@ import {BsPersonPlusFill} from "react-icons/bs";
 import {BsUnlockFill} from "react-icons/bs";
 import {BsLockFill} from "react-icons/bs";
 import {RiLogoutCircleLine} from "react-icons/ri"
+import { DarkModeContext } from '../../context/dark-mode-context'
 
-const MainNavigation = props => {
+const MainNavigation = ({visible}) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+
+  const mode = useContext(DarkModeContext)
 
   const openDrawer = () => {
     setDrawerIsOpen(true);
@@ -34,13 +37,14 @@ const MainNavigation = props => {
     />
     </nav>
     </SideDrawer>
-    <Header>
+    <Header >
+    
       <button className="main-navigation__menu-btn" onClick={openDrawer}>
       <span />
       <span />
       <span />
     </button>
-     <h1 className="header-title">Coach Console</h1>
+     <h1 className={mode.darkMode ? "dark-header-title" : 'light-header-title'}>Coach Console</h1>
 
      <nav className="main-navigation__header-nav">
       <NavLinks />

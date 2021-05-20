@@ -45,7 +45,7 @@ const NavLinks = props => {
   )}
 
     {auth.isLoggedIn && (
-      <li>
+      <li >
         <NavLink to="/auth" onClick={auth.logout}>
         <div>{props.logoutIcon}</div>
         LOGOUT</NavLink>
@@ -53,7 +53,7 @@ const NavLinks = props => {
 
       // for some reason we had this as a button ^ may cause issues
     )}
-  <li>
+  <li style={{marginTop: "1rem"}}>
       <ModeToggle  onClick={mode.darkMode ? mode.toggleLight : mode.toggleDark}/>
   </li>
   

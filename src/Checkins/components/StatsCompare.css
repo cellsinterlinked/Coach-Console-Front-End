@@ -10,13 +10,11 @@
 }
 
 .light-compare-container p {
-  display:flex;
-  font-size: .9rem;
-  color: #2dbdb1;
+  display: flex;
+  font-size: 0.9rem;
+  color: var(--tech-blue);
   font-family: 'Josefin Sans', sans-serif;
 }
-
-
 
 /* DARK STUFF */
 
@@ -32,8 +30,8 @@
 }
 
 .dark-compare-container p {
-  display:flex;
-  font-size: .9rem;
-  color: #2dbdb1;
+  display: flex;
+  font-size: 0.9rem;
+  color: var(--last-gradient);
   font-family: 'Josefin Sans', sans-serif;
 }

@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
-
+:root {
+  --dark-background: #2e2e2e;
+  --light-background: rgb(225, 227, 228);
+  --small-light-shadow: -1px -1px 2px rgb(255, 255, 255),
+    1px 1px 4px rgba(0, 0, 0, 0.338);
+  --small-dark-shadow: 2px 2px 8px rgb(0, 0, 0, 0.8),
+    -1px -1px 2px rgba(142, 142, 142, 0.331);
+  --tech-blue: rgb(30, 149, 223);
+  --raised-dark: #0b0b0b6b;
+  --raised-light: rgb(237, 237, 237);
+  --purple-gradient: linear-gradient(to right, #5f0a87, #a4508b);
+  --last-gradient: #a4508b;
+  --first-gradient: #b618ff;
+}
 * {
   box-sizing: border-box;
 }
@@ -11,7 +24,7 @@ html {
 body {
   margin: 0;
   /* background: #333333; */
-  background: #d6d6d6;
+  /* background: #d6d6d6; */
   /* background: #272727; */
 }
 
