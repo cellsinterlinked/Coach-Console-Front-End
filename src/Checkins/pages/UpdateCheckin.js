@@ -46,10 +46,10 @@ const UpdateCheckin = () => {
       value: '',
       isValid: false
     },
-    // notes: {
-    //   value: '',
-    //   isValid: false
-    // }
+    notes: {
+      value: '',
+      isValid: false
+    }
   }, false)
 
 
@@ -60,8 +60,6 @@ const UpdateCheckin = () => {
         const responseData = await sendRequest(`http://localhost:5000/api/checkins/${checkinId}`);
         setLoadedCheckin(responseData.checkin)
         loadedClient.current = responseData.checkin.athlete
-        console.log(responseData.checkin.athlete);
-        console.log(loadedClient);
         setFormData(
           {
             date: {
@@ -80,10 +78,10 @@ const UpdateCheckin = () => {
               value: responseData.checkin.bodyFat,
               isValid: true
             },
-            // notes: {
-            //   value: responseData.checkin.notes,
-            //   isValid: true
-            // }
+            notes: {
+              value: responseData.checkin.notes,
+              isValid: true
+            }
           }, true
         )
       } catch (err) {}
@@ -109,7 +107,6 @@ const UpdateCheckin = () => {
             'Content-Type': 'application/json'
           }
         );
-        console.log('/' + loadedClient.current + '/checkins');
         history.push('/' + loadedClient.current + '/checkins');
         
 
@@ -193,17 +190,6 @@ const UpdateCheckin = () => {
       importedStyle="group-4"
     />
     </div>
-    {/* <Input 
-      id="notes"
-      type="text"
-      label="notes"
-      validators={[VALIDATOR_REQUIRE()]}
-      errorText="Please enter a valid note."
-      onInput={inputHandler}
-      initialValue={formState.inputs.notes.value}
-      initialValid={formState.inputs.notes.isValid}
-      importedStyle="text-box"
-    /> */}
     <div className="button-box">
     <Button 
       type="submit" 

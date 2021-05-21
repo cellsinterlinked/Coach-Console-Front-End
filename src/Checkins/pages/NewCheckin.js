@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"; //use callback will wrap out ageinputhandler and give it dependencies so it doesnt keep rerendering and causing and infinite loop
+import React, { useState, useContext } from "react"; 
 import Input from "../../Shared/components/FormElements/Input";
 import Button from "../../Shared/components/FormElements/Button";
 import { VALIDATOR_REQUIRE } from "../../Shared/util/validators";
@@ -184,16 +184,7 @@ const NewCheckin = () => {
     const theFat = findSum(formState);
     const fatMass = formState.inputs.weight.value * (theFat * .01);
     const leanBodyMass = formState.inputs.weight.value - (formState.inputs.weight.value * (theFat * .01));
-    console.log({
-      date: formState.inputs.date.value,
-      weight: formState.inputs.weight.value,
-      bodyFat: theFat,
-      weeksOut: formState.inputs.weeks.value,
-      athlete: client,
-      image: formState.inputs.image.value,
-      bodyMass : leanBodyMass,
-      fatMass
-    });
+  
     try {
       const formData = new FormData();
       formData.append("date", formState.inputs.date.value);
@@ -223,14 +214,6 @@ const NewCheckin = () => {
       formData.append("cardioCalories", formState.inputs.cardio_calories.value);
 
 
-      console.log("date", formState.inputs.date.value);
-      console.log("weight", formState.inputs.weight.value);
-      console.log("bodyFat", theFat);
-      console.log("weeksOut", formState.inputs.weeks.value);
-      console.log("athlete", client);
-      console.log("image", formState.inputs.image.value);
-      console.log(formData.get("date"));
-      // something differnt
       await sendRequest("http://localhost:5000/api/checkins", "POST", formData);
       history.push("/" + client + "/checkins");
     } catch (err) {
@@ -270,7 +253,7 @@ const NewCheckin = () => {
     }
 
     
-    // console.log(yourFatAss)
+
     return yourFatAss;
 
     
@@ -642,9 +625,6 @@ const NewCheckin = () => {
         </div>
         </div>
 
-
-{/* TESTING */}
-
         <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
           <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
           <span style={{ color: notesDisplay ? "grey" : "#b618ff" }}>No</span>
@@ -840,20 +820,7 @@ const NewCheckin = () => {
             </div>
             <p className="measure">"</p>
           </div>
-
-
-
-
-
-
-
-
         </div>
-
-
-        
-        {/* END TESTING */}
-    {/* BIGIN TESTING AGAIN     */}
     <div className={mode.darkMode ? "dark-input__Check" : "light-input__Check"}>
           <div className={mode.darkMode ? "dark-input-toggle-container" : "light-input-toggle-container"}>
           <span style={{ color: notesDisplay ? "grey" : "#b618ff" }}>No</span>
@@ -929,10 +896,6 @@ const NewCheckin = () => {
             <p className="measure">"</p>
           </div>
           </div>
-
-
-
-    {/* TESTING END */}
         
         <div className="submit-checkin" style={{marginTop: "2rem"}}>
           <Button

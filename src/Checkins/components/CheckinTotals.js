@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./CheckinTotals.css";
-import Card from "../../Shared/components/UIElements/Card";
 import Button from "../../Shared/components/FormElements/Button";
 import LoadingSpinner from "../../Shared/components/UIElements/LoadingSpinner";
 import ErrorModal from "../../Shared/components/UIElements/ErrorModal";
@@ -8,8 +7,6 @@ import { useHttpClient } from "../../Shared/hooks/http-hook";
 import { useHistory } from "react-router-dom";
 import Modal from "../../Shared/components/UIElements/Modal";
 import { DarkModeContext } from "../../Shared/context/dark-mode-context";
-import StatsCompare from "./StatsCompare";
-import MeasurementsCompare from "./MeasurementsCompare";
 import Slider from "../../Shared/components/UIElements/Slider";
 
 const CheckinTotals = props => {
@@ -93,7 +90,6 @@ const CheckinTotals = props => {
 
           <h1 className="client-name">{loadedAthlete}</h1>
           <div className={mode.darkMode ? "dark-divider" : "light-divider"}></div>
-          {/* <button onClick={() => console.log(athleteInfo)}> Info</button> */}
 
         <div className="totals-info">
           <Slider items={props.items} />

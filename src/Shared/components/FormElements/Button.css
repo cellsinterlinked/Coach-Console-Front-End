@@ -22,7 +22,6 @@
 .light-button:hover,
 .light-button:active {
   box-shadow: none;
-  /* border: 1px solid black; */
 }
 
 .light-button--inverse {
@@ -66,8 +65,6 @@
 .button--big {
   font-size: 1.5rem;
 }
-
-/* Dark */
 
 .dark-button {
   font: inherit;

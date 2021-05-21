@@ -3,11 +3,8 @@
   bottom: 0;
   left: 0;
   width: 100vw;
-  /* overflow: hidden;
-  line-height: 0; */
   height: 4%;
   background: #1f7487;
-  /* transform: rotate(20deg); */
 }
 
 .wave {

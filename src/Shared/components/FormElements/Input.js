@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useContext } from 'react';     // use reducer for more complex or interconnected state. 
+import React, { useReducer, useEffect, useContext } from 'react';    
 import { validate } from '../../util/validators';
 import './Input.css';
 import { DarkModeContext } from '../../../Shared/context/dark-mode-context'; 
@@ -25,7 +25,7 @@ const Input = props => {
   const mode = useContext(DarkModeContext);
 
   const [inputState, dispatch] = useReducer(inputReducer, {
-    value: props.initialValue || '',               //initialize form with value(if it already has one like in the case of place update where it starts already having a value)if not, an empty string
+    value: props.initialValue || '',               
     isTouched: false,
     isValid: props.initialValid || false
   });

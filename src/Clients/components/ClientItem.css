@@ -21,7 +21,6 @@
 }
 
 .dark-client-item__image {
-  /* position: absolute; */
   width: 7rem;
   height: 7rem;
   background: transparent;
@@ -31,13 +30,11 @@
 
 .dark-client-item__info h2 {
   font-style: bold;
-  /* text-transform: uppercase; */
   font-size: 1.2rem;
   margin: 0 0 0.5rem 0;
   font-weight: normal;
   color: white;
   font-family: 'Josefin Sans', sans-serif;
-  /* font-weight: lighter; */
 }
 
 .dark-client-item__info {
@@ -47,20 +44,12 @@
   border-bottom: 1px solid rgb(63, 63, 63);
 }
 
-.dark-client-item:hover h2,
-.dark-client-item:active h2,
-.dark-client-item:hover h3,
-.dark-client-item:active h3 {
-}
-
 .dark-client-item__info h3 {
   font-size: 0.8rem;
   margin: 0;
   color: rgb(255, 255, 255);
   font-weight: lighter;
 }
-
-/* LIGHT STUFF */
 
 .light-client-item {
   margin: 1rem;
@@ -102,7 +91,6 @@
   width: 100%;
   height: 100%;
   text-decoration: none;
-  /* padding: 1rem; */
   color: white;
   background: rgb(235, 235, 235);
 }
@@ -117,7 +105,6 @@
   width: 100%;
   height: 100%;
   text-decoration: none;
-  /* padding: 1rem; */
   color: white;
   background: #222222;
 }
@@ -143,9 +130,7 @@
 }
 
 .light-client-item__info h2 {
-  /* font-style: bold; */
   font-size: 17px;
-
   margin: 0 0 0.5rem 0;
   color: black;
   font-family: 'Josefin Sans', sans-serif;
@@ -154,9 +139,6 @@
 .light-client-item__info:hover h2,
 .light-client-item__info:active h2 {
   color: rgb(245, 131, 55);
-}
-.light-client-item:hover h3,
-.light-client-item:active h3 {
 }
 
 .light-client-item__info h3 {
@@ -224,7 +206,6 @@
   align-items: center;
   height: 2rem;
   width: 2rem;
-  /* background: var(--purple-gradient); */
   border-radius: 50%;
   margin-bottom: 0.5rem;
 }

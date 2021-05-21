@@ -35,10 +35,10 @@ const Auth = (props) => {
     if (!isLoginMode) {
       setFormData({name: undefined}, 
         formState.inputs.email.isValid && 
-        formState.inputs.password.isValid); //when we are in login mode we drop the form input of name and only worry about the other two  
-    } else {                              //when in signup mode
+        formState.inputs.password.isValid); 
+    } else {                            
       setFormData({
-        ...formState.inputs,              //include name in the form data
+        ...formState.inputs,          
         name: {
           value: '',
           isValid: false

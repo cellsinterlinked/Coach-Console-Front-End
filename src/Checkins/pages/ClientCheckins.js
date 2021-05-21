@@ -30,7 +30,6 @@ const ClientCheckins = props => {
 
 
 const checkinDeleteHandler = (deletedCheckinId) => {
-    // console.log(deletedCheckinId)
     setLoadedCheckins(prevCheckins => 
       prevCheckins.filter(checkin => checkin.id !==deletedCheckinId)
       );

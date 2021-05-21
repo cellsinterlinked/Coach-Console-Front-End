@@ -51,7 +51,7 @@ const NavLinks = props => {
         LOGOUT</NavLink>
       </li>
 
-      // for some reason we had this as a button ^ may cause issues
+     
     )}
   <li style={{marginTop: "1rem"}}>
       <ModeToggle  onClick={mode.darkMode ? mode.toggleLight : mode.toggleDark}/>

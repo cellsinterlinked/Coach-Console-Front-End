@@ -4,7 +4,6 @@ import Button from '../../Shared/components/FormElements/Button';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 import './ClientList.css';
 import {GiWeightLiftingDown} from 'react-icons/gi';
-import { Link } from 'react-router-dom';
 
 const ClientList = props => {
   const mode = useContext(DarkModeContext);
@@ -26,7 +25,6 @@ const ClientList = props => {
     <p className={mode.darkMode ? "your-clients-number-dark" : 'your-clients-number-light'}>{`${props.items.length} Clients`}</p>
 
     </div>
-    {/* <hr className={mode.darkMode ? "dark-break" : "light-break"} /> */}
     <div className={mode.darkMode ? "dark-page-split" : "light-page-split"}></div>
     <ul className="clients-list">
       {props.items.map(client => {

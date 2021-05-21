@@ -10,20 +10,9 @@
   margin: auto;
   text-align: center;
   background: transparent;
-  /* background-color: rgb(94, 214, 223); */
   top: 12vh;
   overflow: hidden;
 }
-
-/* .authentication h2 {
-  color: #000000;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-.dark-authentication h2 {
-  color: #b8b6b6;
-  font-family: 'Josefin Sans', sans-serif;
-} */
 
 .auth-container {
   min-height: 100vh;

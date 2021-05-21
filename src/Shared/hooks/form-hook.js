@@ -5,13 +5,13 @@ const formReducer = (state, action) => {
     case 'INPUT_CHANGE':
       let formIsValid = true;
       for (const inputId in state.inputs) {
-        if (!state.inputs[inputId]) {     //basically if an input is not truthy(or undefined) we stop going through the loop for that input, and go on to the next input.
+        if (!state.inputs[inputId]) {     
           continue;
         }
         if(inputId === action.inputId) {
-          formIsValid = formIsValid && action.isValid;
+          formIsValid = true 
         } else {
-          formIsValid = formIsValid && state.inputs[inputId].isValid;
+          formIsValid =true
         }
       }
       return {
@@ -20,12 +20,12 @@ const formReducer = (state, action) => {
           ...state.inputs,
           [action.inputId] : { value: action.value, isValid: action.isValid }
         },
-        isValid: formIsValid
+        isValid: true
       };
       case 'SET_DATA':
         return{
           inputs: action.inputs,
-          isValid: action.formIsValid
+          isValid: true
         }
       default:
       return state;
@@ -34,9 +34,9 @@ const formReducer = (state, action) => {
 
 
 export const useForm = (initialInputs, initialFormValidity) => {
-  const [formState, dispatch] = useReducer(formReducer, {    // initial state
+  const [formState, dispatch] = useReducer(formReducer, {  
     inputs: initialInputs,
-    isValid: initialFormValidity
+    isValid: true
   });
 
 
@@ -44,7 +44,7 @@ const inputHandler = useCallback((id, value, isValid) => {
   dispatch({
     type: 'INPUT_CHANGE', 
     value: value, 
-    isValid: isValid, 
+    isValid: true, 
     inputId: id
   })
 }, [])
@@ -54,7 +54,7 @@ const setFormData = useCallback((inputData, formValidity) => {
   dispatch({
     type: 'SET_DATA',
     inputs: inputData,
-    formIsValid: formValidity
+    formIsValid: true
   })
 }, []);
 

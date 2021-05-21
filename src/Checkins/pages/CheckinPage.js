@@ -3,19 +3,18 @@ import './CheckinPage.css';
 import './CheckinRotate.css';
 import { useParams } from 'react-router-dom';
 import { useHttpClient } from '../../Shared/hooks/http-hook';
-import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import {DarkModeContext} from '../../Shared/context/dark-mode-context';
 import MainNavigation from '../../Shared/components/Navigation/MainNavigation';
-import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import {FaWeight} from 'react-icons/fa';
 import { GiPincers } from "react-icons/gi";
-import { GoCalendar } from "react-icons/go";
-import { FaCalendarWeek } from "react-icons/fa";
 import { GiMuscularTorso } from "react-icons/gi";
 import {IoIosBody} from 'react-icons/io';
-import { BsFillEjectFill, BsFillPentagonFill } from 'react-icons/bs';
 import { GiRun } from 'react-icons/gi';
+
+
 const CheckinPage = () => {
+
+  
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const[loadedCheckins, setLoadedCheckins] = useState();
   const [exactCheckin, setExactCheckins] = useState()
@@ -26,7 +25,7 @@ const CheckinPage = () => {
   const [currentSpoke, setCurrentSpoke] = useState(1)
   const [prevBigPic, setPrevBigPic] = useState(0)
   const [newBigPic, setNewBigPic] = useState(0)
-  // set to index of the first item in the picture array as default 
+  
 
   const prevTestArray = [
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F06%2FKitten_in_Rizal_Park%252C_Manila.jpg%2F1200px-Kitten_in_Rizal_Park%252C_Manila.jpg&f=1&nofb=1",
@@ -65,11 +64,6 @@ const CheckinPage = () => {
   }, [sendRequest, clientId, checkinId]);
 
 
-
-  const funFunc = () => {
-    console.log(exactCheckin)
-  }
-
   const turner = (num) => {
     setCurrentSpoke(num)
   }
@@ -77,15 +71,13 @@ const CheckinPage = () => {
   return (
     <div className={mode.darkMode ? "dark-checkin-page-container" : "light-checkin-page-container"}>
       <MainNavigation />
-      {/* <div>{currentSpoke}</div>
-      <button onClick={funFunc}>Click Me</button> */}
+    
       <div className={mode.darkMode ? "dark-ghost-wheel-container" : "light-ghost-wheel-container" }>
 
 
       <div className={`wheel-container wheel${currentSpoke}`}>
         
         <div className={mode.darkMode ? `dark-wheel-center` : `light-wheel-center`}>
-          {/* <BsFillPentagonFill className="pentagon" /> */}
         <div className={mode.darkMode ? `dark-ghost-center one${currentSpoke}` : `light-ghost-center one${currentSpoke}`}></div>
           <div className="test-spoke"></div>
         <div className={mode.darkMode ? "first-spoke dark-spoke-container" : "first-spoke light-spoke-container"}>
@@ -144,8 +136,6 @@ const CheckinPage = () => {
 
       </div>
     <div className='checkin-stats-wrapper'>
-
-      {/* make these all render conditional based on current spoke instead of having invisible class. Also create an animation to have it come in and out.  */}
      {currentSpoke === 1 && <div className={mode.darkMode ? "dark-wheel-info-box" : "light-wheel-info-box"}>
      <div className="wheel-info-box__wrapper">
           <div className="wheel-info-column bf-column1">

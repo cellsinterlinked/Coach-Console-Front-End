@@ -41,7 +41,6 @@ const ModalOverlay = props => {
           unmountOnExit 
           timeout={200} 
           classNames={mode.darkMode ? "dark-modal" : "light-modal"}   
-          // NEED TO GET THIS TO BE RESPONSIVE TO MODE
           >
             <ModalOverlay {...props} />
           </CSSTransition>

@@ -16,7 +16,7 @@ const ImageUpload = props => {
     if (!file) {
       return;
     }
-    const fileReader = new FileReader();  // dont try and understand. baked in javascript api for reading files
+    const fileReader = new FileReader();  
     fileReader.onload = () => {
       setPreviewUrl(fileReader.result);
     }

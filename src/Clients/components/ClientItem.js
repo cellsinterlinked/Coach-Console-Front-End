@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Avatar from '../../Shared/components/UIElements/Avatar';
 import { Link } from 'react-router-dom';
-import Card from '../../Shared/components/UIElements/Card';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 import './ClientItem.css'
 import { useHttpClient } from '../../Shared/hooks/http-hook'; 
@@ -16,16 +15,12 @@ const ClientItem = props => {
       try {
         const responseData = await sendRequest(`http://localhost:5000/api/checkins/athlete/${props.id}`);
         setLoadedCheckins(responseData.checkins)
-        console.log(responseData.checkins)
 
       } catch (err) {}
     };
     fetchCheckins();
   }, [props.Id, props.id, sendRequest, setLoadedCheckins]);
 
-  // const showFunc = () => {
-  //   console.log(props.image)
-  // }
 
   return <li className={mode.darkMode ? "dark-client-item" : "light-client-item"}>
    
@@ -34,7 +29,6 @@ const ClientItem = props => {
 
         {loadedCheckins.length > 0 && <div className="background-image-filter"></div>}
         {loadedCheckins.length > 0 && <img alt="" src={`http://localhost:5000/${loadedCheckins[0].image}`}/>}
-        {/* {loadedCheckins && <img alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F01%2F258782-nature-landscape-sunset-trees-clouds-path-hill-forest-HDR-river-Hungary-sky-shrubs.jpg&f=1&nofb=1"/>} */}
         {loadedCheckins.length === 0 && <div className="background-placeholder" alt=""/>}
 
 
@@ -67,9 +61,6 @@ const ClientItem = props => {
         </div>
       </div>
     </Link>
-   
-
-    {/* <button onClick={showFunc}></button> */}
 </li>
  
   

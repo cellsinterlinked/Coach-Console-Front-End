@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import CheckinItem from './CheckinItem';
 import Card from '../../Shared/components/UIElements/Card';
 import CheckinTotals from '../components/CheckinTotals';
 import Button from '../../Shared/components/FormElements/Button';
@@ -39,6 +38,7 @@ return (
 {/* to={`/${clientId}/${checkin.id}` */}
 
 <div className="big-checkin-list">
+  {props.items.map(checkin => <Link to={`/${clientId}/${checkin.id}`} ><button>Press me</button> </Link>)}
   {tempArray.map(checkin => (
     <Link className={mode.darkMode ? "dark-checkin-card" : "light-checkin-card"} to={`/`}>
       <div className="checkin-card-backdrop">
@@ -69,38 +69,7 @@ return (
     </div>
 
     </Link>
-    // <CheckinItem
-    //   key={checkin.id}
-    //   id={checkin.id}
-    //   image={checkin.image}
-    //   date={checkin.date}
-    //   weight={checkin.weight}
-    //   weeksOut={checkin.weeksOut}
-    //   bodyFat={checkin.bodyFat}
-    //   leanBodyMass={checkin.leanBodyMass}
-    //   fatMass={checkin.fatMass}
-    //   athlete={checkin.athlete} 
-    //   notes={checkin.notes}
-    //   neckMeasure={checkin.neckMeasure}
-    //   armMeasure={checkin.armMeasure}
-    //   chestMeasure={checkin.chestMeasure}
-    //   waistMeasure={checkin.waistMeasure}
-    //   hipsMeasure={checkin.hipsMeasure}
-    //   thighMeasure={checkin.thighMeasure}
-    //   calfMeasure={checkin.calfMeasure}
-    //   chest={checkin.chest}
-    //   axilla={checkin.axilla}
-    //   tricep={checkin.tricep}
-    //   subscapular={checkin.subscapular}
-    //   abdominal={checkin.abdominal}
-    //   suprailiac={checkin.suprailiac}
-    //   thigh={checkin.thigh}
-    //   cardioDuration={checkin.cardioDuration}
-    //   cardioCalories={checkin.cardioCalories}
-
-    
-    //   onDelete={props.onDeleteCheckin}
-    //   />
+  
   ))}
 </div>
 </React.Fragment>

@@ -8,17 +8,11 @@
 }
 
 .light-measurement-compare-container p {
-  display:flex;
-  font-size: .9rem;
+  display: flex;
+  font-size: 0.9rem;
   color: #2dbdb1;
   font-family: 'Josefin Sans', sans-serif;
 }
-
-
-
-
-
-/* DARK STUFF */
 
 .dark-measurement-compare-container {
   display: grid;
@@ -30,8 +24,8 @@
 }
 
 .dark-measurement-compare-container p {
-  display:flex;
-  font-size: .9rem;
+  display: flex;
+  font-size: 0.9rem;
   color: #2dbdb1;
   font-family: 'Josefin Sans', sans-serif;
 }

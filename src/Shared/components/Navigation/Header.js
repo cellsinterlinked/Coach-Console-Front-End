@@ -8,13 +8,8 @@ const Header = props => {
   const [visible, setVisible] = useState(true); 
 
   const handleScroll = debounce(() => {     
-    // find current scroll position
     const currentScrollPos = window.pageYOffset;
-
-    // set state based on location info (explained in more detail below)
     setVisible((prevScrollPos > currentScrollPos) || currentScrollPos < 10);
-
-    // set state to new scroll position
     setPrevScrollPos(currentScrollPos);
   }, 0)
 

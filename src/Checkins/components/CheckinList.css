@@ -14,10 +14,6 @@
   margin-bottom: 3rem;
 }
 
-.light-no-checkins-card {
-  /* background: rgb(225, 225, 225); */
-}
-
 .light-no-checkins-card h2 {
   color: rgb(0, 0, 0);
   font-family: 'Josefin Sans', sans-serif;
@@ -31,11 +27,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* min-height: 20rem; */
   width: 17rem;
   height: 22rem;
   box-shadow: 4px 4px 8px 2px rgba(0, 0, 0, 0.623);
-  /* border-radius: 1rem; */
   margin-bottom: -11rem;
   background: rgb(32, 32, 32);
   transition: 0.2s;
@@ -47,11 +41,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* min-height: 20rem; */
   width: 17rem;
   height: 22rem;
   box-shadow: 4px 4px 8px 2px rgba(0, 0, 0, 0.623);
-  /* border-radius: 1rem; */
   margin-bottom: -11rem;
   background: rgb(233, 233, 233);
   transition: 0.2s;
@@ -63,16 +55,12 @@
 
 .light-checkin-card:hover,
 .dark-checkin-card:hover {
-  /* transform: translateY(-4rem); */
   transform: translate3d(3rem, -3rem, 100px);
-  /* transform: translateX(2rem); */
 }
 
 .light-checkin-card:hover .checkin-card-img-wrapper,
 .dark-checkin-card:hover .checkin-card-img-wrapper {
-  /* margin-top: -12rem; */
   transform: translateY(-8rem);
-  /* opacity: 1; */
 
   -webkit-animation-name: fade;
   -webkit-animation-iteration-count: infinite;
@@ -105,9 +93,6 @@
 .dark-checkin-card:hover .checkin-card-backdrop {
   opacity: 0.5;
 }
-/* .big-checkin-list :last-child {
-  margin-bottom: 2rem;
-} */
 
 .big-checkin-list {
   width: 100%;
@@ -128,7 +113,6 @@
   width: 70%;
   max-width: 25rem;
   min-height: 18rem;
-  /* margin-top: 4rem; */
   top: 4rem;
   left: auto;
   right: auto;
@@ -306,10 +290,8 @@
 .p2 {
   -webkit-animation-delay: -4s;
   animation-delay: -4s;
-  /* opacity: 0; */
 }
 .p3 {
   -webkit-animation-delay: -2s;
   animation-delay: -2s;
-  /* opacity: 0; */
 }

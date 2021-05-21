@@ -15,12 +15,10 @@ const Slider = (props) => {
 
   const goLeft = () => {
     x === 0 ? setX(-100 * (slideArr.length - 1)) : setX(x + 100);
-    console.log(x);
   };
 
   const goRight = () => {
     x === -100 * (slideArr.length - 1) ? setX(0) : setX(x - 100);
-    console.log(x);
   };
 
   return(

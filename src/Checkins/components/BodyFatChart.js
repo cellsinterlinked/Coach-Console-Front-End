@@ -4,7 +4,6 @@ import './Chart.css';
 
 const BodyFatChart = props => {
   const bodyFatArr = props.items.map(checkin => checkin.bodyFat);
-  console.log(bodyFatArr);
   const dateArr = props.items.map(checkin =>
     checkin.date.toString().slice(0, 10)
   );
@@ -27,10 +26,10 @@ const BodyFatChart = props => {
           pointHoverRadius: 5,
           pointHoverBackgroundColor: "rgba(255,255,255, 0.5)"
         }
-        //add more lines here
+    
       ]
     }
-    // add other stuff here
+
   });
 
   return (

@@ -36,7 +36,6 @@ const history = useHistory();
 
 const newClientSubmitHandler = async event => {
   event.preventDefault();
-  console.log(formState.inputs);
   try {
     const formData = new FormData();
     formData.append('name', formState.inputs.name.value);
@@ -76,16 +75,6 @@ return(
       id="image" 
       onInput={inputHandler} 
       errorText="" />
-    {/* <Input 
-      id="image"
-      label="Photo" 
-      element="input" 
-      type="file" 
-      errorText="Please upload a photo" 
-      validators={[VALIDATOR_REQUIRE()]} 
-      onInput={inputHandler}
-      importedStyle="new-client__inputs"
-      /> */}
     <div className={mode.darkMode ? "dark-new-client-button__box" : "light-new-client-button__box"}>
     <Button
       type="submit"

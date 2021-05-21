@@ -5,7 +5,6 @@ const MeasurementChart = props => {
   const dateArr = props.items.map(checkin =>
     checkin.date.toString().slice(0, 10)
   );
-  // cardio props array management
 
   const [infoGraph, setInfoGraph] = useState({
     chartData: {

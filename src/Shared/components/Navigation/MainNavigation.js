@@ -7,7 +7,6 @@ import './MainNavigation.css';
 import {BsFillPeopleFill} from "react-icons/bs";
 import {BsPersonPlusFill} from "react-icons/bs";
 import {BsUnlockFill} from "react-icons/bs";
-import {BsLockFill} from "react-icons/bs";
 import {RiLogoutCircleLine} from "react-icons/ri"
 import { DarkModeContext } from '../../context/dark-mode-context'
 

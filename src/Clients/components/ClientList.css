@@ -13,7 +13,6 @@
   display: flex;
   justify-content: center;
   color: rgb(0, 0, 0);
-  /* margin-top: 8rem; */
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -43,8 +42,6 @@
   width: 80%;
 }
 
-/* DARK STUFF */
-
 .dark-break {
   border: 0;
   height: 2px;
@@ -61,9 +58,7 @@
   display: flex;
   justify-content: center;
   color: rgb(255, 255, 255);
-  /* margin-top: 8rem; */
   font-family: 'Josefin Sans', sans-serif;
-  /* font-weight: lighter; */
 }
 
 .your-clients-number-light {

@@ -10,8 +10,6 @@ import NewClient from './Clients/pages/NewClient';
 import EditClient from './Clients/pages/EditClient';
 import Landing from './User/pages/Landing';
 import { AuthContext } from './Shared/context/auth-context';
-// import { ThemeProvider } from 'styled-components';
-// import { GlobalStyles, theme } from './styles';
 import { DarkModeContext } from './Shared/context/dark-mode-context';
 import CheckinPage from './Checkins/pages/CheckinPage';
 
@@ -19,7 +17,7 @@ import CheckinPage from './Checkins/pages/CheckinPage';
 function App() {
 
   const [darkMode, setDarkMode] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);  // change to true?
+  const [isLoggedIn, setIsLoggedIn] = useState(true); 
   const [userId, setUserId] = useState(false);
 
   const login = useCallback((uid) => {
@@ -34,12 +32,10 @@ function App() {
 
   const toggleDark = useCallback(() => {
     setDarkMode(true)
-    console.log('going dark!')
   }, []);
 
   const toggleLight = useCallback(() => {
     setDarkMode(false)
-    console.log('get lit!')
   }, []);
 
   let routes;
