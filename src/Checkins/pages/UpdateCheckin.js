@@ -1,15 +1,22 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import Input from '../../Shared/components/FormElements/Input';
 import Button from '../../Shared/components/FormElements/Button';
-import { VALIDATOR_REQUIRE, } from '../../Shared/util/validators';
 import Card from '../../Shared/components/UIElements/Card';
-import { useForm } from '../../Shared/hooks/form-hook';
 import './CheckinForm.css';
 import { useHttpClient } from '../../Shared/hooks/http-hook';
 import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context';
+import Modal from '../../Shared/components/UIElements/Modal';
+import MainNavigation from '../../Shared/components/Navigation/MainNavigation';
+import CheckInBasics from '../components/new-checkin-components/CheckInBasics';
+import CheckInBf from '../components/new-checkin-components/CheckInBf';
+import CheckInNotes from '../components/new-checkin-components/CheckInNotes';
+import CheckInMeasurements from '../components/new-checkin-components/CheckInMeasurements';
+import CheckInCardio from '../components/new-checkin-components/CheckInCardio';
+import CheckInFinal from '../components/new-checkin-components/CheckInFinal';
+
+
 
 
 
@@ -29,29 +36,13 @@ const UpdateCheckin = () => {
 
   const history = useHistory();
 
-  const [formState, inputHandler, setFormData] = useForm({
-    date: {
-      value: '',
-      isValid: true
-    },
-    weight: {
-      value: '',
-      isValid: false
-    },
-    weeksOut: {
-      value: '',
-      isValid: false
-    },
-    bodyFat: {
-      value: '',
-      isValid: false
-    },
-    notes: {
-      value: '',
-      isValid: false
-    }
-  }, false)
-
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [gender, setGender] = useState();
+  const [formTotal, setFormTotal] = useState({});
+  const [pageNum, setPageNum] = useState(1);
+  const [finalFat, setFinalFat] = useState();
+  const [finalFatMass, setFinalFatMass] = useState();
+  const [finalLeanBodyMass, setFinalLeanBodyMass] = useState();
 
 
   useEffect(() => {
@@ -60,59 +51,199 @@ const UpdateCheckin = () => {
         const responseData = await sendRequest(`http://localhost:5000/api/checkins/${checkinId}`);
         setLoadedCheckin(responseData.checkin)
         loadedClient.current = responseData.checkin.athlete
-        setFormData(
-          {
-            date: {
-              value: responseData.checkin.date,
-              isValid: true
-            },
-            weight: {
-              value: responseData.checkin.weight,
-              isValid: true
-            },
-            weeksOut: {
-              value: responseData.checkin.weeksOut,
-              isValid: true
-            },
-            bodyFat: {
-              value: responseData.checkin.bodyFat,
-              isValid: true
-            },
-            notes: {
-              value: responseData.checkin.notes,
-              isValid: true
-            }
-          }, true
-        )
+       
       } catch (err) {}
     }
     fetchCheckin();
-  }, [sendRequest, checkinId, setFormData])
+  }, [sendRequest, checkinId])
 
-   
+  const showInstructionsHandler = () => {
+    setShowConfirmModal(true);
+  };
+
+  const cancelInstructionsHandler = () => {
+    setShowConfirmModal(false);
+  };
+
+  const confirmInstructionsHandler = () => {
+    setShowConfirmModal(false);
+  };
+
+  
+  const bodyFatHandler = (formState) => {
+    console.log(gender);
+    console.log(formState);
+    const findSum = (formState) => {
+      const {
+        chest,
+        axilla,
+        tricep,
+        subscapular,
+        abdominal,
+        suprailiac,
+        thigh,
+      } = formState.inputs;
+
+      const age = formTotal.age.value;
+      console.log(age);
+      const total =
+        Number(chest.value) +
+        Number(axilla.value) +
+        Number(tricep.value) +
+        Number(abdominal.value) +
+        Number(subscapular.value) +
+        Number(thigh.value) +
+        Number(suprailiac.value);
+      console.log(total);
+      let yourFatAss;
+      if (gender === '1') {
+        yourFatAss =
+          495 /
+            (1.112 -
+              0.00043499 * total +
+              0.00000055 * total * total -
+              0.00028826 * age) -
+          450;
+      } else if (gender === '2') {
+        yourFatAss =
+          495 /
+            (1.097 -
+              0.00046971 * total +
+              0.00000056 * total * total -
+              0.00012828 * age) -
+          450;
+      }
+      console.log(yourFatAss);
+      return yourFatAss;
+    };
+    const theFat = findSum(formState);
+    const fatMass = formTotal.weight.value * (theFat * 0.01);
+    const leanBodyMass =
+      formTotal.weight.value - formTotal.weight.value * (theFat * 0.01);
+
+    setFinalFat(theFat);
+    setFinalFatMass(fatMass);
+    setFinalLeanBodyMass(leanBodyMass);
+  };
 
     const checkinUpdateSubmitHandler = async event => {
       event.preventDefault();
       try{
+        const formData = new FormData();
+      formTotal.date && formData.append('date', formTotal.date.value);
+      formTotal.weight && formData.append('weight', formTotal.weight.value);
+      finalFat && formData.append('bodyFat', finalFat);
+      formTotal.weeks && formData.append('weeksOut', formTotal.weeks.value);
+      formData.append('athlete', loadedClient);
+
+      formTotal.chest && formData.append('chest', formTotal.chest.value);
+      formTotal.axilla && formData.append('axilla', formTotal.axilla.value);
+      formTotal.tricep && formData.append('tricep', formTotal.tricep.value);
+      formTotal.subscapular &&
+        formData.append('subscapular', formTotal.subscapular.value);
+      formTotal.abdominal &&
+        formData.append('abdominal', formTotal.abdominal.value);
+      formTotal.suprailiac &&
+        formData.append('suprailiac', formTotal.suprailiac.value);
+      formTotal.thigh && formData.append('thigh', formTotal.thigh.value);
+      formTotal.notes && formData.append('notes', formTotal.notes.value);
+      finalFatMass && formData.append('fatMass', finalFatMass);
+      finalLeanBodyMass && formData.append('leanBodyMass', finalLeanBodyMass);
+      formTotal.neck_inch &&
+        formData.append('neckMeasure', formTotal.neck_inch.value);
+      formTotal.arm_inch &&
+        formData.append('armMeasure', formTotal.arm_inch.value);
+      formTotal.chest_inch &&
+        formData.append('chestMeasure', formTotal.chest_inch.value);
+      formTotal.waist_inch &&
+        formData.append('waistMeasure', formTotal.waist_inch.value);
+      formTotal.hips_inch &&
+        formData.append('hipsMeasure', formTotal.hips_inch.value);
+      formTotal.thigh_inch &&
+        formData.append('thighMeasure', formTotal.thigh_inch.value);
+      formTotal.calf_inch &&
+        formData.append('calfMeasure', formTotal.calf_inch.value);
+      formTotal.cardio_duration &&
+        formData.append('cardioDuration', formTotal.cardio_duration.value);
+      formTotal.cardio_calories &&
+        formData.append('cardioCalories', formTotal.cardio_calories.value);
         await sendRequest(
           `http://localhost:5000/api/checkins/${checkinId}`,
           'PATCH',
-          JSON.stringify({
-            date: formState.inputs.date.value,
-            weight: formState.inputs.weight.value,
-            bodyFat: formState.inputs.bodyFat.value,
-            weeksOut: formState.inputs.weeksOut.value
-          }),
-          {
-            'Content-Type': 'application/json'
-          }
-        );
+          formData);
         history.push('/' + loadedClient.current + '/checkins');
         
 
       } catch (err) {
         console.log(err);
       }
+    };
+
+
+    const secondNext = (inputs) => {
+      const newTotals = { ...formTotal, ...inputs };
+      setFormTotal(newTotals);
+  
+      if (loadedCheckin.bodyFat) {
+        setPageNum(2);
+      } else if (loadedCheckin.notes) {
+        setPageNum(3);
+      } else if (loadedCheckin.chestMeasure) {
+        setPageNum(5);
+      } else if (loadedCheckin.cardioDuration) {
+        setPageNum(6);
+      } else {
+        setPageNum(7);
+      }
+    };
+  
+    const thirdNext = (inputs, formState) => {
+      const newTotals = { ...formTotal, ...inputs };
+      setFormTotal(newTotals);
+  
+      bodyFatHandler(formState);
+  
+      if (loadedCheckin.notes) {
+        setPageNum(3);
+      } else if (loadedCheckin.chestMeasure) {
+        setPageNum(5);
+      } else if (loadedCheckin.cardioDuration) {
+        setPageNum(6);
+      } else {
+        setPageNum(7);
+      }
+    };
+  
+  
+    const fifthNext = (inputs) => {
+      const newTotals = { ...formTotal, images: inputs };
+      setFormTotal(newTotals);
+      if (loadedCheckin.chestMeasure) {
+        setPageNum(5);
+      } else if (loadedCheckin.cardioDuration) {
+        setPageNum(6);
+      } else {
+        setPageNum(7);
+      }
+      console.log(newTotals);
+    };
+  
+    const sixthNext = (inputs) => {
+      const newTotals = { ...formTotal, ...inputs };
+      setFormTotal(newTotals);
+  
+      if (loadedCheckin.cardioDuration) {
+        setPageNum(6);
+      } else {
+        setPageNum(7);
+      }
+    };
+  
+    const seventhNext = (inputs) => {
+      const newTotals = { ...formTotal, ...inputs };
+      setFormTotal(newTotals);
+  
+      setPageNum(7);
     };
 
     
@@ -134,72 +265,67 @@ const UpdateCheckin = () => {
     }
 
   return (
-    <React.Fragment>
-      <ErrorModal error={error} onClear={clearError} />
-    {!isLoading && loadedCheckin && <form className={mode.darkMode ? "dark-checkin-form" : "light-checkin-form"} onSubmit={checkinUpdateSubmitHandler}>
-    <h2 className={mode.darkMode ? "dark-checkin-title" : "light-checkin-title"}>What would you like to change?</h2>
-    <br />
-    <br />
-    <div className="input-group__4">
-    <Input 
-      id="date"
-      element= "input"
-      type="date"
-      labelText="Date"
-      validators={[VALIDATOR_REQUIRE()]}
-      errorText="Please enter a valid date."
-      onInput={inputHandler}
-      initialValue={loadedCheckin.date}
-      initialValid={true}
-      importedStyle="group-4"
-    />
-    <Input 
-      id="weight"
-      element= "input"
-      type="text"
-      labelText="Weight"
-      validators={[VALIDATOR_REQUIRE()]}
-      errorText="Please enter a valid weight."
-      onInput={inputHandler}
-      initialValue={loadedCheckin.weight}
-      initialValid={true}
-      importedStyle="group-4"
-    />
-    <Input 
-      id="weeksOut"
-      element= "input"
-      type="text"
-      labelText="Weeks Out"
-      validators={[VALIDATOR_REQUIRE()]}
-      errorText="Please enter week of diet."
-      onInput={inputHandler}
-      initialValue={loadedCheckin.weeksOut}
-      initialValid={true}
-      importedStyle="group-4"
-    />
-    <Input 
-      id="bodyfat"
-      element= "input"
-      type="text"
-      labelText="BodyFat %"
-      validators={[VALIDATOR_REQUIRE()]}
-      errorText="Please enter a valid bf%."
-      onInput={inputHandler}
-      initialValue={loadedCheckin.bodyFat}
-      initialValid={true}
-      importedStyle="group-4"
-    />
-    </div>
-    <div className="button-box">
-    <Button 
-      type="submit" 
-      disabled={!formState.isValid}
-      buttonStyle="update-button"
-      >UPDATE CHECKIN</Button>
-    </div>
+    <div
+    className={
+      mode.darkMode
+        ? 'new-checkin-container dark-new-checkin-container'
+        : 'new-checkin-container'
+    }
+  >
+    <MainNavigation />
+    <ErrorModal error={error} onClear={clearError} />
+    <Modal
+      show={showConfirmModal}
+      onCancel={cancelInstructionsHandler}
+      header="Pinch and measure area shown in the picture"
+      footerClass="place-item__modal-actions"
+      footer={
+        <React.Fragment>
+          <Button inverse onClick={confirmInstructionsHandler}>
+            Got It!
+          </Button>
+        </React.Fragment>
+      }
+    >
+      <div className="instructions-image__box">
+        <img
+          src="http://www.dhresource.com/albu_770902509_00-1.0x0/body-fat-measurement-testing-calipers-skinfold.jpg"
+          alt="pinch here"
+        ></img>
+      </div>
+    </Modal>
 
-  </form>}
-  </React.Fragment> 
+  {!isLoading && loadedCheckin &&  <div>
+    {pageNum === 1 && (
+      <CheckInBasics
+        next={secondNext}
+        gender={gender}
+        setGender={setGender}
+        loadedCheckin={loadedCheckin}
+      />
+    )}
+
+    {pageNum === 2 && (
+      <CheckInBf
+        next={thirdNext}
+        showInstructionsHandler={showInstructionsHandler}
+        bodyFatHandler={bodyFatHandler}
+        loadedCheckin={loadedCheckin}
+      />
+    )}
+
+    {pageNum === 3 && <CheckInNotes next={fifthNext} loadedCheckin={loadedCheckin}/>}
+
+    {pageNum === 5 && <CheckInMeasurements next={sixthNext} loadedCheckin={loadedCheckin}/>}
+
+    {pageNum === 6 && <CheckInCardio next={seventhNext} loadedCheckin={loadedCheckin}/>}
+
+    {pageNum === 7 && (
+      <CheckInFinal checkinSubmitHandler={checkinUpdateSubmitHandler} />
+    )}
+
+  </div>}
+  </div>
   
     )
   

@@ -19,6 +19,7 @@
   width: 90%;
   max-width: 40rem;
   border-radius: 1.5rem;
+  animation: fadeIn 2s;
 }
 
 .light-checkin-title {
@@ -133,6 +134,7 @@
   color: #000000;
   font-family: 'Josefin Sans', sans-serif;
   text-align: center;
+  font-weight: lighter;
 }
 
 .caliper-directions-box {
@@ -175,7 +177,7 @@
 .light-selectors {
   padding: 10px;
   position: relative;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   background: transparent;
   font-family: 'Josefin Sans', sans-serif;
   width: 80%;
@@ -208,7 +210,7 @@
   justify-self: center;
   padding: 10px;
   position: relative;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   background: transparent;
   font-family: 'Josefin Sans', sans-serif;
   width: 95%;
@@ -220,7 +222,9 @@
 .light-input__Check p {
   align-self: center;
   margin-left: 1rem;
-  color: #999999;
+  color: #000000;
+  text-align: center;
+  font-weight: light;
 }
 
 .drop-down {
@@ -319,7 +323,7 @@
 
 .dark-title-checkin {
   font-size: 1.4rem;
-  color: #c2c2c2;
+  color: #ffffff;
   font-family: 'Josefin Sans', sans-serif;
   text-align: center;
   font-weight: lighter;
@@ -333,6 +337,7 @@
   width: 90%;
   max-width: 40rem;
   margin-bottom: 1rem;
+  animation: fadeIn 2s;
 }
 
 .dark-checkin-form hr {
@@ -350,7 +355,7 @@
 .dark-selectors {
   padding: 10px;
   position: relative;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   background: transparent;
   font-family: 'Josefin Sans', sans-serif;
   width: 80%;
@@ -390,11 +395,12 @@
   justify-self: center;
   padding: 10px;
   position: relative;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   background: transparent;
   font-family: 'Josefin Sans', sans-serif;
   width: 95%;
   height: 3rem;
+  /* background: var(--header-black); */
   box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.103),
     3px 3px 4px rgba(0, 0, 0, 0.822);
 }
@@ -402,7 +408,9 @@
 .dark-input__Check p {
   align-self: center;
   margin-left: 1rem;
-  color: #999999;
+  color: #ffffff;
+  text-align: center;
+  font-weight: lighter;
 }
 
 .light-input-toggle {
@@ -562,4 +570,52 @@
 
 .dark-input-toggle-container > p {
   z-index: 4;
+}
+
+.dark-final-instructions {
+  text-align: center;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: lighter;
+}
+
+.light-final-instructions {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: lighter;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.photo-list-prev-box {
+  width: 3rem;
+  height: 4rem;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.photo-list-prev-box img {
+  width: 100%;
+  height: auto;
+}
+
+.photo-list-prev-wrapper {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 4rem;
+  justify-content: center;
+  align-items: center;
 }

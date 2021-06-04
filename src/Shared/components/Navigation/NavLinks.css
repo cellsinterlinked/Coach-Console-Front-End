@@ -119,6 +119,28 @@
   animation: slide4 0.5s linear;
 }
 
+@media (min-width: 767px) {
+  .dark-nav-links li:nth-child(1),
+  .light-nav-links li:nth-child(1) {
+    animation: none;
+  }
+
+  .dark-nav-links li:nth-child(2),
+  .light-nav-links li:nth-child(2) {
+    animation: none;
+  }
+
+  .dark-nav-links li:nth-child(3),
+  .light-nav-links li:nth-child(3) {
+    animation: none;
+  }
+
+  .dark-nav-links li:nth-child(4),
+  .light-nav-links li:nth-child(4) {
+    animation: none;
+  }
+}
+
 .light-nav-links li {
   display: flex;
   justify-content: center;
@@ -223,6 +245,7 @@
   padding: 0.5rem 0.4rem 0.4rem 0.4rem;
   font-family: 'Josefin Sans', sans-serif;
   width: 95%;
+  text-align: center;
 }
 
 .light-nav-links a:hover,

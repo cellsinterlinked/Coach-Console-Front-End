@@ -53,7 +53,7 @@ const NavLinks = props => {
 
      
     )}
-  <li style={{marginTop: "1rem"}}>
+  <li >
       <ModeToggle  onClick={mode.darkMode ? mode.toggleLight : mode.toggleDark}/>
   </li>
   

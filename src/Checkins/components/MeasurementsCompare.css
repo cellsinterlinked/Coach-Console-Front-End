@@ -10,7 +10,7 @@
 .light-measurement-compare-container p {
   display: flex;
   font-size: 0.9rem;
-  color: #2dbdb1;
+  color: var(--first-gradient);
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -26,6 +26,6 @@
 .dark-measurement-compare-container p {
   display: flex;
   font-size: 0.9rem;
-  color: #2dbdb1;
+  color: var(--first-gradient);
   font-family: 'Josefin Sans', sans-serif;
 }

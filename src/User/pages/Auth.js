@@ -136,6 +136,7 @@ const Auth = (props) => {
         onInput={inputHandler}
         importedStyle="box"
         />
+        <br />
         <Button 
           type="submit" 
           disabled={!formState.isValid}>

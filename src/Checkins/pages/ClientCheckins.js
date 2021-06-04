@@ -21,6 +21,7 @@ const ClientCheckins = props => {
       try {
         const responseData = await sendRequest(`http://localhost:5000/api/checkins/athlete/${clientId}`);
         setLoadedCheckins(responseData.checkins)
+        console.log(responseData.checkins)
         
 
       } catch (err) {}

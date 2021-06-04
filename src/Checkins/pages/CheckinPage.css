@@ -7,6 +7,7 @@
   min-height: 100vh;
   width: 100%;
   background-color: var(--dark-background);
+  padding-bottom: 6rem;
 }
 
 .light-checkin-page-container {
@@ -18,6 +19,7 @@
   min-height: 100vh;
   width: 100%;
   background-color: var(--light-background);
+  padding-bottom: 6rem;
 }
 
 .wheel-container {
@@ -295,6 +297,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 2rem;
 }
 
 @keyframes fadeIn {
@@ -366,10 +369,6 @@
   text-align: center;
 }
 
-.bf-column1 {
-  padding-top: 1.7rem;
-}
-
 .info-highlight {
   color: var(--first-gradient);
 }
@@ -413,4 +412,34 @@
 
 .kitten-wrapper {
   width: 30%;
+}
+
+.light-no-data-title {
+  font-size: 1.3rem;
+  font-weight: lighter;
+  text-align: center;
+}
+
+.dark-no-data-title {
+  font-size: 1.3rem;
+  font-weight: lighter;
+  text-align: center;
+  color: var(--first-gradient);
+}
+.dark-checkin-page__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 30rem;
+  min-width: 22rem;
+  margin-top: 1rem;
+}
+
+.light-checkin-page__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 30rem;
+  min-width: 22rem;
+  margin-top: 1rem;
 }

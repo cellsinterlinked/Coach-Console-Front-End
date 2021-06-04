@@ -1,14 +1,16 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React from 'react';
 import './ImageUpload.css';
 import Button from './Button';
 import { DarkModeContext} from '../../context/dark-mode-context';
 
-const ImageUpload = props => {
+const MultiImageUpload = () => {
   const mode = useContext(DarkModeContext);
 
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState();
+
+  const [fileArray, setFileArray]= useState([])
 
   const filePickerRef = useRef();
 
@@ -19,12 +21,9 @@ const ImageUpload = props => {
     const fileReader = new FileReader();  
     fileReader.onload = () => {
       setPreviewUrl(fileReader.result);
-      if(props.setParentPreview) {
-        props.setParentPreview(fileReader.result)
-      }
     }
     fileReader.readAsDataURL(file)
-  }, [file, props])
+  }, [file])
 
 
   const pickedHandler = event => {
@@ -35,7 +34,6 @@ const ImageUpload = props => {
       setFile(pickedFile);
       setIsValid(true);
       fileIsValid = true;
-      
     } else {
       setIsValid(false);
       fileIsValid = false;
@@ -72,6 +70,6 @@ const ImageUpload = props => {
     </div>
   )
 }
+}
 
-export default ImageUpload;
-
+export default MultiImageUpload;

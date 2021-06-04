@@ -150,7 +150,9 @@
 .client-background-image {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-start;
+
   position: absolute;
   top: 0;
   width: 100%;

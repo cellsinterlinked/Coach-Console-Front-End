@@ -110,7 +110,7 @@ const CheckinTotals = props => {
               Delete Client
             </Button>
 
-          <div className="new-checkin-box">
+          {/* <div className="new-checkin-box"> */}
             <Button
               to={`/${props.clientId}/newcheckin`}
               buttonStyle="new-checkin__button"
@@ -118,11 +118,11 @@ const CheckinTotals = props => {
               >
               New Checkin
             </Button>
-          </div>
+          {/* </div> */}
 
-          <br />
+          {/* <br />
 
-          <div className="new-checkin-box">
+          <div className="new-checkin-box"> */}
             <Button
               to={`/${props.clientId}/editclient`}
               buttonStyle="new-checkin__button"
@@ -130,7 +130,7 @@ const CheckinTotals = props => {
               >
               Update Client
             </Button>
-          </div>
+          {/* </div> */}
               </div>
           
         </footer>

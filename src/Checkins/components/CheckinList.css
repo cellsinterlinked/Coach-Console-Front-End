@@ -33,6 +33,7 @@
   margin-bottom: -11rem;
   background: rgb(32, 32, 32);
   transition: 0.2s;
+  border-radius: 1rem;
 }
 
 .light-checkin-card {
@@ -47,6 +48,7 @@
   margin-bottom: -11rem;
   background: rgb(233, 233, 233);
   transition: 0.2s;
+  border-radius: 1rem;
 }
 
 .light-checkin-card:link .dark-checkin-card:link {
@@ -102,6 +104,51 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 12rem;
+}
+
+@media (min-width: 600px) {
+  .big-checkin-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding-bottom: 12rem; */
+    height: auto;
+    padding-right: 6rem;
+  }
+
+  .dark-checkin-card {
+    margin-bottom: 1rem;
+    margin-right: -6rem;
+    box-shadow: -4px -4px 8px 2px rgba(0, 0, 0, 0.651),
+      4px 4px 8px 2px rgba(0, 0, 0, 0.623);
+  }
+
+  .light-checkin-card {
+    margin-bottom: 1rem;
+    margin-right: -6rem;
+    box-shadow: -4px -4px 8px 2px rgba(0, 0, 0, 0.486),
+      4px 4px 8px 2px rgba(0, 0, 0, 0.411);
+  }
+  .light-checkin-card:hover,
+  .dark-checkin-card:hover {
+    transform: translateY(-1rem);
+  }
+
+  .light-checkin-card:hover .checkin-card-img-wrapper,
+  .dark-checkin-card:hover .checkin-card-img-wrapper {
+    transform: translateY(-8rem);
+
+    -webkit-animation-name: fade;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 6s;
+    animation-name: fade;
+    animation-iteration-count: infinite;
+    animation-duration: 6s;
+  }
+
+  .light-checkin-card:hover ~ .light-checkin-card,
+  .dark-checkin-card:hover ~ .dark-checkin-card {
+    transform: translateX(7rem);
+  }
 }
 
 .checkin-card-img-wrapper {
@@ -242,6 +289,8 @@
   height: 10rem;
   overflow: hidden;
   transition: 0.5s;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
 .checkin-card-backdrop img {

@@ -1,6 +1,6 @@
 .client-page {
   position: relative;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
   background-color: var(--light-background);
   padding-bottom: 3rem;

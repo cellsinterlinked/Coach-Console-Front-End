@@ -2,7 +2,7 @@
   font: inherit;
   padding: 0.9rem 1.8rem;
   background: #eeeeee;
-  color: #009edd;
+  color: var(--first-gradient);
   cursor: pointer;
   margin-right: 0rem;
   text-decoration: none;
@@ -25,15 +25,15 @@
 }
 
 .light-button--inverse {
-  color: #ffffff;
+  color: #777777;
   border: none;
-  background: var(--purple-gradient);
+  background: transparent;
 }
 
 .light-button--inverse:hover,
 .light-button--inverse:active {
   color: #333333;
-  background: var(--purple-gradient);
+  background: transparent;
   border: none;
   border-color: transparent;
 }
@@ -69,8 +69,8 @@
 .dark-button {
   font: inherit;
   padding: 0.9rem 1.8rem;
-  background: #242424;
-  color: white;
+  background: var(--header-black);
+  color: var(--first-gradient);
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
@@ -78,7 +78,8 @@
   font-family: 'Josefin Sans', sans-serif;
   border: none;
   font-size: 0.8rem;
-  background: var(--purple-gradient);
+  /* background: transparent; */
+  border-radius: 3px;
 }
 
 .dark-button:focus {
@@ -88,18 +89,19 @@
 .dark-button:hover,
 .dark-button:active {
   box-shadow: none;
+  border: 1px solid rgb(73, 73, 73);
 }
 
 .dark-button--inverse {
-  background: var(--purple-gradient);
+  background: #333333;
+  background: var(--header-black);
 
   color: #b8b6b6;
 }
 
 .dark-button--inverse:hover,
 .dark-button--inverse:active {
-  color: var(--tech-blue);
-  background: #333333;
+  color: var(--first-gradient);
 }
 
 .dark-button--danger {

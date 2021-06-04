@@ -1,7 +1,7 @@
 .light-compare-container {
   display: grid;
   width: 100%;
-  grid-template-columns: 31% 18% 18% 18% 18%;
+  grid-template-columns: 28% 18% 18% 18% 18%;
   grid-template-rows: auto;
   justify-items: center;
   height: 1.2rem;
@@ -10,14 +10,14 @@
 .light-compare-container p {
   display: flex;
   font-size: 0.9rem;
-  color: var(--tech-blue);
+  color: var(--first-gradient);
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .dark-compare-container {
   display: grid;
   width: 100%;
-  grid-template-columns: 31% 18% 18% 18% 18%;
+  grid-template-columns: 28% 18% 18% 18% 18%;
   grid-template-rows: auto;
   justify-items: center;
   height: 1.2rem;
@@ -26,6 +26,6 @@
 .dark-compare-container p {
   display: flex;
   font-size: 0.9rem;
-  color: var(--last-gradient);
+  color: var(--first-gradient);
   font-family: 'Josefin Sans', sans-serif;
 }

@@ -10,10 +10,17 @@
 }
 
 .light-clients-title {
+  position: absolute;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
   display: flex;
   justify-content: center;
-  color: rgb(0, 0, 0);
+  color: white;
+  text-shadow: 2px 2px 2px black, -2px -2px 2px black;
   font-family: 'Josefin Sans', sans-serif;
+  font-weight: lighter;
 }
 
 .new-client__button {
@@ -55,22 +62,41 @@
 }
 
 .dark-clients-title {
+  position: absolute;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
   display: flex;
   justify-content: center;
   color: rgb(255, 255, 255);
+  text-shadow: 3px 3px 3px black, -3px -3px 3px black;
   font-family: 'Josefin Sans', sans-serif;
+  font-weight: lighter;
 }
 
 .your-clients-number-light {
-  text-align: center;
-  font-family: 'Josefin Sans', sans-serif;
-  color: black;
-}
-
-.your-clients-number-dark {
+  position: absolute;
+  left: auto;
+  right: auto;
+  bottom: 10%;
   text-align: center;
   font-family: 'Josefin Sans', sans-serif;
   color: white;
+  text-shadow: 1px 1px 2px black, -1px -1px 2px black;
+  font-weight: lighter;
+}
+
+.your-clients-number-dark {
+  position: absolute;
+  left: auto;
+  right: auto;
+  bottom: 10%;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  color: white;
+  text-shadow: 1px 1px 2px black, -1px -1px 2px black;
+  font-weight: lighter;
 }
 
 .light-page-split {
@@ -93,8 +119,47 @@
 
 .client-list-header__holder {
   width: 100%;
-  height: 6rem;
+  height: 8rem;
   position: relative;
+}
+
+@media (min-width: 600px) {
+  .client-list-header__holder {
+    height: 14rem;
+  }
+
+  .light-clients-title {
+    font-size: 2.5rem;
+  }
+
+  .dark-clients-title {
+    font-size: 2.5rem;
+  }
+
+  .your-clients-number-dark {
+    font-size: 1.5rem;
+  }
+
+  .your-clients-number-light {
+    font-size: 1.5rem;
+  }
+}
+
+.header-background-wrapper {
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  width: 90%;
+  justify-content: center;
+  overflow: hidden;
+  height: 100%;
+  margin: auto;
+}
+
+.header-background-wrapper img {
+  width: 100%;
+  height: auto;
+  /* opacity: 0.3; */
 }
 
 .weight-lifter {
