@@ -94,7 +94,7 @@ const ClientItem = (props) => {
               style={{ background: 'linear-gradient(#5f0a87,#a4508b)' }}
               className="banner-circle-display"
             >
-              {lastCheckin && <p>{lastCheckin.bodyFat.toFixed(2)}</p>}
+              {/* {lastCheckin && <p>{lastCheckin.bodyFat.toFixed(2)}</p>} */}
             </div>
             <p>BodyFat</p>
           </div>

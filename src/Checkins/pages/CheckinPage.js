@@ -12,6 +12,8 @@ import { GiMuscularTorso } from 'react-icons/gi';
 import { IoIosBody } from 'react-icons/io';
 import { GiRun } from 'react-icons/gi';
 import Button from '../../Shared/components/FormElements/Button';
+import Modal from '../../Shared/components/UIElements/Modal.js'
+import { useHistory } from 'react-router-dom'
 
 const CheckinPage = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -24,10 +26,12 @@ const CheckinPage = () => {
   const mode = useContext(DarkModeContext);
   const checkinId = useParams().checkinId;
   const clientId = useParams().clientId;
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const [currentSpoke, setCurrentSpoke] = useState(1);
   const [prevBigPic, setPrevBigPic] = useState(0);
   const [newBigPic, setNewBigPic] = useState(0);
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -54,8 +58,28 @@ const CheckinPage = () => {
     setCurrentSpoke(num);
   };
 
+  const showDeleteWarningHandler = () => {
+    setShowConfirmModal(true);
+  };
+
+  const cancelDeleteHandler = () => {
+    setShowConfirmModal(false);
+  };
+
+  const confirmDeleteHandler = async () => {
+    setShowConfirmModal(false);
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/checkins/${checkinId}`,
+        "DELETE"
+      );
+      history.push(`/${clientId}/checkins`);
+    } catch (err) {}
+  };
+
   return (
     <div
+    
       className={
         mode.darkMode
           ? 'dark-checkin-page-container'
@@ -63,6 +87,28 @@ const CheckinPage = () => {
       }
     >
       <MainNavigation />
+      <Modal
+        show={showConfirmModal}
+        onCancel={cancelDeleteHandler}
+        header="Are you sure?"
+        footerClass="place-item__modal-actions"
+        footer={
+          <React.Fragment>
+            <Button inverse onClick={cancelDeleteHandler}>
+              Cancel
+            </Button>
+            <Button danger onClick={confirmDeleteHandler}>
+              Delete
+            </Button>
+          </React.Fragment>
+        }
+      >
+        <p
+          className={mode.darkMode ? "dark-warning-text" : "light-warning-text"}
+        >
+          Do you want to delete this check-in?
+        </p>
+      </Modal>
 
       <div
         className={
@@ -361,6 +407,8 @@ const CheckinPage = () => {
 
       </div>
 
+      
+
 
       {exactCheckin && (
         <div className="checkin-stats-wrapper">
@@ -389,6 +437,16 @@ const CheckinPage = () => {
                     Total Weeks
                   </p>
                 </div>
+
+
+
+
+
+
+
+
+
+
                 <div className="wheel-info-column">
                   <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                     Current
@@ -397,15 +455,24 @@ const CheckinPage = () => {
                     {exactCheckin[0].date.slice(0, 10)}
                   </p>
                   <p className="info-highlight">{exactCheckin[0].weight}</p>
-                  <p className="info-highlight">
+
+
+                  {exactCheckin[0].leanBodyMass && <p className="info-highlight">
                     {exactCheckin[0].leanBodyMass.toFixed(1)}
-                  </p>
-                  <p className="info-highlight">
+                  </p>}
+          
+                  {exactCheckin[0].fatMass && <p className="info-highlight">
                     {exactCheckin[0].fatMass.toFixed(1)}
-                  </p>
+                  </p>}
                   <p className="info-highlight">{exactCheckin[0].weeksOut}</p>
                 </div>
-                {previousCheckin && (
+
+
+
+
+                '
+
+                {previousCheckin && previousCheckin.leanBodyMass && (
                   <div className="wheel-info-column">
                     <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                       Prev
@@ -423,7 +490,14 @@ const CheckinPage = () => {
                     <p className="info-highlight">{previousCheckin.weeksOut}</p>
                   </div>
                 )}
-                {previousCheckin && (
+
+
+
+
+
+
+
+                {previousCheckin.leanBodyMass && (
                   <div className="wheel-info-column">
                     <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                       Progress
@@ -451,6 +525,9 @@ const CheckinPage = () => {
                     </p>
                   </div>
                 )}
+
+
+
               </div>
             </div>
           )}
@@ -961,7 +1038,7 @@ const CheckinPage = () => {
                 : "light-checkin-page__actions"
             }
           >
-            <Button danger  size="small">
+            <Button danger  size="small" onClick={showDeleteWarningHandler}>
               Delete Check-In
             </Button>
             <Button

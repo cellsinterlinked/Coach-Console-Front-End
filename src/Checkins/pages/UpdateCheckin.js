@@ -37,6 +37,7 @@ const UpdateCheckin = () => {
   const history = useHistory();
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+
   const [gender, setGender] = useState();
   const [formTotal, setFormTotal] = useState({});
   const [pageNum, setPageNum] = useState(1);
@@ -248,6 +249,7 @@ const UpdateCheckin = () => {
 
     
     
+    
     if (isLoading) {
       return <div className="center">
       <Card>
@@ -294,6 +296,8 @@ const UpdateCheckin = () => {
         ></img>
       </div>
     </Modal>
+
+    
 
   {!isLoading && loadedCheckin &&  <div>
     {pageNum === 1 && (
