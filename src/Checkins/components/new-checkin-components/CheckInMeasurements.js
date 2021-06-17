@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from "react";
+import React, { useContext, useEffect} from "react";
 import Input from '../../../Shared/components/FormElements/Input'
 import Button from '../../../Shared/components/FormElements/Button'
 import {VALIDATOR_REQUIRE} from '../../../Shared/util/validators'
@@ -7,9 +7,9 @@ import '../../pages/CheckinForm.css'
 import { DarkModeContext } from '../../../Shared/context/dark-mode-context'
 import { FaInfoCircle } from "react-icons/fa";
 
-const CheckInMeasurements = ({next}) => {
+const CheckInMeasurements = ({next, loadedCheckin}) => {
   const mode = useContext(DarkModeContext);
-  const [formState, inputHandler] = useForm(
+  const [formState, inputHandler, setFormData] = useForm(
     {
       neck_inch: {
         value: 0,
@@ -39,10 +39,48 @@ const CheckInMeasurements = ({next}) => {
         value: 0,
         isValid: false
       },
-
-
-
     })
+
+    useEffect(() => {
+      if(loadedCheckin) {
+        setFormData(
+
+          {
+            neck_inch: {
+              value: loadedCheckin.neckMeasure,
+              isValid: true
+            },
+            arm_inch: {
+              value: loadedCheckin.armMeasure,
+              isValid: true
+            },
+            chest_inch: {
+              value: loadedCheckin.chestMeasure,
+              isValid: true
+            },
+            waist_inch: {
+              value: loadedCheckin.waistMeasure,
+              isValid: true
+            },
+            hips_inch: {
+              value: loadedCheckin.hipsMeasure,
+              isValid: true
+            },
+            thigh_inch: {
+              value: loadedCheckin.thighMeasure,
+              isValid: true
+            },
+            calf_inch: {
+              value: loadedCheckin.calfMeasure,
+              isValid: true
+            },
+          }
+        )
+      }
+    }, [loadedCheckin, setFormData])
+
+
+
 
     const submitHandler = (e) => {
       e.preventDefault()
@@ -75,6 +113,7 @@ const CheckInMeasurements = ({next}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in inches"
+                initialValue={loadedCheckin ? loadedCheckin.neckMeasure : ''}
               />
             </div>
             <p className="measure">"</p>
@@ -99,6 +138,7 @@ const CheckInMeasurements = ({next}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in inches"
+                initialValue={loadedCheckin ? loadedCheckin.armMeasure : ''}
               />
             </div>
             <p className="measure">"</p>
@@ -124,6 +164,7 @@ const CheckInMeasurements = ({next}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in inches"
+                initialValue={loadedCheckin ? loadedCheckin.chestMeasure : ''}
               />
             </div>
             <p className="measure">"</p>
@@ -149,6 +190,7 @@ const CheckInMeasurements = ({next}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in inches"
+                initialValue={loadedCheckin ? loadedCheckin.waistMeasure : ''}
               />
             </div>
             <p className="measure">"</p>
@@ -174,6 +216,7 @@ const CheckInMeasurements = ({next}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in inches"
+                initialValue={loadedCheckin ? loadedCheckin.hipsMeasure : ''}
               />
             </div>
             <p className="measure">"</p>
@@ -197,6 +240,7 @@ const CheckInMeasurements = ({next}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in inches"
+                initialValue={loadedCheckin ? loadedCheckin.thighMeasure : ''}
               />
             </div>
             <p className="measure">"</p>
@@ -220,6 +264,7 @@ const CheckInMeasurements = ({next}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in inches"
+                initialValue={loadedCheckin ? loadedCheckin.calfMeasure : ''}
               />
             </div>
             <p className="measure">"</p>

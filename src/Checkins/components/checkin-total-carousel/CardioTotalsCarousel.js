@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { DarkModeContext } from "../../../Shared/context/dark-mode-context";
 import "../CheckinTotals.css";
-import StatsCompare from "../StatsCompare";
+import CardioList from '../CardioList';
 
 
 const BasicTotalsCarousel = props => {
@@ -33,19 +33,19 @@ const BasicTotalsCarousel = props => {
         className={mode.darkMode ? "dark-stats-labels" : "light-stats-labels"}
       >
         <p className="stats-date__Label">Date</p>
-        <p className="stats-bodyfat__Label">Body Fat</p>
-        <p className="stats-weight__Label">Weight</p>
-        <p className="stats-week__Label">Week</p>
-        <p className="stats-leanbm__Label">Lean BM</p>
+        <p className="stats-bodyfat__Label">Calories</p>
+        <p className="stats-weight__Label">Duration</p>
+        <p className="stats-week__Label">Type</p>
+        <p className="stats-leanbm__Label">Sessions</p>
       </div>
       {props.items.map(checkin => (
-        <StatsCompare
+        <CardioList
           key={checkin.id}
           date={checkin.date.toString().slice(0, 10)}
-          weight={checkin.weight}
-          bodyFat={checkin.bodyFat}
-          leanBodyMass={checkin.leanBodyMass}
-          weeksOut={checkin.weeksOut}
+          caloriesBurnt={checkin.cardioCalories}
+          duration={checkin.cardioDuration}
+          type={checkin.cardioType}
+          sessions={checkin.cardioSessions}
         />
       ))}
       <div className={mode.darkMode ? "dark-for-shadow" : "light-for-shadow"}>
@@ -54,18 +54,18 @@ const BasicTotalsCarousel = props => {
         >
           <p>TOTALS</p>
           <p>
-          {Math.round(totalsHandler('bodyFat')) || "-"}
+          {Math.round(totalsHandler('cardioCalories')) || "-"}
             
           </p>
           <p>
-            {props.items[0].weight - props.items[props.items.length - 1].weight}
+            {Math.round(totalsHandler('cardioDuration')) || "-"}
             lbs
           </p>
-          <p>{props.items[props.items.length - 1].weeksOut}</p>
+          <p>--</p>
           <p>
             {Math.round(
-              totalsHandler('leanBodyMass')
-            ) || "-"}
+              totalsHandler('cardioSessions')
+            )}
           </p>
         </div>
       </div>

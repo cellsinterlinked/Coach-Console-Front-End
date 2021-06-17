@@ -12,6 +12,7 @@
   font-size: 0.9rem;
   color: var(--first-gradient);
   font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
 }
 
 .dark-compare-container {
@@ -28,4 +29,5 @@
   font-size: 0.9rem;
   color: var(--first-gradient);
   font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
 }

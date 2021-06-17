@@ -1,0 +1,394 @@
+.icon-animation-wrapper-spin {
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-animation-name: iconRotate;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: iconRotate;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  min-width: 10rem;
+  /* this^ */
+}
+
+.icon-animation-wrapper-static {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+}
+
+.spin-first-c {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-weight: light;
+  display: flex;
+  align-items: center;
+  /* margin-left: 0.5rem; */
+  /* margin-right: -5px; */
+}
+
+.spin-first-c h3 {
+  font-size: 5rem;
+  font-family: Skyer;
+  margin: 0;
+  font-weight: normal;
+  margin-bottom: 5px;
+  transition: 0.5s;
+  color: rgb(0, 0, 0);
+  width: 14px;
+  overflow: hidden;
+  -webkit-animation-name: pulse;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: pulse;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.static-first-c h3 {
+  font-size: 5rem;
+  font-family: Skyer;
+  margin: 0;
+  font-weight: normal;
+  transition: 0.8s;
+  width: 2.8rem;
+  overflow: visible;
+}
+
+.static-first-c {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-weight: normal;
+  display: flex;
+  align-items: flex-end;
+  margin-left: 0.5rem;
+}
+
+.spin-second-c {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.static-second-c {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-weight: normal;
+  display: flex;
+  align-items: flex-end;
+  margin-right: 0.5rem;
+}
+
+.spin-second-c h3 {
+  font-size: 5rem;
+  font-family: Skyer;
+  margin: 0;
+  font-weight: normal;
+  transform: rotateY(180deg);
+  margin-left: 2px;
+  margin-bottom: 5px;
+  transition: 1.2s;
+  color: rgb(0, 0, 0);
+  width: 14px;
+  overflow: hidden;
+  -webkit-animation-name: pulse;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: pulse;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.static-second-c h3 {
+  font-size: 5rem;
+  font-family: Skyer;
+  margin: 0;
+  font-weight: normal;
+  transition: 1.2s;
+  width: 2.8rem;
+  overflow: visible;
+}
+
+.word-holder-spin {
+  display: flex;
+  align-items: flex-end;
+  transition: width 0.5s;
+  width: 0px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: -1rem;
+}
+
+.second-word-holder-spin {
+  display: flex;
+  align-items: flex-end;
+  transition: width 0.5s;
+  width: 0px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: -1rem;
+}
+
+.word-holder-static {
+  display: flex;
+  align-items: flex-end;
+  width: 4rem;
+  transition: width 1.2s;
+  /* transition-delay: 0.5s; */
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  margin-left: -1rem;
+  letter-spacing: 1px;
+  font-family: Skyer;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 3px 2px black;
+}
+
+.second-word-holder-static {
+  display: flex;
+  align-items: flex-end;
+  width: 6rem;
+  font-size: 1.5rem;
+  margin-left: -1rem;
+  transition: width 1.2s;
+  transition-delay: 0.7s;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  font-family: Skyer;
+}
+
+@keyframes iconRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes iconRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-divider {
+  height: 100%;
+  width: 0rem;
+  -webkit-animation-name: dividerSwell;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: dividerSwell;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes dividerSwell {
+  0% {
+    width: 3.5rem;
+  }
+
+  50% {
+    width: 9rem;
+  }
+
+  100% {
+    width: 3.5rem;
+  }
+}
+
+@-webkit-keyframes dividerSwell {
+  0% {
+    width: 0rem;
+  }
+
+  50% {
+    width: 3rem;
+  }
+
+  100% {
+    width: 0rem;
+  }
+}
+
+.spin-iconWrapper {
+  position: absolute;
+  background: url('../../Resources/CoachConsole2.svg');
+  left: 0.2rem;
+  right: 0;
+  top: 0;
+  bottom: 0rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+  width: 7rem;
+  height: 3.5rem;
+  -webkit-animation-name: pulse;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: pulse;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.dark-spin-iconWrapper {
+  position: absolute;
+  background: url('../../Resources/CoachDarkMode.svg');
+  left: 0.2rem;
+  right: 0;
+  top: 0;
+  bottom: 0rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+  width: 7rem;
+  height: 3.5rem;
+  -webkit-animation-name: pulse;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: pulse;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.static-iconWrapper {
+  position: absolute;
+  left: 0rem;
+  /* right: 0; */
+  top: 0;
+  bottom: 0rem;
+  margin-left: 0;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+  width: 7rem;
+  height: 3.5rem;
+  transition: 2s;
+  opacity: 1;
+}
+
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: auto;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse2 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.spinning-side-icon {
+  background: url('../../Resources/CoachConsole2.svg');
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  transition: 0s;
+  height: 3.5rem;
+  margin-top: 1rem;
+  opacity: 0;
+}
+
+.dark-spinning-side-icon {
+  background: url('../../Resources/CoachDarkMode.svg');
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  transition: 0s;
+  height: 3.5rem;
+  margin-top: 1rem;
+  opacity: 0;
+}
+
+.static-side-icon {
+  background: url('../../Resources/CoachConsole2.svg');
+  width: 7rem;
+  height: 3.5rem;
+  transition: 1s;
+  transition-delay: 1s;
+  margin-right: -1rem;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: appear 3s forwards;
+  animation-delay: 1.5s;
+}
+
+.dark-static-side-icon {
+  background: url('../../Resources/CoachDarkMode.svg');
+  width: 7rem;
+  height: 3.5rem;
+  transition: 1s;
+  transition-delay: 1s;
+  margin-right: -1rem;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: appear 3s forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

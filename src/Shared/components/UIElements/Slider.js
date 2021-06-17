@@ -12,11 +12,14 @@ import MeasurementChart from "../../../Checkins/components/MeasurementsChart";
 import BasicTotalsCarousel from '../../../Checkins/components/checkin-total-carousel/BasicTotalsCarousel';
 import CaliperTotalsCarousel from '../../../Checkins/components/checkin-total-carousel/CaliperTotalsCarousel';
 import MeasurementTotalsCarousel from '../../../Checkins/components/checkin-total-carousel/MeasurementTotalsCarousel';
+import CardioTotalsCarousel from '../../../Checkins/components/checkin-total-carousel/CardioTotalsCarousel';
 
 
 
 
 const Slider = props => {
+
+  
   const mode = useContext(DarkModeContext);
   let slideArr = [
     <WeightChart items={props.items} />,
@@ -28,7 +31,8 @@ const Slider = props => {
   <BasicTotalsCarousel  items={props.items}/>, 
   <CaliperTotalsCarousel items={props.items}/>,
   <MeasurementTotalsCarousel items={props.items}/>,
-   3, 4];
+  <CardioTotalsCarousel items={props.items} />
+   ];
 
   const [x, setX] = useState(0);
 

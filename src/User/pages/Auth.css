@@ -29,11 +29,13 @@
 .login-head-dark {
   color: white;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: normal;
+  font-weight: lighter;
+  transition: 0.5s;
 }
 
 .login-head-light {
   color: black;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: normal;
+  font-weight: lighter;
+  transition: 0.5s;
 }

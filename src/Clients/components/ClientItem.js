@@ -4,24 +4,34 @@ import { Link } from 'react-router-dom';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 import './ClientItem.css';
 import { useHttpClient } from '../../Shared/hooks/http-hook';
-
+import { AuthContext } from '../../Shared/context/auth-context';
+import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
+import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
+import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 const ClientItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedCheckins, setLoadedCheckins] = useState([]);
   const [lastCheckin, setLastCheckin] = useState();
   const mode = useContext(DarkModeContext);
+  const auth = useContext(AuthContext);
 
   useEffect(() => {
     const fetchCheckins = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/checkins/athlete/${props.id}`
+          `http://localhost:5000/api/checkins/athlete/${props.id}`,
+          'GET',
+          null,
+          {
+            Authorization: auth.token
+          }
+
         );
         setLoadedCheckins(responseData.checkins);
       } catch (err) {}
     };
     fetchCheckins();
-  }, [props.Id, props.id, sendRequest, setLoadedCheckins]);
+  }, [auth.token, props.Id, props.id, sendRequest, setLoadedCheckins]);
 
   useEffect(() => {
     if (loadedCheckins) {
@@ -30,7 +40,20 @@ const ClientItem = (props) => {
     }
   }, [loadedCheckins]);
 
+  if (isLoading) {
+    return (
+    <li className={mode.darkMode ? 'dark-client-item' : 'light-client-item'}>
+    <div className="center box-fill">
+      {mode.darkMode ? <DarkIconAnimation loading={isLoading} /> : <IconAnimation loading={isLoading} />}
+    </div>
+    </li>
+
+    )
+  }
+
   return (
+    <>
+    <ErrorModal error={error} onClear={clearError} />
     <li className={mode.darkMode ? 'dark-client-item' : 'light-client-item'}>
       <Link to={`/${props.id}/checkins`}>
         <div className="client-background-image">
@@ -94,13 +117,14 @@ const ClientItem = (props) => {
               style={{ background: 'linear-gradient(#5f0a87,#a4508b)' }}
               className="banner-circle-display"
             >
-              {/* {lastCheckin && <p>{lastCheckin.bodyFat.toFixed(2)}</p>} */}
+              {lastCheckin && lastCheckin.bodyFat && <p>{lastCheckin.bodyFat.toFixed(2)}</p>}
             </div>
             <p>BodyFat</p>
           </div>
         </div>
       </Link>
     </li>
+    </>
   );
 };
 

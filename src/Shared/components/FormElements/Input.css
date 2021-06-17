@@ -73,10 +73,11 @@
 .light-form-text label {
   color: #838383;
   position: absolute;
-  bottom: 0px;
+  top: 0.3rem;
+  /* bottom: 0px; */
   left: 0px;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .light-form label::after {
@@ -199,10 +200,11 @@
 .dark-form-text label {
   color: #838383;
   position: absolute;
-  bottom: 0px;
+  top: 0.3rem;
+  /* bottom: 0px; */
   left: 0px;
   width: 100%;
-  height: 100%;
+  /* height: %; */
   pointer-events: none;
   text-align: center;
 }

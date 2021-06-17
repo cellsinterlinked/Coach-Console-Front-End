@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import Input from '../../../Shared/components/FormElements/Input'
 import Button from '../../../Shared/components/FormElements/Button'
 import {VALIDATOR_REQUIRE} from '../../../Shared/util/validators'
@@ -11,7 +11,7 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
   const mode = useContext(DarkModeContext);
 
 
-  const [formState, inputHandler] = useForm({
+  const [formState, inputHandler, setFormData] = useForm({
     chest: {
       value: 0,
       isValid: false
@@ -43,6 +43,42 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
 
   })
 
+  useEffect(() => {
+    if(loadedCheckin) {
+      setFormData(
+        {
+          chest: {
+            value: loadedCheckin.chest,
+            isValid: true
+          },
+          axilla: {
+            value: loadedCheckin.axilla,
+            isValid: true
+          },
+          tricep: {
+            value: loadedCheckin.tricep,
+            isValid: true
+          },
+          subscapular: {
+            value: loadedCheckin.subscapular,
+            isValid: true
+          },
+          abdominal: {
+            value: loadedCheckin.abdominal,
+            isValid: true
+          },
+          suprailiac: {
+            value: loadedCheckin.suprailiac,
+            isValid: true
+          },
+          thigh: {
+            value: loadedCheckin.thigh,
+            isValid: true
+          }
+        }
+      )
+    }
+  }, [loadedCheckin, setFormData])
   
 
   const submitHandler = (e) => {
@@ -81,6 +117,7 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in millimeters"
+                initialValue={loadedCheckin ? loadedCheckin.chest : ""}
               />
             </div>
             <p className="measure">MM</p>
@@ -102,6 +139,7 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in millimeters"
+                initialValue={loadedCheckin ? loadedCheckin.axilla : ""}
               />
             </div>
             <p className="measure">MM</p>
@@ -123,6 +161,7 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in millimeters"
+                initialValue={loadedCheckin ? loadedCheckin.tricep : ""}
               />
             </div>
             <p className="measure">MM</p>
@@ -144,6 +183,7 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in millimeters"
+                initialValue={loadedCheckin ? loadedCheckin.subscapular : ""}
               />
             </div>
             <p className="measure">MM</p>
@@ -165,6 +205,7 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in millimeters"
+                initialValue={loadedCheckin ? loadedCheckin.abdominal : ""}
               />
             </div>
             <p className="measure">MM</p>
@@ -186,6 +227,7 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in millimeters"
+                initialValue={loadedCheckin ? loadedCheckin.suprailiac : ""}
               />
             </div>
             <p className="measure">MM</p>
@@ -207,6 +249,7 @@ const CheckInBf = ({showInstructionsHandler, next, loadedCheckin}) => {
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
                 errorText="Please enter valid measurement in millimeters"
+                initialValue={loadedCheckin ? loadedCheckin.thigh : ""}
               />
             </div>
             <p className="measure">MM</p>

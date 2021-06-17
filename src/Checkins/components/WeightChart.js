@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 const WeightChart = props => {
@@ -7,7 +7,7 @@ const WeightChart = props => {
   const leanBodyMassArr = props.items.map(checkin => checkin.leanBodyMass);
  
 
-  const [infoGraph, setInfoGraph] = useState({
+  const infoGraph = {
     chartData: { 
       labels: dateArr,
       datasets: [
@@ -52,7 +52,7 @@ const WeightChart = props => {
       }
     }
     }
-  }) 
+  }
 
   return (
     <div className="chart">

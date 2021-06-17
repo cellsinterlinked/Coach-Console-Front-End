@@ -174,3 +174,30 @@
   z-index: 1;
   bottom: 0;
 }
+
+.dark-no-clients-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: space-around;
+  flex-direction: column;
+}
+
+.dark-no-clients-wrapper h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: lighter;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.light-no-clients-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: space-around;
+  flex-direction: column;
+}
+
+.light-no-clients-wrapper h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: lighter;
+  margin-bottom: 2rem;
+}

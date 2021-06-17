@@ -44,7 +44,8 @@ const newClientSubmitHandler = async event => {
     await sendRequest(
       'http://localhost:5000/api/athletes', 
       'POST', 
-      formData);
+      formData, 
+      {Authorization: 'Bearer ' + auth.token});
       history.push('/clients');   
   } catch (err) {}
   
@@ -52,7 +53,7 @@ const newClientSubmitHandler = async event => {
 
 
 return(
-    <div className={mode.darkMode ? "new-client-container dark-new-client" : "new-client-container"}>
+    <div className={mode.darkMode ? "new-client-container dark-new-client" : "new-client-container"} style={{animation: "pageEnter 1s"}}>
     <MainNavigation />
     <ErrorModal error={error} onClear={clearError} />
   <form className={mode.darkMode ? "dark-new-client__form" : "light-new-client__form"} onSubmit={newClientSubmitHandler}>

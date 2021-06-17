@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
 import './Chart.css';
 
@@ -8,7 +8,7 @@ const BodyFatChart = props => {
     checkin.date.toString().slice(0, 10)
   );
 
-  const [infoGraph, setInfoGraph] = useState({
+  const infoGraph = {
     chartData: {
       labels: dateArr,
       datasets: [
@@ -30,7 +30,7 @@ const BodyFatChart = props => {
       ]
     }
 
-  });
+  };
 
   return (
     <div className="chart">

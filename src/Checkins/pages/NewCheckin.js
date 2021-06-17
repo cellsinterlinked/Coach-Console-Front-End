@@ -4,7 +4,6 @@ import { useHttpClient } from '../../Shared/hooks/http-hook';
 import './CheckinForm.css';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 import Modal from '../../Shared/components/UIElements/Modal';
@@ -17,6 +16,7 @@ import CheckInPictures from '../components/new-checkin-components/CheckInPicture
 import CheckInMeasurements from '../components/new-checkin-components/CheckInMeasurements';
 import CheckInCardio from '../components/new-checkin-components/CheckInCardio';
 import CheckInFinal from '../components/new-checkin-components/CheckInFinal';
+import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
 
 const NewCheckin = () => {
   const mode = useContext(DarkModeContext);
@@ -209,7 +209,8 @@ const NewCheckin = () => {
           formData.append('image', image.value)
         );
       }
-
+      gender && formData.append('gender', gender)
+      formTotal.age && formData.append('age', formTotal.age.value)
       formTotal.chest && formData.append('chest', formTotal.chest.value);
       formTotal.axilla && formData.append('axilla', formTotal.axilla.value);
       formTotal.tricep && formData.append('tricep', formTotal.tricep.value);
@@ -241,6 +242,10 @@ const NewCheckin = () => {
         formData.append('cardioDuration', formTotal.cardio_duration.value);
       formTotal.cardio_calories &&
         formData.append('cardioCalories', formTotal.cardio_calories.value);
+      formTotal.cardio_type &&
+        formData.append('cardioType', formTotal.cardio_type.value)
+      formTotal.cardio_sessions &&
+        formData.append('cardioSessions', formTotal.cardio_sessions.value)
 
       console.log(formData);
       await sendRequest('http://localhost:5000/api/checkins', 'POST', formData);
@@ -249,6 +254,17 @@ const NewCheckin = () => {
       console.log(err);
     }
   };
+
+  if (isLoading) {
+    return (
+    <li className={mode.darkMode ? 'dark-client-item' : 'light-client-item'}>
+    <div className="center loaderOverlay">
+      <IconAnimation loading={isLoading} />
+    </div>
+    </li>
+
+    )
+  }
 
   return (
     <div

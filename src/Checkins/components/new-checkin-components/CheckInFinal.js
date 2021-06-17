@@ -1,5 +1,4 @@
 import React, {useContext} from 'react'
-import {Link} from 'react-router-dom';
 import { DarkModeContext } from '../../../Shared/context/dark-mode-context'
 import '../../pages/CheckinForm.css'
 import Button from '../../../Shared/components/FormElements/Button'

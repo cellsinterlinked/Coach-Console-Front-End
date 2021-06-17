@@ -14,16 +14,18 @@ import { GiRun } from 'react-icons/gi';
 import Button from '../../Shared/components/FormElements/Button';
 import Modal from '../../Shared/components/UIElements/Modal.js'
 import { useHistory } from 'react-router-dom'
+import { AuthContext } from '../../Shared/context/auth-context';
+import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
+import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
+import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 
 const CheckinPage = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedCheckins, setLoadedCheckins] = useState();
   const [exactCheckin, setExactCheckins] = useState();
   const [previousCheckin, setPreviousCheckin] = useState();
-  const [currentMeasure, setCurrentMeasure] = useState();
-  const [prevMeasure, setPrevMeasure] = useState();
-  const [totalMeasure, setTotalMeasure] = useState();
   const mode = useContext(DarkModeContext);
+  const auth = useContext(AuthContext)
   const checkinId = useParams().checkinId;
   const clientId = useParams().clientId;
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -38,7 +40,12 @@ const CheckinPage = () => {
     const fetchCheckins = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/checkins/athlete/${clientId}`
+          `http://localhost:5000/api/checkins/athlete/${clientId}`,
+          'GET',
+          null,
+          {
+            Authorization: 'Bearer ' + auth.token
+          }
         );
         setLoadedCheckins(responseData.checkins);
         setExactCheckins(
@@ -49,10 +56,12 @@ const CheckinPage = () => {
         );
         setPreviousCheckin(responseData.checkins[checkinIndex - 1]);
         console.log(responseData.checkins);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err)
+      }
     };
     fetchCheckins();
-  }, [sendRequest, clientId, checkinId]);
+  }, [sendRequest, clientId, checkinId, auth.token]);
 
   const turner = (num) => {
     setCurrentSpoke(num);
@@ -71,11 +80,31 @@ const CheckinPage = () => {
     try {
       await sendRequest(
         `http://localhost:5000/api/checkins/${checkinId}`,
-        "DELETE"
+        "DELETE",
+        null,
+        {
+          Authorization: 'Bearer ' + auth.token
+        }
       );
       history.push(`/${clientId}/checkins`);
     } catch (err) {}
   };
+
+  if (isLoading) {
+    return (
+      <>
+    { !mode.darkMode && <div className="center loaderOverlay">
+      <IconAnimation loading={isLoading} />
+    </div>}
+
+    {mode.darkMode && <div className="center loaderOverlay">
+      <DarkIconAnimation loading={isLoading} />
+    </div>}
+    </>
+    )
+  }
+
+
 
   return (
     <div
@@ -87,6 +116,7 @@ const CheckinPage = () => {
       }
     >
       <MainNavigation />
+      <ErrorModal error={error} onClear={clearError} />
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
@@ -457,39 +487,45 @@ const CheckinPage = () => {
                   <p className="info-highlight">{exactCheckin[0].weight}</p>
 
 
-                  {exactCheckin[0].leanBodyMass && <p className="info-highlight">
+                  {exactCheckin[0].leanBodyMass ? <p className="info-highlight">
                     {exactCheckin[0].leanBodyMass.toFixed(1)}
-                  </p>}
+                  </p> : <p className="info-highlight">
+                    -
+                  </p> }
           
-                  {exactCheckin[0].fatMass && <p className="info-highlight">
+                  {exactCheckin[0].fatMass ? <p className="info-highlight">
                     {exactCheckin[0].fatMass.toFixed(1)}
-                  </p>}
+                  </p> : <p className="info-highlight"> - </p>}
+
+
                   <p className="info-highlight">{exactCheckin[0].weeksOut}</p>
                 </div>
 
 
 
 
-                '
+                
 
-                {previousCheckin && previousCheckin.leanBodyMass && (
+                
                   <div className="wheel-info-column">
                     <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                       Prev
                     </p>
                     <p className="info-highlight">
-                      {previousCheckin.date.slice(0, 10)}
+                      {previousCheckin ? previousCheckin.date.slice(0, 10) : "-"}
                     </p>
-                    <p className="info-highlight">{previousCheckin.weight}</p>
+                    <p className="info-highlight">{previousCheckin ? previousCheckin.weight : '-'}</p>
                     <p className="info-highlight">
-                      {previousCheckin.leanBodyMass.toFixed(1)}
+                      {previousCheckin && previousCheckin.leanBodyMass ? previousCheckin.leanBodyMass.toFixed(1) : '-'}
                     </p>
                     <p className="info-highlight">
-                      {previousCheckin.fatMass.toFixed(1)}
+                      {previousCheckin && previousCheckin.fatMass ? previousCheckin.fatMass.toFixed(1) : '-'}
                     </p>
-                    <p className="info-highlight">{previousCheckin.weeksOut}</p>
+                    <p className="info-highlight">{previousCheckin ? previousCheckin.weeksOut : '-'}</p>
                   </div>
-                )}
+                
+
+                 
 
 
 
@@ -497,34 +533,36 @@ const CheckinPage = () => {
 
 
 
-                {previousCheckin.leanBodyMass && (
+
+                
                   <div className="wheel-info-column">
                     <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                       Progress
                     </p>
                     <p className="info-highlight">---</p>
                     <p className="info-highlight">
-                      {exactCheckin[0].weight - previousCheckin.weight}lbs
+                      {previousCheckin ? exactCheckin[0].weight - previousCheckin.weight + `lbs` : '-'}
                     </p>
                     <p className="info-highlight">
-                      {(
-                        exactCheckin[0].leanBodyMass.toFixed(1) -
+                      {previousCheckin && previousCheckin.leanBodyMass && exactCheckin[0].leanBodyMass ?
+                        (exactCheckin[0].leanBodyMass.toFixed(1) -
                         previousCheckin.leanBodyMass.toFixed(1)
-                      ).toFixed(1)}
-                      lbs
+                      ).toFixed(1) + `lbs` : '-'}
+                    
                     </p>
                     <p className="info-highlight">
-                      {(
+                      {previousCheckin && previousCheckin.fatMass && exactCheckin[0].fatMass ?
+                      (
                         exactCheckin[0].fatMass.toFixed(1) -
                         previousCheckin.fatMass.toFixed(1)
-                      ).toFixed(1)}
-                      lbs
+                      ).toFixed(1) + `lbs` : '-'}
+                      
                     </p>
                     <p className="info-highlight">
-                      {exactCheckin[0].weeksOut - previousCheckin.weeksOut}wks
+                      {previousCheckin ? exactCheckin[0].weeksOut - previousCheckin.weeksOut + `wks`: '-'}
                     </p>
                   </div>
-                )}
+              
 
 
 
@@ -606,75 +644,75 @@ const CheckinPage = () => {
                     </p>
                     <p className="info-highlight">{exactCheckin[0].thigh}mm</p>
                   </div>
-                  {previousCheckin && (
+
+
+                  
                     <div className="wheel-info-column">
                       <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                         Prev
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.bodyFat.toFixed(1)}%
+                        {previousCheckin && previousCheckin.bodyFat ? previousCheckin.bodyFat.toFixed(1) + "%" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.chest}mm
+                      {previousCheckin && previousCheckin.chest ? previousCheckin.chest.toFixed(1) + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.axilla}mm
+                      {previousCheckin && previousCheckin.axilla ? previousCheckin.axilla.toFixed(1) + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.tricep}mm
+                      {previousCheckin && previousCheckin.tricep ? previousCheckin.tricep.toFixed(1) + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.subscapular}mm
+                      {previousCheckin && previousCheckin.subscapular ? previousCheckin.subscapular.toFixed(1) + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.abdominal}mm
+                      {previousCheckin && previousCheckin.abdominal ? previousCheckin.abdominal.toFixed(1) + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.suprailiac}mm
+                         {previousCheckin && previousCheckin.suprailiac ? previousCheckin.suprailiac.toFixed(1) + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.thigh}mm
+                      {previousCheckin && previousCheckin.thigh ? previousCheckin.thigh.toFixed(1) + "mm" : "-"}
                       </p>
                     </div>
-                  )}
+                  
+
+
                   {previousCheckin && (
                     <div className="wheel-info-column">
                       <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                         Progress
                       </p>
-                      <p className="info-highlight">1%</p>
+                    
                       <p className="info-highlight">
-                        {(
+                        {previousCheckin && previousCheckin.bodyFat ? (
                           exactCheckin[0].bodyFat.toFixed(1) -
                           previousCheckin.bodyFat.toFixed(1)
-                        ).toFixed(1)}
-                        %
+                        ).toFixed(1) + "%" : "-"}
+                        
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].chest - previousCheckin.chest}mm
+                        {previousCheckin && previousCheckin.chest ? exactCheckin[0].chest - previousCheckin.chest + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].axilla - previousCheckin.axilla}mm
+                      {previousCheckin && previousCheckin.axilla ? exactCheckin[0].axilla - previousCheckin.axilla + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].tricep - previousCheckin.tricep}mm
+                      {previousCheckin && previousCheckin.tricep ? exactCheckin[0].tricep - previousCheckin.tricep + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].subscapular -
-                          previousCheckin.subscapular}
-                        mm
+                      {previousCheckin && previousCheckin.subscapular ? exactCheckin[0].subscapular - previousCheckin.subscapular + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].abdominal - previousCheckin.abdominal}
-                        mm
+                      {previousCheckin && previousCheckin.abdominal ? exactCheckin[0].abdominal - previousCheckin.abdominal + "mm" : "-"}
+                        
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].suprailiac -
-                          previousCheckin.suprailiac}
-                        mm
+                      {previousCheckin && previousCheckin.suprailiac ? exactCheckin[0].suprailiac - previousCheckin.suprailiac + "mm" : "-"}
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].thigh - previousCheckin.thigh}mm
+                      {previousCheckin && previousCheckin.thigh ? exactCheckin[0].thigh - previousCheckin.thigh + "mm" : "-"}
                       </p>
                     </div>
                   )}
@@ -683,7 +721,7 @@ const CheckinPage = () => {
             </div>
           )}
 
-          {currentSpoke === 3 && !exactCheckin[0].image && (
+          {currentSpoke === 3 && !exactCheckin[0].image[0] && (
             <div
               className={
                 mode.darkMode ? 'dark-wheel-info-box' : 'light-wheel-info-box'
@@ -701,7 +739,7 @@ const CheckinPage = () => {
             </div>
           )}
 
-          {currentSpoke === 3 && exactCheckin[0].image && (
+          {currentSpoke === 3 && exactCheckin[0].image[0] && (
             <div
               className={
                 mode.darkMode ? 'dark-wheel-info-box' : 'light-wheel-info-box'
@@ -852,35 +890,35 @@ const CheckinPage = () => {
                         Prev
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.neckMeasure +
+                        {previousCheckin.neckMeasure ? previousCheckin.neckMeasure +
                           previousCheckin.armMeasure +
                           previousCheckin.chestMeasure +
                           previousCheckin.waistMeasure +
                           previousCheckin.hipsMeasure +
                           previousCheckin.thighMeasure +
-                          previousCheckin.calfMeasure}
-                        "
+                          previousCheckin.calfMeasure + '' : '-'}
+                        
+                      </p>
+                        <p className="info-highlight">
+                        {previousCheckin.neckMeasure ? previousCheckin.neckMeasure + '' : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.neckMeasure}"
+                      {previousCheckin.armMeasure ? previousCheckin.armMeasure + '' : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.armMeasure}"
+                      {previousCheckin.chestMeasure ? previousCheckin.chestMeasure + '' : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.chestMeasure}"
+                      {previousCheckin.waistMeasure ? previousCheckin.waistMeasure + '' : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.waistMeasure}"
+                      {previousCheckin.hipsMeasure ? previousCheckin.hipsMeasure + '' : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.hipsMeasure}"
+                      {previousCheckin.thighMeasure ? previousCheckin.thighMeasure + '' : "-"}
                       </p>
                       <p className="info-highlight">
-                        {previousCheckin.thighMeasure}"
-                      </p>
-                      <p className="info-highlight">
-                        {previousCheckin.calfMeasure}"
+                      {previousCheckin.calfMeasure ? previousCheckin.calfMeasure + '' : "-"}
                       </p>
                     </div>
                   )}
@@ -890,56 +928,55 @@ const CheckinPage = () => {
                         Progress
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].neckMeasure +
+                        {previousCheckin.neckMeasure ? (exactCheckin[0].neckMeasure +
                           exactCheckin[0].armMeasure +
                           exactCheckin[0].chestMeasure +
                           exactCheckin[0].waistMeasure +
                           exactCheckin[0].hipsMeasure +
                           exactCheckin[0].thighMeasure +
-                          exactCheckin[0].calfMeasure -
+                          exactCheckin[0].calfMeasure) -
                           (previousCheckin.neckMeasure +
                             previousCheckin.armMeasure +
                             previousCheckin.chestMeasure +
                             previousCheckin.waistMeasure +
                             previousCheckin.hipsMeasure +
                             previousCheckin.thighMeasure +
-                            previousCheckin.calfMeasure)}
-                        "
+                            previousCheckin.calfMeasure) + `"` : '-'}
+                      
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].neckMeasure -
-                          previousCheckin.neckMeasure}
-                        "
+                        {previousCheckin.neckMeasure ? exactCheckin[0].neckMeasure - previousCheckin.neckMeasure + `"`  : "-"}
+                        
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].armMeasure -
-                          previousCheckin.armMeasure}
-                        "
+                        {previousCheckin.neckMeasure ? exactCheckin[0].armMeasure -
+                          previousCheckin.armMeasure + `"` : "-"}
+                        
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].chestMeasure -
-                          previousCheckin.chestMeasure}
-                        "
+                        {previousCheckin.neckMeasure ? exactCheckin[0].chestMeasure -
+                          previousCheckin.chestMeasure + `"` : '-'}
+                        
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].waistMeasure -
-                          previousCheckin.waistMeasure}
-                        "
+                        {previousCheckin.neckMeasure ? exactCheckin[0].waistMeasure -
+                          previousCheckin.waistMeasure + `"`: '-'}
+                        
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].hipsMeasure -
-                          previousCheckin.hipsMeasure}
-                        "
+                        {previousCheckin.neckMeasure ? exactCheckin[0].hipsMeasure -
+                          previousCheckin.hipsMeasure + `"`: '-' }
+                        
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].thighMeasure -
-                          previousCheckin.thighMeasure}
-                        "
+                        {previousCheckin.neckMeasure ? exactCheckin[0].thighMeasure -
+                          previousCheckin.thighMeasure + `"`: '-'}
+                        
                       </p>
                       <p className="info-highlight">
-                        {exactCheckin[0].calfMeasure -
-                          previousCheckin.calfMeasure}
-                        "
+                        {previousCheckin.neckMeasure ? exactCheckin[0].calfMeasure -
+                          previousCheckin.calfMeasure + `"`: '-'}
+                        
                       </p>
                     </div>
                   )}
@@ -976,14 +1013,10 @@ const CheckinPage = () => {
                 <div className="wheel-info-column bf-column1">
                   <p style={{ opacity: '0' }}>---</p>
                   <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
-                    Total
+                    Time
                   </p>
                   <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                     Days
-                  </p>
-                  <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
-                    {' '}
-                    Session Time
                   </p>
                   <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                     Calories
@@ -992,41 +1025,47 @@ const CheckinPage = () => {
                     Type
                   </p>
                 </div>
+
+
                 <div className="wheel-info-column">
                   <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                     Current
                   </p>
-                  <p className="info-highlight">50</p>
-                  <p className="info-highlight">5</p>
-                  <p className="info-highlight">10</p>
-                  <p className="info-highlight">1000</p>
-                  <p className="info-highlight">Run</p>
+                 <p className="info-highlight">{exactCheckin[0] && exactCheckin[0].cardioDuration ? exactCheckin[0].cardioDuration + "mins" : "-"}</p>
+                 <p className="info-highlight">{exactCheckin[0] && exactCheckin[0].cardioSessions ? exactCheckin[0].cardioSessions : "-"}</p>
+                 <p className="info-highlight">{exactCheckin[0] && exactCheckin[0].cardioCalories ? exactCheckin[0].cardioCalories : "-"}</p>
+                 <p className="info-highlight">{exactCheckin[0] && exactCheckin[0].cardioType ? exactCheckin[0].cardioType  : "-"}</p>
+                 
                 </div>
                 <div className="wheel-info-column">
                   <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                     Prev
                   </p>
-                  <p className="info-highlight">40</p>
-                  <p className="info-highlight">4</p>
-                  <p className="info-highlight">10</p>
-                  <p className="info-highlight">800</p>
-                  <p className="info-highlight">Run</p>
+                  <p className="info-highlight">{previousCheckin && previousCheckin.cardioDuration ? previousCheckin.cardioDuration + "mins" : "-"}</p>
+                  <p className="info-highlight">{previousCheckin && previousCheckin.cardioSessions ? previousCheckin.cardioSessions : "-"}</p>
+                  <p className="info-highlight">{previousCheckin && previousCheckin.cardioCalories ? previousCheckin.cardioCalories : "-"}</p>
+                  <p className="info-highlight">{previousCheckin && previousCheckin.cardioType ? previousCheckin.cardioType : "-"}</p>
                 </div>
                 <div className="wheel-info-column">
                   <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                     Progress
                   </p>
-                  <p className="info-highlight">10Mins</p>
-                  <p className="info-highlight">1Days</p>
-                  <p className="info-highlight">0Mins</p>
-                  <p className="info-highlight">200Cals</p>
-                  <p className="info-highlight"> --</p>
+                  <p className="info-highlight">{previousCheckin && previousCheckin.cardioDuration && exactCheckin[0].cardioDuration ? exactCheckin[0].cardioDuration - previousCheckin.cardioDuration : "-"}</p>
+                  <p className="info-highlight">{previousCheckin && previousCheckin.cardioSessions && exactCheckin[0].cardioSessions ? exactCheckin[0].cardioSessions - previousCheckin.cardioSessions : "-"}</p>
+                  <p className="info-highlight">{previousCheckin && previousCheckin.cardioCalories && exactCheckin[0].cardioCalories ? exactCheckin[0].cardioCalories - previousCheckin.cardioCalories : "-"}</p>
+                  <p className="info-highlight">--</p>
                 </div>
               </div>
             </div>
           )}
         </div>
       )}
+
+      {exactCheckin && exactCheckin[0].notes && 
+      <div className={mode.darkMode ? "dark-notes-display-wrapper" : "notes-display-wrapper"}>
+      <h2>NOTES</h2>
+        <p>{exactCheckin[0].notes}</p>
+      </div>}
 
 <div className={mode.darkMode ? "dark-divider" : "light-divider"}></div>
         <footer>

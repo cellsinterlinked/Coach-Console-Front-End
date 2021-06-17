@@ -258,13 +258,15 @@
 
 .light-spoke-label {
   position: absolute;
-  top: -2rem;
+  top: -2.2rem;
+  font-weight: lighter;
 }
 
 .dark-spoke-label {
   position: absolute;
-  top: -2rem;
+  top: -2.2rem;
   color: white;
+  font-weight: lighter;
 }
 
 .light-wheel-info-box {
@@ -367,6 +369,7 @@
 .wheel-info-column p {
   margin: 0;
   text-align: center;
+  font-size: 0.8rem;
 }
 
 .info-highlight {
@@ -442,4 +445,53 @@
   max-width: 30rem;
   min-width: 22rem;
   margin-top: 1rem;
+}
+
+.notes-display-wrapper {
+  padding: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  max-width: 30rem;
+  min-width: 20rem;
+  margin: auto;
+  border-radius: 10px;
+  /* border: 1px solid var(--first-gradient); */
+  margin-bottom: 2rem;
+  box-shadow: 2px 2px 5px black;
+}
+
+.notes-display-wrapper h2 {
+  margin-top: 0px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: light;
+}
+
+.notes-display-wrapper p {
+  font-weight: lighter;
+  font-size: 0.8rem;
+}
+.dark-notes-display-wrapper {
+  padding: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  max-width: 30rem;
+  min-width: 20rem;
+  margin: auto;
+  border-radius: 10px;
+  /* border: 1px solid var(--first-gradient); */
+  margin-bottom: 2rem;
+  box-shadow: 2px 2px 5px black, -2px -2px 3px grey;
+}
+
+.dark-notes-display-wrapper h2 {
+  margin-top: 0px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: lighter;
+  color: white;
+}
+
+.dark-notes-display-wrapper p {
+  font-weight: lighter;
+  font-size: 0.8rem;
+  color: white;
 }

@@ -8,13 +8,13 @@ const TapeCompare = props => {
   return (
     <div className={mode.darkMode ? "dark-measurement-compare-container" : "light-measurement-compare-container" }>
         <p>{props.date}</p>
-        <p>{props.neckMeasure}</p>
-        <p>{props.armMeasure}</p>
-        <p>{props.chestMeasure}</p>
-        <p>{props.waistMeasure}</p>
-        <p>{props.hipsMeasure}</p>
-        <p>{props.thighMeasure}</p>
-        <p>{props.calfMeasure}</p>
+        <p>{props.neckMeasure ? props.neckMeasure : `-`}</p>
+        <p>{props.armMeasure ? props.armMeasure : `-`}</p>
+        <p>{props.chestMeasure ? props.chestMeasure : `-` }</p>
+        <p>{props.waistMeasure ? props.waistMeasure : `-`}</p>
+        <p>{props.hipsMeasure ? props.hipsMeasure : `-`} </p>
+        <p>{props.thighMeasure ? props.thighMeasure : `-`}</p>
+        <p>{props.calfMeasure ? props.calfMeasure : `-`}</p>
     </div>
   )
 }

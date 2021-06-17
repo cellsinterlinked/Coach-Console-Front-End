@@ -1,13 +1,9 @@
-import React, { useState, useContext, useEffect} from "react";
-import Input from '../../../Shared/components/FormElements/Input'
+import React, { useState, useContext} from "react";
 import Button from '../../../Shared/components/FormElements/Button'
-import {VALIDATOR_REQUIRE} from '../../../Shared/util/validators'
 import { useForm } from '../../../Shared/hooks/form-hook';
 import '../../pages/CheckinForm.css'
 import { DarkModeContext } from '../../../Shared/context/dark-mode-context'
-import { FaInfoCircle } from "react-icons/fa";
 import ImageUpload from '../../../Shared/components/FormElements/ImageUpload'
-// change to multi image upload when finished 
 
 
 const CheckinPictures = ({next}) => {

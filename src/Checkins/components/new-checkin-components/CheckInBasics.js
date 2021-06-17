@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from "react";
+import React, { useContext, useEffect} from "react";
 import Input from '../../../Shared/components/FormElements//Input';
 import Button from '../../../Shared/components/FormElements/Button'
 import {VALIDATOR_REQUIRE} from '../../../Shared/util/validators'
@@ -9,7 +9,12 @@ import { DarkModeContext } from '../../../Shared/context/dark-mode-context'
  const CheckInBasics = ({next, gender, setGender, loadedCheckin}) => {
   const mode = useContext(DarkModeContext);
 
-
+  const today = () => {
+    const timeElapsed = Date.now();
+    const newTime = new Date(timeElapsed)
+    const now = newTime.toISOString().slice(0,10)
+    return now;
+  }
   const [formState, inputHandler, setFormData] = useForm(
     {
       age: {
@@ -92,7 +97,7 @@ import { DarkModeContext } from '../../../Shared/context/dark-mode-context'
               errorText="Please enter valid date"
               validators={[VALIDATOR_REQUIRE()]}
               onInput={inputHandler}
-              initialValue={loadedCheckin ? loadedCheckin.date.slice(0, 10) : ""}
+              initialValue={loadedCheckin ? loadedCheckin.date.slice(0, 10) : today()}
 
             />
             <p className="measure-trans">Wks</p>

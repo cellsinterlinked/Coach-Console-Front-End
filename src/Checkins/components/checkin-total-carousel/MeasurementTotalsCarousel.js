@@ -6,6 +6,27 @@ import TapeCompare from "../TapeCompare";
 const MeasurementTotalsCarousel = props => {
   const mode = useContext(DarkModeContext);
 
+
+  const totalsHandler = (measurement) => {
+    let first, last;
+    let newArr = [...props.items]
+
+    props.items.forEach((item, index) => {
+      if (item[measurement]) {
+        first = item[measurement]
+        return
+      }
+    })
+
+    newArr.reverse().forEach((item, index) => {
+      if (item[measurement]) {
+        last = item[measurement]
+        return
+      }
+    })
+    return first - last
+  }
+
   return (
     <React.Fragment>
       <div
@@ -43,28 +64,26 @@ const MeasurementTotalsCarousel = props => {
         >
           <p>TOTALS</p>
           <p>
-            {props.items[0].neckMeasure - props.items[props.items.length - 1].neckMeasure}
+            {/* {props.items[0].neckMeasure - props.items[props.items.length - 1].neckMeasure} */}
+            {totalsHandler('neckMeasure') || "-"}
           </p>
           <p>
-            {props.items[0].armMeasure - props.items[props.items.length - 1].armMeasure}
+            {totalsHandler('armMeasure') || "-"}
           </p>
           <p>
-            {props.items[0].chestMeasure - props.items[props.items.length - 1].chestMeasure}
+            {totalsHandler('chestMeasure') || "-"}
           </p>
           <p>
-            {props.items[0].waistMeasure -
-              props.items[props.items.length - 1].waistMeasure}
+            {totalsHandler('waistMeasure') || "-"}
           </p>
           <p>
-            {props.items[0].hipsMeasure -
-              props.items[props.items.length - 1].hipsMeasure}
+            {totalsHandler('hipsMeasure') || "-"}
           </p>
           <p>
-            {props.items[0].thighMeasure -
-              props.items[props.items.length - 1].thighMeasure}
+            {totalsHandler('thighMeasure') || "-"}
           </p>
           <p>
-            {props.items[0].calfMeasure - props.items[props.items.length - 1].calfMeasure}
+            {totalsHandler('calfMeasure') || "-"}
           </p>
         </div>
       </div>

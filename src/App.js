@@ -1,8 +1,7 @@
-import React, { createContext, useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Clients from './Clients/pages/Clients'
 import Auth from './User/pages/Auth';
-import MainNavigation from './Shared/components/Navigation/MainNavigation';
 import ClientCheckins from './Checkins/pages/ClientCheckins';
 import NewCheckin from './Checkins/pages/NewCheckin';
 import UpdateCheckin from './Checkins/pages/UpdateCheckin';
@@ -12,35 +11,28 @@ import Landing from './User/pages/Landing';
 import { AuthContext } from './Shared/context/auth-context';
 import { DarkModeContext } from './Shared/context/dark-mode-context';
 import CheckinPage from './Checkins/pages/CheckinPage';
+import { useAuth } from './Shared/hooks/auth-hook';
+
 
 
 function App() {
-
-  const [darkMode, setDarkMode] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); 
-  const [userId, setUserId] = useState(false);
-
-  const login = useCallback((uid) => {
-    setIsLoggedIn(true)
-    setUserId(uid);
-  }, []);
-
-  const logout = useCallback(() => {
-    setIsLoggedIn(false)
-    setUserId(null);
-  }, []);
-
+  const [darkMode, setDarkMode] = useState(localStorage.getItem('darkTheme') ? JSON.parse(localStorage.getItem('darkTheme')) : false);
+  const { token, login, logout, userId} = useAuth();
+  
+  
   const toggleDark = useCallback(() => {
     setDarkMode(true)
+    localStorage.setItem('darkTheme', JSON.stringify(true))
   }, []);
 
   const toggleLight = useCallback(() => {
     setDarkMode(false)
+    localStorage.setItem('darkTheme', JSON.stringify(false))
   }, []);
 
   let routes;
 
-  if (isLoggedIn) {
+  if (token) {
     routes = (
     <Switch>
       <Route path='/:clientId/checkins' exact>
@@ -100,7 +92,8 @@ function App() {
 
 			<AuthContext.Provider
 				value={{
-					isLoggedIn: isLoggedIn,
+					isLoggedIn: !!token,
+          token: token,
 					userId: userId,
 					login: login,
 					logout: logout,

@@ -215,7 +215,7 @@
   width: 6rem;
   border-radius: 50%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   overflow: hidden;
   margin: auto;
@@ -261,18 +261,18 @@
 
 @media (max-width: 600px) {
   .dark-checkin-item__actions {
-    height: 10rem;
+    height: 5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     margin-top: 0rem;
     margin-bottom: 0rem;
   }
 
   .light-checkin-item__actions {
-    height: 10rem;
+    height: 5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     margin-top: 0rem;
     margin-bottom: 0rem;

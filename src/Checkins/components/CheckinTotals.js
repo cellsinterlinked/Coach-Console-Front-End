@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./CheckinTotals.css";
 import Button from "../../Shared/components/FormElements/Button";
-import LoadingSpinner from "../../Shared/components/UIElements/LoadingSpinner";
 import ErrorModal from "../../Shared/components/UIElements/ErrorModal";
 import { useHttpClient } from "../../Shared/hooks/http-hook";
 import { useHistory } from "react-router-dom";
 import Modal from "../../Shared/components/UIElements/Modal";
 import { DarkModeContext } from "../../Shared/context/dark-mode-context";
 import Slider from "../../Shared/components/UIElements/Slider";
+import { AuthContext } from '../../Shared/context/auth-context';
+import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
+import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
+
 
 const CheckinTotals = props => {
   const mode = useContext(DarkModeContext);
+  const auth = useContext(AuthContext)
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -24,14 +28,19 @@ const CheckinTotals = props => {
     const fetchAthlete = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/athletes/${clientId}`
+          `http://localhost:5000/api/athletes/${clientId}`,
+          'GET',
+          null,
+          {
+            Authorization: 'Bearer ' + auth.token
+          }
         );
         setLoadedAthlete(responseData.athlete.name);
         setAthleteInfo(responseData.athlete)
       } catch (err) {}
     };
     fetchAthlete();
-  }, [sendRequest, clientId]);
+  }, [sendRequest, clientId, auth.token]);
 
   const showDeleteWarningHandler = () => {
     setShowConfirmModal(true);
@@ -46,7 +55,11 @@ const CheckinTotals = props => {
     try {
       await sendRequest(
         `http://localhost:5000/api/athletes/${props.clientId}`,
-        "DELETE"
+        "DELETE",
+        null,
+        {
+          Authorization: 'Bearer ' + auth.token 
+        }
       );
       history.push(`/clients`);
     } catch (err) {}
@@ -81,7 +94,8 @@ const CheckinTotals = props => {
       <div
         className={mode.darkMode ? "dark-totals-card" : "light-totals-card"}
       >
-        {isLoading && <LoadingSpinner asOverlay />}
+        {isLoading && mode.darkMode && <div className="center loaderOverlay"><DarkIconAnimation  loading={isLoading} /> </div>}
+        {isLoading && !mode.darkMode && <div className="center loaderOverlay"><IconAnimation  loading={isLoading} /> </div>}
 
           <div className="client-personal-bubble-header">
             {athleteInfo && <img alt="" src={`http://localhost:5000/${athleteInfo.image}`}/>}
@@ -106,7 +120,7 @@ const CheckinTotals = props => {
                 : "light-checkin-item__actions"
             }
           >
-            <Button danger onClick={showDeleteWarningHandler} size="small">
+            <Button danger onClick={showDeleteWarningHandler} size="tiny">
               Delete Client
             </Button>
 
@@ -114,7 +128,7 @@ const CheckinTotals = props => {
             <Button
               to={`/${props.clientId}/newcheckin`}
               buttonStyle="new-checkin__button"
-              size="small"
+              size="tiny"
               >
               New Checkin
             </Button>
@@ -126,7 +140,7 @@ const CheckinTotals = props => {
             <Button
               to={`/${props.clientId}/editclient`}
               buttonStyle="new-checkin__button"
-              size="small"
+              size="tiny"
               >
               Update Client
             </Button>

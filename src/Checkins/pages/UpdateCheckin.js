@@ -4,7 +4,6 @@ import Button from '../../Shared/components/FormElements/Button';
 import Card from '../../Shared/components/UIElements/Card';
 import './CheckinForm.css';
 import { useHttpClient } from '../../Shared/hooks/http-hook';
-import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 import Modal from '../../Shared/components/UIElements/Modal';
@@ -15,6 +14,9 @@ import CheckInNotes from '../components/new-checkin-components/CheckInNotes';
 import CheckInMeasurements from '../components/new-checkin-components/CheckInMeasurements';
 import CheckInCardio from '../components/new-checkin-components/CheckInCardio';
 import CheckInFinal from '../components/new-checkin-components/CheckInFinal';
+import { AuthContext } from '../../Shared/context/auth-context'
+import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
+import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
 
 
 
@@ -25,6 +27,7 @@ import CheckInFinal from '../components/new-checkin-components/CheckInFinal';
 
 const UpdateCheckin = () => {
   const mode = useContext(DarkModeContext);
+  const auth = useContext(AuthContext);
 
   const loadedClient = useRef(null)
 
@@ -49,14 +52,20 @@ const UpdateCheckin = () => {
   useEffect(() => {
     const fetchCheckin = async () => {
       try {
-        const responseData = await sendRequest(`http://localhost:5000/api/checkins/${checkinId}`);
+        const responseData = await sendRequest(`http://localhost:5000/api/checkins/${checkinId}`,
+        'GET',
+        null,
+        {
+          Authorization: 'Bearer ' + auth.token
+        }
+        );
         setLoadedCheckin(responseData.checkin)
         loadedClient.current = responseData.checkin.athlete
        
       } catch (err) {}
     }
     fetchCheckin();
-  }, [sendRequest, checkinId])
+  }, [sendRequest, checkinId, auth.token])
 
   const showInstructionsHandler = () => {
     setShowConfirmModal(true);
@@ -131,6 +140,8 @@ const UpdateCheckin = () => {
       event.preventDefault();
       try{
         const formData = new FormData();
+      gender && formData.append('gender', gender)
+      formTotal.age && formData.append('age', formTotal.age.value)
       formTotal.date && formData.append('date', formTotal.date.value);
       formTotal.weight && formData.append('weight', formTotal.weight.value);
       finalFat && formData.append('bodyFat', finalFat);
@@ -168,10 +179,17 @@ const UpdateCheckin = () => {
         formData.append('cardioDuration', formTotal.cardio_duration.value);
       formTotal.cardio_calories &&
         formData.append('cardioCalories', formTotal.cardio_calories.value);
+        formTotal.cardio_type &&
+        formData.append('cardioType', formTotal.cardio_type.value)
+      formTotal.cardio_sessions &&
+        formData.append('cardioSessions', formTotal.cardio_sessions.value)
         await sendRequest(
           `http://localhost:5000/api/checkins/${checkinId}`,
           'PATCH',
-          formData);
+          formData,
+          {
+            Authorization: 'Bearer ' + auth.token
+          });
         history.push('/' + loadedClient.current + '/checkins');
         
 
@@ -251,11 +269,17 @@ const UpdateCheckin = () => {
     
     
     if (isLoading) {
-      return <div className="center">
-      <Card>
-        <LoadingSpinner />
-      </Card>
-    </div>
+      return (
+        <>
+        { !mode.darkMode && <div className="center loaderOverlay">
+          <IconAnimation loading={isLoading} />
+        </div>}
+    
+        {mode.darkMode && <div className="center loaderOverlay">
+          <DarkIconAnimation loading={isLoading} />
+        </div>}
+        </>
+      )
     }
 
     if (!loadedCheckin && !error) {

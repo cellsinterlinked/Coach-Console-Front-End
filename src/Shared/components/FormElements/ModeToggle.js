@@ -7,7 +7,7 @@ const ModeToggle = () => {
 
 	return (
 		<div className={mode.darkMode ? "dark-toggle-container" : "light-toggle-container"}>
-          <span style={{ color: mode.darkMode ? "grey" : "#a4508b" }}>☀︎</span>
+          <span style={{ color: mode.darkMode ? "white" : "#b618ff" }}>☀︎</span>
           <span className={mode.darkMode ? "dark-toggle" : "light-toggle"}>
             <input
 

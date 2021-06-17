@@ -72,11 +72,13 @@
 
   .dark-nav-links li {
     margin: 0 0.5rem;
+    min-width: 7rem;
   }
 
   .dark-nav-links a {
     color: white;
     text-decoration: none;
+    font-size: 0.8rem;
   }
 
   .dark-nav-links button:hover,
@@ -281,10 +283,12 @@
 
   .light-nav-links li {
     margin: 0 0.5rem;
+    min-width: 7rem;
   }
 
   .light-nav-links a {
     text-decoration: none;
+    font-size: 0.8rem;
   }
 
   .light-nav-links a:hover,

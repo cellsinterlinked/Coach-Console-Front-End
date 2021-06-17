@@ -5,6 +5,7 @@ import Button from '../../Shared/components/FormElements/Button';
 import './CheckinList.css'
 import {DarkModeContext} from '../../Shared/context/dark-mode-context';
 import { Link } from 'react-router-dom';
+import Silhouette from '../../Shared/Resources/mohamed-awwam-4tbNydgkJiI-unsplash.jpg';
 
 
 
@@ -12,7 +13,6 @@ const CheckinList = props => {
   const mode = useContext(DarkModeContext);
   const clientId = props.clientId; 
 
-  const tempArray = [1, 2, 3, 4, 5, 6]
   
   if (props.items.length === 0) {
     return (
@@ -41,15 +41,20 @@ return (
   {/* {props.items.map(checkin => <Link to={`/${clientId}/${checkin.id}`} ><button>Press me</button> </Link>)} */}
   {props.items.map((checkin, index) => (
     <Link key={index} className={mode.darkMode ? "dark-checkin-card" : "light-checkin-card"} to={`/${clientId}/${checkin.id}`}>
+      <div className="filter"></div>
       <div className="checkin-card-backdrop">
-        <img alt="" src={`http://localhost:5000/${checkin.image[0]}`} />
-        
+        {checkin.image[0] && <img alt="" src={`http://localhost:5000/${checkin.image[0]}`} />}
+        {!checkin.image[0] && <img alt="" src={Silhouette}></img>}
       </div>
     <p className={mode.darkMode ? "dark-checkin-card-date" : "light-checkin-card-date"}>{checkin.date.slice(0, 10)}</p>
 
-    {checkin.image.map((image, index) => <div className={`checkin-card-img-wrapper p${index + 1}`}>
-    <img alt="" src={`http://localhost:5000/${image}`} />
+    {checkin.image && checkin.image.map((image, index) => <div key={index} className={`checkin-card-img-wrapper p${index + 1}`}>
+    <img alt={Silhouette} src={`http://localhost:5000/${image}`} />
     </div> )}
+
+    {!checkin.image[0] && <div className="checkin-card-img-wrapper ">
+      <img src={Silhouette} alt=""></img>
+      </div>}
 
 
     <div className={mode.darkMode ? "dark-checkin-card-stats-wrapper" : "checkin-card-stats-wrapper"}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
 
 const CardioChart = props => {
@@ -6,7 +6,10 @@ const CardioChart = props => {
     checkin.date.toString().slice(0, 10)
   );
 
-  const [infoGraph, setInfoGraph] = useState({
+  const infoDurationArr = props.items.map(checkin => checkin.cardioDuration)
+  const infoCaloriesArr = props.items.map(checkin => checkin.cardioCalories * 0.1)
+
+  const infoGraph = {
     chartData: {
       labels: dateArr,
       datasets: [
@@ -14,7 +17,7 @@ const CardioChart = props => {
           label: "Total Cardio Duration (minutes)",
           fill: true,
           lineTension: 0.1,
-          data: [250, 270, 250, 260, 280],
+          data: infoDurationArr,
           borderColor: "rgba(90, 204, 189, 0.698)",
           hoverBorderColor: "rgba(90, 204, 189)",
           backgroundColor: "rgba(90, 204, 189, 0.3)",
@@ -28,7 +31,7 @@ const CardioChart = props => {
           label: "Total Calories Burnt(* .1)",
           fill: true,
           lineTension: 0.1,
-          data: [210, 230, 240, 210, 240],
+          data: infoCaloriesArr,
           borderColor: "rgba(187, 90, 204, 0.698)",
           hoverBorderColor: "rgba(187, 90, 204)",
           backgroundColor: "rgba(187, 90, 204, 0.3)",
@@ -53,7 +56,7 @@ const CardioChart = props => {
           }
         }
     
-  });
+  };
 
   return (
     <div className="chart">

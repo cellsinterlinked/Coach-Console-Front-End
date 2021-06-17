@@ -9,6 +9,8 @@ import {BsPersonPlusFill} from "react-icons/bs";
 import {BsUnlockFill} from "react-icons/bs";
 import {RiLogoutCircleLine} from "react-icons/ri"
 import { DarkModeContext } from '../../context/dark-mode-context'
+import IconAnimation from '../UIElements/IconAnimation';
+import DarkIconAnimation from '../UIElements/DarkIconAnimation';
 
 const MainNavigation = ({visible}) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
@@ -38,12 +40,20 @@ const MainNavigation = ({visible}) => {
     </SideDrawer>
     <Header >
     
-      <button className="main-navigation__menu-btn" onClick={openDrawer}>
+      <button className={mode.darkMode ? "dark-main-navigation__menu-btn" : "main-navigation__menu-btn"} onClick={openDrawer}>
       <span />
       <span />
       <span />
     </button>
-     <h1 className={mode.darkMode ? "dark-header-title" : 'light-header-title'}>Coach Console</h1>
+     {/* <h1 className={mode.darkMode ? "dark-header-title" : 'light-header-title'}>Coach Console</h1> */}
+     {mode.darkMode ? 
+     <div className="nav-icon">
+       <DarkIconAnimation size="ultraScaled"/>
+     </div> : 
+     <div className="nav-icon">
+       <IconAnimation size="ultraScaled" />
+     </div>
+      }
 
      <nav className="main-navigation__header-nav">
       <NavLinks />

@@ -11,10 +11,12 @@ import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import './ClientForm.css';
 import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 import MainNavigation from '../../Shared/components/Navigation/MainNavigation';
-import ImageUpload from '../../Shared/components/FormElements/ImageUpload';
+import { AuthContext } from '../../Shared/context/auth-context';
+import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
 
 const EditClient = () => {
   const mode = useContext(DarkModeContext);
+  const auth = useContext(AuthContext)
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -38,7 +40,13 @@ const EditClient = () => {
     const fetchClient = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/athletes/${clientId}`
+          `http://localhost:5000/api/athletes/${clientId}`,
+          'GET',
+          null,
+          {
+            Authorization: 'Bearer ' + auth.token,
+          }
+        
         );
         setLoadedClient(responseData.athlete);
         setFormData(
@@ -53,7 +61,7 @@ const EditClient = () => {
       } catch (err) {}
     };
     fetchClient();
-  }, [sendRequest, clientId, setFormData]);
+  }, [sendRequest, clientId, setFormData, auth.token]);
 
   const clientUpdateSubmitHandler = async (event) => {
     event.preventDefault();
@@ -66,6 +74,8 @@ const EditClient = () => {
         }),
         {
           'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + auth.token
+
         }
       );
       history.push(`/${clientId}/checkins`);
@@ -74,12 +84,13 @@ const EditClient = () => {
 
   if (isLoading) {
     return (
-      <div className="center">
-        <Card>
-          <LoadingSpinner />
-        </Card>
-      </div>
-    );
+    <li className={mode.darkMode ? 'dark-client-item' : 'light-client-item'}>
+    <div className="center loaderOverlay">
+      <IconAnimation loading={isLoading} />
+    </div>
+    </li>
+
+    )
   }
 
   if (!loadedClient && !error) {

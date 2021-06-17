@@ -5,6 +5,26 @@ import MeasurementsCompare from '../MeasurementsCompare';
 
 const CaliperTotalsCarousel = props => {
   const mode = useContext(DarkModeContext)
+
+  const totalsHandler = (measurement) => {
+    let first, last;
+    let newArr = [...props.items]
+
+    props.items.forEach((item, index) => {
+      if (item[measurement]) {
+        first = item[measurement]
+        return
+      }
+    })
+
+    newArr.reverse().forEach((item, index) => {
+      if (item[measurement]) {
+        last = item[measurement]
+        return
+      }
+    })
+    return first - last
+  }
   
   return(
     <React.Fragment>
@@ -46,32 +66,25 @@ const CaliperTotalsCarousel = props => {
             >
               <p>TOTALS</p>
               <p>
-                {props.items[0].chest -
-                  props.items[props.items.length - 1].chest}
+                {totalsHandler('chest') || "-"}
               </p>
               <p>
-                {props.items[0].axilla -
-                  props.items[props.items.length - 1].axilla}
+                {totalsHandler('axilla') || "-"}
               </p>
               <p>
-                {props.items[0].tricep -
-                  props.items[props.items.length - 1].tricep}
+                {totalsHandler('tricep') || "-"}
               </p>
               <p>
-                {props.items[0].subscapular -
-                  props.items[props.items.length - 1].subscapular}
+                {totalsHandler('subscapular') || "-"}
               </p>
               <p>
-                {props.items[0].abdominal -
-                  props.items[props.items.length - 1].abdominal}
+                {totalsHandler('abdominal') || "-"}
               </p>
               <p>
-                {props.items[0].suprailiac -
-                  props.items[props.items.length - 1].suprailiac}
+                {totalsHandler('suprailiac') || "-"}
               </p>
               <p>
-                {props.items[0].thigh -
-                  props.items[props.items.length - 1].thigh}
+                {totalsHandler('thigh') || "-"}
               </p>
             </div>
           </div>

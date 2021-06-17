@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+@font-face {
+  font-family: 'Skyer';
+  src: local('Skyer'),
+    url(./Shared/Resources/Fonts/Skyer-Regular.otf) format('truetype');
+}
 :root {
   --dark-background: #2e2e2e;
   --light-background: rgb(225, 227, 228);
@@ -52,4 +58,41 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.box-fill {
+  height: 100%;
+  width: 100%;
+}
+
+.loaderOverlay {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scaled {
+  transform: scale(0.7); /* Equal to scaleX(2) scaleY(0.5) */
+  transform-origin: center;
+}
+
+.ultraScaled {
+  transform: scale(0.5);
+  transform-origin: center;
+}
+
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
