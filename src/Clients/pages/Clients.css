@@ -10,3 +10,29 @@
 .dark-client-page {
   background-color: var(--dark-background);
 }
+
+.dark-get-started-wrapper {
+  width: 100vw;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.dark-get-started-wrapper h1 {
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+  font-weight: lighter;
+}
+
+.light-get-started-wrapper {
+  width: 100vw;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.light-get-started-wrapper h1 {
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: black;
+  text-align: center;
+  font-weight: lighter;
+}

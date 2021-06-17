@@ -17,9 +17,12 @@ import CheckInMeasurements from '../components/new-checkin-components/CheckInMea
 import CheckInCardio from '../components/new-checkin-components/CheckInCardio';
 import CheckInFinal from '../components/new-checkin-components/CheckInFinal';
 import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
+import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
+import { AuthContext } from '../../Shared/context/auth-context';
 
 const NewCheckin = () => {
   const mode = useContext(DarkModeContext);
+  const auth = useContext(AuthContext)
 
   const [formTotal, setFormTotal] = useState({});
   const [pageNum, setPageNum] = useState(0);
@@ -115,7 +118,7 @@ const NewCheckin = () => {
     } else {
       setPageNum(7);
     }
-    console.log(newTotals);
+    
   };
 
   const sixthNext = (inputs) => {
@@ -127,7 +130,7 @@ const NewCheckin = () => {
     } else {
       setPageNum(7);
     }
-    console.log(formTotal)
+  
   };
 
   const seventhNext = (inputs) => {
@@ -138,8 +141,6 @@ const NewCheckin = () => {
   };
 
   const bodyFatHandler = (formState) => {
-    console.log(gender);
-    console.log(formState);
     const findSum = (formState) => {
       const {
         chest,
@@ -152,7 +153,6 @@ const NewCheckin = () => {
       } = formState.inputs;
 
       const age = formTotal.age.value;
-      console.log(age);
       const total =
         Number(chest.value) +
         Number(axilla.value) +
@@ -161,7 +161,6 @@ const NewCheckin = () => {
         Number(subscapular.value) +
         Number(thigh.value) +
         Number(suprailiac.value);
-      console.log(total);
       let yourFatAss;
       if (gender === '1') {
         yourFatAss =
@@ -180,7 +179,6 @@ const NewCheckin = () => {
               0.00012828 * age) -
           450;
       }
-      console.log(yourFatAss);
       return yourFatAss;
     };
     const theFat = findSum(formState);
@@ -247,7 +245,7 @@ const NewCheckin = () => {
       formTotal.cardio_sessions &&
         formData.append('cardioSessions', formTotal.cardio_sessions.value)
 
-      console.log(formData);
+    
       await sendRequest('http://localhost:5000/api/checkins', 'POST', formData);
       history.push('/' + client + '/checkins');
     } catch (err) {
@@ -258,9 +256,7 @@ const NewCheckin = () => {
   if (isLoading) {
     return (
     <li className={mode.darkMode ? 'dark-client-item' : 'light-client-item'}>
-    <div className="center loaderOverlay">
-      <IconAnimation loading={isLoading} />
-    </div>
+    {mode.darkMode ? <div className="center dark-loaderOverlay"><DarkIconAnimation loading={isLoading} /></div>: <div className="center loaderOverlay"><IconAnimation loading={isLoading} /></div>}
     </li>
 
     )

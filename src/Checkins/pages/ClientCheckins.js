@@ -51,7 +51,7 @@ return (
 <MainNavigation />
 <ErrorModal error={error} onClear={clearError} />
 {isLoading && (
-  <div className="center loaderOverlay">
+  <div className={mode.darkMode ? "cnter dark-loaderOverlay" : "center loaderOverlay"}>
     {mode.darkMode ? <DarkIconAnimation loading={isLoading} /> : <IconAnimation loading={isLoading} />}
   </div>
 )}

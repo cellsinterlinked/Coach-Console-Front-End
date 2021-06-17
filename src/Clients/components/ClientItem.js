@@ -53,15 +53,15 @@ const ClientItem = (props) => {
 
   return (
     <>
-    <ErrorModal error={error} onClear={clearError} />
+    {/* <ErrorModal error={error} onClear={clearError} /> */}
     <li className={mode.darkMode ? 'dark-client-item' : 'light-client-item'}>
       <Link to={`/${props.id}/checkins`}>
         <div className="client-background-image">
-          {loadedCheckins.length > 0 && (
+          {/* {loadedCheckins.length > 0 && (
             <div className="background-image-filter"></div>
-          )}
+          )} */}
           {loadedCheckins.length > 0 && (
-            <img
+            <img style={{filter: "grayscale(100%)"}}
               alt=""
               src={`http://localhost:5000/${loadedCheckins[loadedCheckins.length - 1].image[0]}`}
             />

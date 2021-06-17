@@ -81,9 +81,7 @@ const UpdateCheckin = () => {
 
   
   const bodyFatHandler = (formState) => {
-    console.log(gender);
-    console.log(formState);
-    const findSum = (formState) => {
+   const findSum = (formState) => {
       const {
         chest,
         axilla,
@@ -95,7 +93,7 @@ const UpdateCheckin = () => {
       } = formState.inputs;
 
       const age = formTotal.age.value;
-      console.log(age);
+     
       const total =
         Number(chest.value) +
         Number(axilla.value) +
@@ -123,7 +121,7 @@ const UpdateCheckin = () => {
               0.00012828 * age) -
           450;
       }
-      console.log(yourFatAss);
+     
       return yourFatAss;
     };
     const theFat = findSum(formState);
@@ -271,7 +269,7 @@ const UpdateCheckin = () => {
     if (isLoading) {
       return (
         <>
-        { !mode.darkMode && <div className="center loaderOverlay">
+        { !mode.darkMode && <div className="center dark-loaderOverlay">
           <IconAnimation loading={isLoading} />
         </div>}
     

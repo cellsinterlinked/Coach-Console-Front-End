@@ -619,3 +619,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.photoWarning {
+  color: red;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  width: 100%;
+}

@@ -12,6 +12,7 @@ import { AuthContext } from './Shared/context/auth-context';
 import { DarkModeContext } from './Shared/context/dark-mode-context';
 import CheckinPage from './Checkins/pages/CheckinPage';
 import { useAuth } from './Shared/hooks/auth-hook';
+import { modes } from 'react-transition-group/SwitchTransition';
 
 
 
@@ -101,7 +102,7 @@ function App() {
 			>
 				<Router>
 					{/* <MainNavigation /> */}
-					<main>{routes}</main>
+					<main className={darkMode ? "darkBacking" : "lightBacking"}>{routes}</main>
 				</Router>
 			</AuthContext.Provider>
       </DarkModeContext.Provider>

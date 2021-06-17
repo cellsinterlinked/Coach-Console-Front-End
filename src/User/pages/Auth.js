@@ -18,11 +18,15 @@ import Waves from '../../Shared/components/UIElements/Waves';
 import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
 import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
 
+
+
+
 const Auth = (props) => {
   const auth = useContext(AuthContext);
   const mode = useContext(DarkModeContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -58,6 +62,8 @@ const Auth = (props) => {
     }
     setIsLoginMode((prevMode) => !prevMode);
   };
+
+
 
   const authSubmitHandler = async (event) => {
     event.preventDefault();
@@ -100,12 +106,14 @@ const Auth = (props) => {
 
   if (isLoading) {
     return (
-    <div className="center loaderOverlay">
+    <div className={mode.darkMode ? "center dark-loaderOverlay" : "center loaderOverlay"}>
       {!mode.darkMode && <IconAnimation loading={isLoading}/>}
       {mode.darkMode && <DarkIconAnimation loading={isLoading}/>}
     </div>
     )
   }
+
+
 
   return (
     <div style={{animation: "pageEnter 1s"}}>

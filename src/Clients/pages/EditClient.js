@@ -13,6 +13,7 @@ import { DarkModeContext } from '../../Shared/context/dark-mode-context';
 import MainNavigation from '../../Shared/components/Navigation/MainNavigation';
 import { AuthContext } from '../../Shared/context/auth-context';
 import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
+import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
 
 const EditClient = () => {
   const mode = useContext(DarkModeContext);
@@ -85,9 +86,11 @@ const EditClient = () => {
   if (isLoading) {
     return (
     <li className={mode.darkMode ? 'dark-client-item' : 'light-client-item'}>
-    <div className="center loaderOverlay">
+    {mode.darkMode ? <div className="center dark-loaderOverlay">
+      <DarkIconAnimation loading={isLoading} />
+    </div> : <div className="center loaderOverlay">
       <IconAnimation loading={isLoading} />
-    </div>
+    </div>}
     </li>
 
     )

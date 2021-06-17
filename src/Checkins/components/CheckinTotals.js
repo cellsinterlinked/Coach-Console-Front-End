@@ -94,7 +94,7 @@ const CheckinTotals = props => {
       <div
         className={mode.darkMode ? "dark-totals-card" : "light-totals-card"}
       >
-        {isLoading && mode.darkMode && <div className="center loaderOverlay"><DarkIconAnimation  loading={isLoading} /> </div>}
+        {isLoading && mode.darkMode && <div className="center dark-loaderOverlay"><DarkIconAnimation  loading={isLoading} /> </div>}
         {isLoading && !mode.darkMode && <div className="center loaderOverlay"><IconAnimation  loading={isLoading} /> </div>}
 
           <div className="client-personal-bubble-header">

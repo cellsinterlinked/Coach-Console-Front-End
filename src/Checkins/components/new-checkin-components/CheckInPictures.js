@@ -26,7 +26,7 @@ const CheckinPictures = ({next}) => {
       setImageArray(replacement)
       // setParentPreview(null)
       // error handling that says no more than six photos.
-      console.log(imageArray)
+     
     }
 
     
@@ -34,7 +34,7 @@ const CheckinPictures = ({next}) => {
     const submitHandler = (e) => {
       e.preventDefault()
       next(imageArray)
-      console.log(imageArray)
+      
     }
 
   return (
@@ -67,12 +67,13 @@ const CheckinPictures = ({next}) => {
           </Button>
           </div>
 
+          {imageArray.length === 6 && <p className="photoWarning">Maximum of 6 Photos!</p>}
 
      
         <div className="submit-checkin" style={{marginTop: "2rem"}}>
           <Button
             type="submit"
-            disabled={!formState.isValid}
+            disabled={!formState.isValid || imageArray.length === 0}
           >
             Next
           </Button>

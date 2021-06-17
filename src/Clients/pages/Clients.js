@@ -8,10 +8,13 @@ import MainNavigation from '../../Shared/components/Navigation/MainNavigation';
 import { AuthContext } from '../../Shared/context/auth-context';
 import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
 import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
+import IconEntrance from '../../Shared/components/UIElements/IconEntrance';
+import Button from '../../Shared/components/FormElements/Button';
 
 const Clients = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedAthletes, setLoadedAthletes] = useState();
+  const [intro, setIntro] =  useState(true)
 
   const mode = useContext(DarkModeContext);
   const auth = useContext(AuthContext);
@@ -33,20 +36,33 @@ const Clients = () => {
     fetchAthletes();
   }, [auth.token, sendRequest]);
 
-  if (isLoading) {
+  setTimeout(function() {
+    setIntro(false)
+  }, 6000)
+
+  
+  if(intro) {
     return (
-      <>
-    { !mode.darkMode && <div className="center loaderOverlay">
-      <IconAnimation loading={isLoading} />
-    </div>}
+      <div className={mode.darkMode ? "center dark-loaderOverlay loaderFade" : "center loaderOverlay loaderFade"}>
+      <IconEntrance cancel={setIntro}/>
+    </div>
 
-    {mode.darkMode && <div className="center loaderOverlay">
-      <DarkIconAnimation loading={isLoading} />
-    </div>}
-    </>
-    )
-  }
+)
+}
 
+if (isLoading && !intro) {
+  return (
+    <>
+  { !mode.darkMode && <div className="center loaderOverlay">
+    <IconAnimation loading={isLoading} />
+  </div>}
+
+  {mode.darkMode && <div className="center loaderOverlay">
+    <DarkIconAnimation loading={isLoading} />
+  </div>}
+  </>
+  )
+}
   return (
     <div style={{animation: "pageEnter 1s"}}>
       <MainNavigation />
@@ -64,7 +80,12 @@ const Clients = () => {
           </div>
         )} */}
         {!isLoading && loadedAthletes && <ClientList items={loadedAthletes} />}
-       
+        {!isLoading && !loadedAthletes && <div className={mode.darkMode ? "dark-get-started-wrapper" : "light-get-started-wrapper"}>
+          <h1>Get Started By Creating Your First Client!</h1>
+          <div style={{margin: "auto", width: "10rem"}}>
+          <Button to='/newclient'>NEW CLIENT</Button>
+          </div>
+        </div>}
       </div>
     </div>
   );

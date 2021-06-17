@@ -55,7 +55,6 @@ const CheckinPage = () => {
           (checkin) => checkin.id === checkinId
         );
         setPreviousCheckin(responseData.checkins[checkinIndex - 1]);
-        console.log(responseData.checkins);
       } catch (err) {
         console.log(err)
       }
@@ -97,7 +96,7 @@ const CheckinPage = () => {
       <IconAnimation loading={isLoading} />
     </div>}
 
-    {mode.darkMode && <div className="center loaderOverlay">
+    {mode.darkMode && <div className="center dark-loaderOverlay">
       <DarkIconAnimation loading={isLoading} />
     </div>}
     </>
