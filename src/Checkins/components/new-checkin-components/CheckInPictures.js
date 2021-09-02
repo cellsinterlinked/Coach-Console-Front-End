@@ -4,6 +4,7 @@ import { useForm } from '../../../Shared/hooks/form-hook';
 import '../../pages/CheckinForm.css'
 import { DarkModeContext } from '../../../Shared/context/dark-mode-context'
 import ImageUpload from '../../../Shared/components/FormElements/ImageUpload'
+import Axios from 'axios'
 
 
 const CheckinPictures = ({next}) => {
@@ -21,11 +22,32 @@ const CheckinPictures = ({next}) => {
     const [imageArray, setImageArray] = useState([]);
     const [parentPreview, setParentPreview] = useState(null)
 
-    const arrayHandler = () => {
-      const replacement = [...imageArray, {value: formState.inputs.image.value, url:parentPreview}]
+    const arrayHandler = async () => {
+
+    let res
+
+    async function uploadImage() {
+      const formData = new FormData();
+      
+      formData.append("upload_preset", "coach-console-athletes")
+      formData.append('file', formState.inputs.image.value)
+      formData.append('cloud_name', "dbnapmpvm")
+      try {
+          res = await Axios.post("https://api.cloudinary.com/v1_1/dbnapmpvm/image/upload", 
+          formData
+        )
+        } catch (err) {
+            console.log("cloudinary didn't work")
+          }
+        }
+        await uploadImage()
+      
+      
+      // const replacement = [...imageArray, {value: res.data.url, url:res.data.url}]
+      const replacement = [...imageArray, res.data.url]
       setImageArray(replacement)
-      // setParentPreview(null)
-      // error handling that says no more than six photos.
+      setParentPreview(null)
+     
      
     }
 
@@ -51,7 +73,7 @@ const CheckinPictures = ({next}) => {
         </div>
 
         <div className="photo-list-prev-wrapper">
-          {imageArray.length > 0 && imageArray.map((picture, index )=> <div key={index}className="photo-list-prev-box"><img alt="" src={picture.url} /></div>)}
+          {imageArray.length > 0 && imageArray.map((picture, index )=> <div key={index}className="photo-list-prev-box"><img alt="" src={picture} /></div>)}
 
         </div>
         

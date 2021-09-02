@@ -8,6 +8,8 @@ import { AuthContext } from '../../Shared/context/auth-context';
 import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
 import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
 import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
+
+
 const ClientItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedCheckins, setLoadedCheckins] = useState([]);
@@ -23,22 +25,23 @@ const ClientItem = (props) => {
           'GET',
           null,
           {
-            Authorization: auth.token
+            Authorization: 'Bearer ' + auth.token
           }
 
         );
         setLoadedCheckins(responseData.checkins);
+        setLastCheckin(responseData.checkins[responseData.checkins.length - 1])
       } catch (err) {}
     };
     fetchCheckins();
-  }, [auth.token, props.Id, props.id, sendRequest, setLoadedCheckins]);
+  }, [auth.token, props.id, sendRequest ]);
 
-  useEffect(() => {
-    if (loadedCheckins) {
-      setLastCheckin(loadedCheckins[loadedCheckins.length - 1]);
-      console.log(loadedCheckins[loadedCheckins.length - 1]);
-    }
-  }, [loadedCheckins]);
+  // useEffect(() => {
+  //   if (loadedCheckins) {
+  //     setLastCheckin(loadedCheckins[loadedCheckins.length - 1]);
+  //     console.log(loadedCheckins[loadedCheckins.length - 1]);
+  //   }
+  // }, [loadedCheckins]);
 
   if (isLoading) {
     return (
@@ -55,7 +58,7 @@ const ClientItem = (props) => {
     <>
     {/* <ErrorModal error={error} onClear={clearError} /> */}
     <li className={mode.darkMode ? 'dark-client-item' : 'light-client-item'}>
-      <Link to={`/${props.id}/checkins`}>
+      <Link to={`/${props.id}/checkins`} >
         <div className="client-background-image">
           {/* {loadedCheckins.length > 0 && (
             <div className="background-image-filter"></div>
@@ -78,7 +81,7 @@ const ClientItem = (props) => {
           }
         >
           <Avatar
-            image={`http://localhost:5000/${props.image}`}
+            image={props.image}
             alt={props.name}
           />
         </div>

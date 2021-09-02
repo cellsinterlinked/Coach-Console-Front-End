@@ -19,6 +19,8 @@ import { modes } from 'react-transition-group/SwitchTransition';
 function App() {
   const [darkMode, setDarkMode] = useState(localStorage.getItem('darkTheme') ? JSON.parse(localStorage.getItem('darkTheme')) : false);
   const { token, login, logout, userId} = useAuth();
+
+  
   
   
   const toggleDark = useCallback(() => {
@@ -40,15 +42,15 @@ function App() {
         <ClientCheckins/>
       </Route>
 
-      <Route path='/clients'>
+      <Route path='/clients' exact>
         <Clients />
       </Route>
 
-      <Route path='/newclient'>
+      <Route path='/newclient' exact>
         <NewClient />
       </Route>
 
-      <Route path='/:clientId/editclient'>
+      <Route path='/:clientId/editclient' exact>
         <EditClient />
       </Route>
 
@@ -60,7 +62,7 @@ function App() {
         <UpdateCheckin/>
       </Route>
 
-      <Route path='/:clientId/:checkinId' exact>
+      <Route path='/:clientId/:checkinId'>
         <CheckinPage/>
       </Route>
       <Redirect to='/clients' />
@@ -103,6 +105,7 @@ function App() {
 				<Router>
 					{/* <MainNavigation /> */}
 					<main className={darkMode ? "darkBacking" : "lightBacking"}>{routes}</main>
+          {/* {routes} */}
 				</Router>
 			</AuthContext.Provider>
       </DarkModeContext.Provider>

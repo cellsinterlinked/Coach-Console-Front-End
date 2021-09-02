@@ -19,6 +19,7 @@ import CheckInFinal from '../components/new-checkin-components/CheckInFinal';
 import IconAnimation from '../../Shared/components/UIElements/IconAnimation';
 import DarkIconAnimation from '../../Shared/components/UIElements/DarkIconAnimation';
 import { AuthContext } from '../../Shared/context/auth-context';
+import Axios from 'axios'
 
 const NewCheckin = () => {
   const mode = useContext(DarkModeContext);
@@ -193,63 +194,80 @@ const NewCheckin = () => {
 
   const checkinSubmitHandler = async (event) => {
     event.preventDefault();
+    let results;
+    // const formData = new FormData();
 
-    try {
-      const formData = new FormData();
-      formTotal.date && formData.append('date', formTotal.date.value);
-      formTotal.weight && formData.append('weight', formTotal.weight.value);
-      finalFat && formData.append('bodyFat', finalFat);
-      formTotal.weeks && formData.append('weeksOut', formTotal.weeks.value);
-      formData.append('athlete', client);
-
-      if (formTotal.images) {
-        formTotal.images.forEach((image) =>
-          formData.append('image', image.value)
-        );
-      }
-      gender && formData.append('gender', gender)
-      formTotal.age && formData.append('age', formTotal.age.value)
-      formTotal.chest && formData.append('chest', formTotal.chest.value);
-      formTotal.axilla && formData.append('axilla', formTotal.axilla.value);
-      formTotal.tricep && formData.append('tricep', formTotal.tricep.value);
-      formTotal.subscapular &&
-        formData.append('subscapular', formTotal.subscapular.value);
-      formTotal.abdominal &&
-        formData.append('abdominal', formTotal.abdominal.value);
-      formTotal.suprailiac &&
-        formData.append('suprailiac', formTotal.suprailiac.value);
-      formTotal.thigh && formData.append('thigh', formTotal.thigh.value);
-      formTotal.notes && formData.append('notes', formTotal.notes.value);
-      finalFatMass && formData.append('fatMass', finalFatMass);
-      finalLeanBodyMass && formData.append('leanBodyMass', finalLeanBodyMass);
-      formTotal.neck_inch &&
-        formData.append('neckMeasure', formTotal.neck_inch.value);
-      formTotal.arm_inch &&
-        formData.append('armMeasure', formTotal.arm_inch.value);
-      formTotal.chest_inch &&
-        formData.append('chestMeasure', formTotal.chest_inch.value);
-      formTotal.waist_inch &&
-        formData.append('waistMeasure', formTotal.waist_inch.value);
-      formTotal.hips_inch &&
-        formData.append('hipsMeasure', formTotal.hips_inch.value);
-      formTotal.thigh_inch &&
-        formData.append('thighMeasure', formTotal.thigh_inch.value);
-      formTotal.calf_inch &&
-        formData.append('calfMeasure', formTotal.calf_inch.value);
-      formTotal.cardio_duration &&
-        formData.append('cardioDuration', formTotal.cardio_duration.value);
-      formTotal.cardio_calories &&
-        formData.append('cardioCalories', formTotal.cardio_calories.value);
-      formTotal.cardio_type &&
-        formData.append('cardioType', formTotal.cardio_type.value)
-      formTotal.cardio_sessions &&
-        formData.append('cardioSessions', formTotal.cardio_sessions.value)
+    //   formData.append('date', formTotal.date.value);
+    //   formData.append('weight', formTotal.weight.value);
+    //   formData.append('weeksOut', formTotal.weeks.value);
+    //   formData.append('athlete', client);
+      
+    //   finalFat && formData.append('bodyFat', finalFat);
+    //   formTotal.images && formData.append('images', formTotal.images)
+        
+      
+    //   gender && formData.append('gender', gender)
+    //   formTotal.age && formData.append('age', formTotal.age.value)
+    //   formTotal.chest && formData.append('chest', formTotal.chest.value);
+    //   formTotal.axilla && formData.append('axilla', formTotal.axilla.value);
+    //   formTotal.tricep && formData.append('tricep', formTotal.tricep.value);
+    //   formTotal.subscapular &&
+    //     formData.append('subscapular', formTotal.subscapular.value);
+    //     formTotal.abdominal &&
+    //     formData.append('abdominal', formTotal.abdominal.value);
+    //     formTotal.suprailiac &&
+    //     formData.append('suprailiac', formTotal.suprailiac.value);
+    //     formTotal.thigh && formData.append('thigh', formTotal.thigh.value);
+    //   formTotal.notes && formData.append('notes', formTotal.notes.value);
+    //   finalFatMass && formData.append('fatMass', finalFatMass);
+    //   finalLeanBodyMass && formData.append('leanBodyMass', finalLeanBodyMass);
+    //   formTotal.neck_inch &&
+    //   formData.append('neckMeasure', formTotal.neck_inch.value);
+    //   formTotal.arm_inch &&
+    //   formData.append('armMeasure', formTotal.arm_inch.value);
+    //   formTotal.chest_inch &&
+    //   formData.append('chestMeasure', formTotal.chest_inch.value);
+    //   formTotal.waist_inch &&
+    //     formData.append('waistMeasure', formTotal.waist_inch.value);
+    //   formTotal.hips_inch &&
+    //   formData.append('hipsMeasure', formTotal.hips_inch.value);
+    //   formTotal.thigh_inch &&
+    //     formData.append('thighMeasure', formTotal.thigh_inch.value);
+    //   formTotal.calf_inch &&
+    //     formData.append('calfMeasure', formTotal.calf_inch.value);
+    //     formTotal.cardio_duration &&
+    //     formData.append('cardioDuration', formTotal.cardio_duration.value);
+    //   formTotal.cardio_calories &&
+    //     formData.append('cardioCalories', formTotal.cardio_calories.value);
+    //     formTotal.cardio_type &&
+    //     formData.append('cardioType', formTotal.cardio_type.value)
+    //   formTotal.cardio_sessions &&
+    //   formData.append('cardioSessions', formTotal.cardio_sessions.value)
 
     
-      await sendRequest('http://localhost:5000/api/checkins', 'POST', formData);
-      history.push('/' + client + '/checkins');
+      try {
+      results = await Axios.post(
+        'http://localhost:5000/api/checkins',
+        {date: formTotal.date.value,
+         weight: formTotal.weight.value,
+         weeksOut: formTotal.weeks.value,
+         athlete:  client,
+         images: formTotal.images,
+         gender: gender,
+         age: formTotal.age.value 
+        }, 
+
+        
+        {headers: {Authorization: 'Bearer ' + auth.token}});
     } catch (err) {
-      console.log(err);
+      console.log({date: formTotal.date.value,
+        weight: formTotal.weight.value,
+        weeksOut: formTotal.weeks.value,
+        athlete:  client,
+        images: formTotal.images,
+        gender: gender,
+        age: formTotal.age.value 
+       });
     }
   };
 
