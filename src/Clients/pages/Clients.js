@@ -12,13 +12,13 @@ import IconEntrance from '../../Shared/components/UIElements/IconEntrance';
 import Button from '../../Shared/components/FormElements/Button';
 
 const Clients = () => {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [loadedAthletes, setLoadedAthletes] = useState();
-  const [intro, setIntro] =  useState(true)
-
   const mode = useContext(DarkModeContext);
   const auth = useContext(AuthContext);
-
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [loadedAthletes, setLoadedAthletes] = useState();
+  const [intro, setIntro] =  useState(localStorage.getItem('intro') ? false : true)
+ 
+  
   useEffect(() => {
     const fetchAthletes = async () => {
       try {
@@ -88,6 +88,7 @@ if (isLoading && !intro) {
         </div>}
       </div>
     </div>
+    
   );
 };
 

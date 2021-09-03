@@ -43,13 +43,13 @@ return (
     <Link key={index} className={mode.darkMode ? "dark-checkin-card" : "light-checkin-card"} to={`/${clientId}/${checkin.id}`}>
       <div className="filter"></div>
       <div className="checkin-card-backdrop">
-        {checkin.image[0] && <img alt="" src={`http://localhost:5000/${checkin.image[0]}`} />}
+        {checkin.image[0] && <img alt="" src={checkin.image[0]} />}
         {!checkin.image[0] && <img alt="" src={Silhouette}></img>}
       </div>
     <p className={mode.darkMode ? "dark-checkin-card-date" : "light-checkin-card-date"}>{checkin.date.slice(0, 10)}</p>
 
     {checkin.image && checkin.image.map((image, index) => <div key={index} className={`checkin-card-img-wrapper p${index + 1}`}>
-    <img alt={Silhouette} src={`http://localhost:5000/${image}`} />
+    <img alt={Silhouette} src={image} />
     </div> )}
 
     {!checkin.image[0] && <div className="checkin-card-img-wrapper ">

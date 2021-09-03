@@ -98,7 +98,7 @@ const CheckinTotals = props => {
         {isLoading && !mode.darkMode && <div className="center loaderOverlay"><IconAnimation  loading={isLoading} /> </div>}
 
           <div className="client-personal-bubble-header">
-            {athleteInfo && <img alt="" src={`http://localhost:5000/${athleteInfo.image}`}/>}
+            {athleteInfo && <img alt="" src={athleteInfo.image}/>}
 
           </div>
 

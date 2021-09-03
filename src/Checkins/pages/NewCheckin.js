@@ -194,81 +194,74 @@ const NewCheckin = () => {
 
   const checkinSubmitHandler = async (event) => {
     event.preventDefault();
-    let results;
-    // const formData = new FormData();
-
-    //   formData.append('date', formTotal.date.value);
-    //   formData.append('weight', formTotal.weight.value);
-    //   formData.append('weeksOut', formTotal.weeks.value);
-    //   formData.append('athlete', client);
-      
-    //   finalFat && formData.append('bodyFat', finalFat);
-    //   formTotal.images && formData.append('images', formTotal.images)
-        
-      
-    //   gender && formData.append('gender', gender)
-    //   formTotal.age && formData.append('age', formTotal.age.value)
-    //   formTotal.chest && formData.append('chest', formTotal.chest.value);
-    //   formTotal.axilla && formData.append('axilla', formTotal.axilla.value);
-    //   formTotal.tricep && formData.append('tricep', formTotal.tricep.value);
-    //   formTotal.subscapular &&
-    //     formData.append('subscapular', formTotal.subscapular.value);
-    //     formTotal.abdominal &&
-    //     formData.append('abdominal', formTotal.abdominal.value);
-    //     formTotal.suprailiac &&
-    //     formData.append('suprailiac', formTotal.suprailiac.value);
-    //     formTotal.thigh && formData.append('thigh', formTotal.thigh.value);
-    //   formTotal.notes && formData.append('notes', formTotal.notes.value);
-    //   finalFatMass && formData.append('fatMass', finalFatMass);
-    //   finalLeanBodyMass && formData.append('leanBodyMass', finalLeanBodyMass);
-    //   formTotal.neck_inch &&
-    //   formData.append('neckMeasure', formTotal.neck_inch.value);
-    //   formTotal.arm_inch &&
-    //   formData.append('armMeasure', formTotal.arm_inch.value);
-    //   formTotal.chest_inch &&
-    //   formData.append('chestMeasure', formTotal.chest_inch.value);
-    //   formTotal.waist_inch &&
-    //     formData.append('waistMeasure', formTotal.waist_inch.value);
-    //   formTotal.hips_inch &&
-    //   formData.append('hipsMeasure', formTotal.hips_inch.value);
-    //   formTotal.thigh_inch &&
-    //     formData.append('thighMeasure', formTotal.thigh_inch.value);
-    //   formTotal.calf_inch &&
-    //     formData.append('calfMeasure', formTotal.calf_inch.value);
-    //     formTotal.cardio_duration &&
-    //     formData.append('cardioDuration', formTotal.cardio_duration.value);
-    //   formTotal.cardio_calories &&
-    //     formData.append('cardioCalories', formTotal.cardio_calories.value);
-    //     formTotal.cardio_type &&
-    //     formData.append('cardioType', formTotal.cardio_type.value)
-    //   formTotal.cardio_sessions &&
-    //   formData.append('cardioSessions', formTotal.cardio_sessions.value)
-
-    
-      try {
-      results = await Axios.post(
-        'http://localhost:5000/api/checkins',
-        {date: formTotal.date.value,
-         weight: formTotal.weight.value,
-         weeksOut: formTotal.weeks.value,
-         athlete:  client,
-         images: formTotal.images,
-         gender: gender,
-         age: formTotal.age.value 
-        }, 
-
-        
-        {headers: {Authorization: 'Bearer ' + auth.token}});
-    } catch (err) {
-      console.log({date: formTotal.date.value,
-        weight: formTotal.weight.value,
-        weeksOut: formTotal.weeks.value,
-        athlete:  client,
-        images: formTotal.images,
-        gender: gender,
-        age: formTotal.age.value 
-       });
+    let newBody = {
+      date: formTotal.date.value,
+      weight: formTotal.weight.value,
+      weeksOut: formTotal.weeks.value,
+      athlete: client,
+      gender: gender,
+      age: formTotal.age.value
     }
+
+    if (finalFat) {
+      newBody = {...newBody, 
+      bodyFat: finalFat,
+      chest: formTotal.chest.value,
+      axilla: formTotal.axilla.value,
+      tricep: formTotal.tricep.value,
+      subscapular: formTotal.subscapular.value,
+      abdominal: formTotal.abdominal.value,
+      suprailiac: formTotal.suprailiac.value,
+      thigh: formTotal.thigh.value,
+      fatMass: finalFatMass,
+      leanBodyMass: finalLeanBodyMass
+    }
+  }
+
+    if (formTotal.notes) {
+      newBody = {...newBody, notes: formTotal.notes.value}
+    }
+
+  if (formTotal.neck_inch) {
+    newBody = {...newBody, 
+      neckMeasure: formTotal.neck_inch.value,
+      armMeasure: formTotal.arm_inch.value,
+      chestMeasure: formTotal.chest_inch.value,
+      waistMeasure: formTotal.waist_inch.value,
+      hipsMeasure: formTotal.hips_inch.value,
+      thighMeasure: formTotal.thigh_inch.value,
+      calfMeasure: formTotal.calf_inch.value
+    
+    }
+  }
+
+  if (formTotal.cardio_duration) {
+    newBody = {...newBody, 
+      cardioDuration: formTotal.cardio_duration.value,
+      cardioCalories: formTotal.cardio_calories.value,
+      cardioType: formTotal.cardio_type.value,
+      cardioSessions: formTotal.cardio_sessions.value
+    }
+  }
+
+  if (formTotal.images) {
+    newBody = {...newBody,
+    images: formTotal.images
+    }
+  }
+
+    let results;
+    async function sendCheckin() {
+      try {
+      results = await Axios.post("http://localhost:5000/api/checkins", newBody, {headers: {Authorization: 'Bearer ' + auth.token}})
+      } catch (err) {
+      console.log(err, results, newBody)
+    }
+      
+
+    }
+    await sendCheckin()
+    history.push(`/${client}/checkins`);
   };
 
   if (isLoading) {

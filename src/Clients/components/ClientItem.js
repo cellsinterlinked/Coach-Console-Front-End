@@ -66,7 +66,7 @@ const ClientItem = (props) => {
           {loadedCheckins.length > 0 && (
             <img style={{filter: "grayscale(100%)"}}
               alt=""
-              src={`http://localhost:5000/${loadedCheckins[loadedCheckins.length - 1].image[0]}`}
+              src={loadedCheckins[loadedCheckins.length - 1].image[0]}
             />
           )}
           {loadedCheckins.length === 0 && (

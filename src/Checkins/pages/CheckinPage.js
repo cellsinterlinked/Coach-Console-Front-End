@@ -749,10 +749,10 @@ const CheckinPage = () => {
                   <p style={{ color: mode.darkMode ? 'white' : 'black' }}>
                     Previous Check In
                   </p>
-                  <img
-                    src={`http://localhost:5000/${previousCheckin.image[prevBigPic]}`}
+                  {previousCheckin && previousCheckin.image[0] && <img
+                    src={previousCheckin.image[prevBigPic]}
                     alt=""
-                  />
+                  />}
                 </div>
 
                 <div className="picture-info-column">
@@ -760,23 +760,23 @@ const CheckinPage = () => {
                     Current Check In
                   </p>
                   <img
-                    src={`http://localhost:5000/${exactCheckin[0].image[newBigPic]}`}
+                    src={exactCheckin[0].image[newBigPic]}
                     alt=""
                   />
                 </div>
 
                 <div className="picture-preview-wrapper">
-                  <div className="picture-preview-list">
+                  {previousCheckin && previousCheckin.image[0] ? <div className="picture-preview-list">
                     {previousCheckin.image.map((picture, index) => (
                       <div key={picture} className="kitten-wrapper">
                         <img
                           onClick={() => setPrevBigPic(index)}
                           alt=""
-                          src={`http://localhost:5000/${picture}`}
+                          src={picture}
                         />
                       </div>
                     ))}
-                  </div>
+                  </div> : <div className="picture-preview-list"></div>}
 
                   <div className="picture-preview-list">
                     {exactCheckin[0].image.map((picture, index) => (
@@ -784,7 +784,7 @@ const CheckinPage = () => {
                         <img
                           onClick={() => setNewBigPic(index)}
                           alt=""
-                          src={`http://localhost:5000/${picture}`}
+                          src={picture}
                         />
                       </div>
                     ))}

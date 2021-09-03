@@ -7,12 +7,14 @@ const IconEntrance = ({cancel}) => {
   const [loading, setLoading] = useState(true);
   const mode = useContext(DarkModeContext)
 
+
   const loadingHandler = () => {
     cancel(false)
   }
 
   setTimeout(function() {
     setLoading(false)
+    localStorage.setItem('intro', JSON.stringify("DONE"))
   }, 3000)
 
   return (

@@ -18,7 +18,7 @@ import { modes } from 'react-transition-group/SwitchTransition';
 
 function App() {
   const [darkMode, setDarkMode] = useState(localStorage.getItem('darkTheme') ? JSON.parse(localStorage.getItem('darkTheme')) : false);
-  const { token, login, logout, userId} = useAuth();
+  const { token, login, logout, userId, tokenExpirationDate} = useAuth();
 
   
   
@@ -100,6 +100,7 @@ function App() {
 					userId: userId,
 					login: login,
 					logout: logout,
+          tokenExpirationDate: tokenExpirationDate
 				}}
 			>
 				<Router>
