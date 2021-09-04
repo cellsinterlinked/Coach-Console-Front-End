@@ -28,7 +28,7 @@ const CheckinTotals = props => {
     const fetchAthlete = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/athletes/${clientId}`,
+          process.env.REACT_APP_BACKEND_URL + `/athletes/${clientId}`,
           'GET',
           null,
           {
@@ -54,7 +54,7 @@ const CheckinTotals = props => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/athletes/${props.clientId}`,
+        process.env.REACT_APP_BACKEND_URL + `/athletes/${props.clientId}`,
         "DELETE",
         null,
         {

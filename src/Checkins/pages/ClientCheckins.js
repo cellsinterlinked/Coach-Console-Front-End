@@ -22,7 +22,7 @@ const ClientCheckins = props => {
   useEffect(() => {
     const fetchCheckins = async () => {
       try {
-        const responseData = await sendRequest(`http://localhost:5000/api/checkins/athlete/${clientId}`,
+        const responseData = await sendRequest(process.env.REACT_APP_BACKEND_URL + `/checkins/athlete/${clientId}`,
         'GET',
         null,
         {

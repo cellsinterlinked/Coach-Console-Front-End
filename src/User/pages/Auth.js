@@ -71,7 +71,7 @@ const Auth = (props) => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          'http://localhost:5000/api/user/login',
+          process.env.REACT_APP_BACKEND_URL + '/user/login',
           'POST',
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -87,7 +87,7 @@ const Auth = (props) => {
     } else {
       try {
         const responseData = await sendRequest(
-          'http://localhost:5000/api/user/signup',
+          process.env.REACT_APP_BACKEND_URL + '/user/signup',
           'POST',
           JSON.stringify({
             name: formState.inputs.name.value,

@@ -48,7 +48,7 @@ const clientSubmitHandler = async(event) => {
     formData.append("upload_preset", "coach-console-athletes")
     formData.append('cloud_name', "dbnapmpvm")
     try {
-        res = await Axios.post("https://api.cloudinary.com/v1_1/dbnapmpvm/image/upload", 
+        res = await Axios.post(process.env.REACT_APP_CLOUDINARY_URL, 
         formData
       )
       } catch (err) {
@@ -61,7 +61,7 @@ const clientSubmitHandler = async(event) => {
       let responseData
       try {
         responseData = await Axios.post(
-          'http://localhost:5000/api/athletes', 
+          process.env.REACT_APP_BACKEND_URL + '/athletes', 
           {name: formState.inputs.name.value, creator: auth.userId, image: res.data.url}, 
           {headers: {Authorization: 'Bearer ' + auth.token}})
         } catch (err) {

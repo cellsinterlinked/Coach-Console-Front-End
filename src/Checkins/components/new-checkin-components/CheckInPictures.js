@@ -33,7 +33,7 @@ const CheckinPictures = ({next}) => {
       formData.append('file', formState.inputs.image.value)
       formData.append('cloud_name', "dbnapmpvm")
       try {
-          res = await Axios.post("https://api.cloudinary.com/v1_1/dbnapmpvm/image/upload", 
+          res = await Axios.post(process.env.REACT_APP_CLOUDINARY_URL, 
           formData
         )
         } catch (err) {

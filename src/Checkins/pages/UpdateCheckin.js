@@ -52,7 +52,7 @@ const UpdateCheckin = () => {
   useEffect(() => {
     const fetchCheckin = async () => {
       try {
-        const responseData = await sendRequest(`http://localhost:5000/api/checkins/${checkinId}`,
+        const responseData = await sendRequest(process.env.REACT_APP_BACKEND_URL + `/checkins/${checkinId}`,
         'GET',
         null,
         {
@@ -182,7 +182,7 @@ const UpdateCheckin = () => {
       formTotal.cardio_sessions &&
         formData.append('cardioSessions', formTotal.cardio_sessions.value)
         await sendRequest(
-          `http://localhost:5000/api/checkins/${checkinId}`,
+          process.env.REACT_APP_BACKEND_URL + `/checkins/${checkinId}`,
           'PATCH',
           formData,
           {

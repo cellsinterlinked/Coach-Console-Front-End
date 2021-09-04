@@ -253,7 +253,7 @@ const NewCheckin = () => {
     let results;
     async function sendCheckin() {
       try {
-      results = await Axios.post("http://localhost:5000/api/checkins", newBody, {headers: {Authorization: 'Bearer ' + auth.token}})
+      results = await Axios.post(process.env.REACT_APP_BACKEND_URL + "/checkins", newBody, {headers: {Authorization: 'Bearer ' + auth.token}})
       } catch (err) {
       console.log(err, results, newBody)
     }

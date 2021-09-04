@@ -40,7 +40,7 @@ const CheckinPage = () => {
     const fetchCheckins = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/checkins/athlete/${clientId}`,
+          process.env.REACT_APP_BACKEND_URL + `/checkins/athlete/${clientId}`,
           'GET',
           null,
           {
@@ -78,7 +78,7 @@ const CheckinPage = () => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/checkins/${checkinId}`,
+        process.env.REACT_APP_BACKEND_URL + `/checkins/${checkinId}`,
         "DELETE",
         null,
         {

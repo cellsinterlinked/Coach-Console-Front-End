@@ -41,7 +41,7 @@ const EditClient = () => {
     const fetchClient = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/athletes/${clientId}`,
+          process.env.REACT_APP_BACKEND_URL + `/athletes/${clientId}`,
           'GET',
           null,
           {
@@ -68,7 +68,7 @@ const EditClient = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/athletes/${clientId}`,
+        process.env.REACT_APP_BACKEND_URL + `/athletes/${clientId}`,
         'PATCH',
         JSON.stringify({
           name: formState.inputs.name.value,
