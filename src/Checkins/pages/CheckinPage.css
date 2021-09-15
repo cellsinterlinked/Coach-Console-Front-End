@@ -277,7 +277,7 @@
   border-radius: 2rem;
   box-shadow: -3px -3px 8px white, 3px 3px 8px black;
   min-height: 18rem;
-  animation: fadeIn 2s;
+  animation: fadeIn 2s forwards;
   border: none;
 }
 
@@ -289,7 +289,7 @@
   border-radius: 2rem;
   box-shadow: -2px -2px 4px rgba(255, 255, 255, 0.233), 3px 3px 8px black;
   min-height: 18rem;
-  animation: fadeIn 2s;
+  animation: fadeIn 2s forwards;
 }
 
 .checkin-stats-wrapper {
