@@ -97,6 +97,8 @@
 
   transform: translateX(-100%);
   transition: transform 0.3s ease;
+  -webkit-transform: translateX(-100%);
+  -webkit-transition: transform 0.3s ease;
 }
 
 .content-name {
@@ -104,12 +106,14 @@
   bottom: 5px;
   left: 1rem;
   transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
   font-size: 20px;
 }
 
 .light-form input:focus + .label-name .content-name,
 .light-form input:valid + .label-name .content-name {
   transform: translateY(-150%);
+  -webkit-transform: translateY(-150%);
   font-size: 14px;
   background: var(--purple-gradient);
   background-clip: text;
@@ -122,6 +126,7 @@
 .light-form-text textarea:focus + .label-name .content-name,
 .light-form-text textarea:valid + .label-name .content-name {
   transform: translateY(-150%);
+  -webkit-transform: translateY(-150%);
   font-size: 14px;
   color: #5fa8d3;
 }
@@ -129,11 +134,13 @@
 .light-form input:focus + .label-name::after,
 .light-form input:valid + .label-name::after {
   transform: translateX(0%);
+  -webkit-transform: translateX(0%);
 }
 
 .light-form-text textarea:focus + .label-name::after,
 .light-form-text textarea:valid + .label-name::after {
   transform: translateX(0%);
+  -webkit-transform: translateX(0%);
 }
 
 .dark-form {
@@ -182,6 +189,8 @@
   border-bottom: 3px solid var(--first-gradient);
   transform: translateX(-100%);
   transition: transform 0.3s ease;
+  -webkit-transform: translateX(-100%);
+  -webkit-transition: transform 0.3s ease;
 }
 
 .dark-form-text {
@@ -221,12 +230,14 @@
   bottom: 5px;
   left: 1rem;
   transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
   font-size: 20px;
 }
 
 .dark-form input:focus + .label-name .content-name,
 .dark-form input:valid + .label-name .content-name {
   transform: translateY(-150%);
+  -webkit-transform: translateY(-150%);
   font-size: 14px;
   background: var(--first-gradient);
   background-clip: text;
@@ -239,4 +250,5 @@
 .dark-form input:focus + .label-name::after,
 .dark-form input:valid + .label-name::after {
   transform: translateX(0%);
+  -webkit-transform: translateX(0%);
 }
