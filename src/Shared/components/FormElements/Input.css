@@ -43,8 +43,11 @@
   border: none;
   outline: none;
   background-color: transparent;
+  -webkit-box-shadow: inset -3px -3px 5px rgb(255, 255, 255),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3);
   box-shadow: inset -3px -3px 5px rgb(255, 255, 255),
     inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+  -webkit-appearance: none;
 }
 
 .light-form-text textarea {
@@ -151,6 +154,9 @@
   font-size: 16px;
   box-shadow: inset -2px -2px 2px rgba(226, 226, 226, 0.139),
     inset 3px 3px 8px rgba(0, 0, 0, 0.858);
+  -webkit-box-shadow: inset -2px -2px 2px rgba(226, 226, 226, 0.139),
+    inset 3px 3px 8px rgba(0, 0, 0, 0.858);
+  -webkit-appearance: none;
 }
 
 .dark-form label {
