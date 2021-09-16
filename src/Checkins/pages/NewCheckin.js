@@ -74,6 +74,7 @@ const NewCheckin = () => {
       setPageNum(7);
     }
   };
+  
 
   const thirdNext = (inputs, formState) => {
     const newTotals = { ...formTotal, ...inputs };

@@ -157,7 +157,7 @@ import { DarkModeContext } from '../../../Shared/context/dark-mode-context'
         
 
      </form>
-     <button onClick={() => console.log(loadedCheckin)}> click Me</button>
+     
 
    </div>
 
