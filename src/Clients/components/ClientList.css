@@ -13,7 +13,7 @@
   position: absolute;
   left: auto;
   right: auto;
-  top: 1rem;
+  top: 1.5rem;
   bottom: auto;
   display: flex;
   justify-content: center;
@@ -65,7 +65,7 @@
   position: absolute;
   left: auto;
   right: auto;
-  top: auto;
+  top: 1.5rem;
   bottom: auto;
   display: flex;
   justify-content: center;
