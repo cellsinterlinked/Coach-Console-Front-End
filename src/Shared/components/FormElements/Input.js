@@ -66,9 +66,9 @@ const Input = props => {
     value={inputState.value}
     className={props.importedStyle}
     /> 
-    {/* <label htmlFor={props.id} className={"label-name"}>    
+    <label htmlFor={props.id} className={"label-name"}>    
       <span className="content-name">{props.labelText}</span>
-    </label> */}
+    </label>
     </div>
    
     
