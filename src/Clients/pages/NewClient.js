@@ -62,7 +62,7 @@ const clientSubmitHandler = async(event) => {
       try {
         responseData = await Axios.post(
           process.env.REACT_APP_BACKEND_URL + '/athletes', 
-          {name: formState.inputs.name.value, creator: auth.userId, image: res.data.url}, 
+          {name: formState.inputs.name.value, creator: auth.userId, image: res.data.url, publicId: res.data.public_id}, 
           {headers: {Authorization: 'Bearer ' + auth.token}})
         } catch (err) {
           console.log(`something went wrong with the call ${err}`)

@@ -7,7 +7,7 @@ import ImageUpload from '../../../Shared/components/FormElements/ImageUpload'
 import Axios from 'axios'
 
 
-const CheckinPictures = ({next}) => {
+const CheckinPictures = ({next, handlePublicIds}) => {
 
   const mode = useContext(DarkModeContext);
   const [formState, inputHandler] = useForm(
@@ -18,6 +18,7 @@ const CheckinPictures = ({next}) => {
       }
 
     })
+  const [ids, setIds] = useState([])
 
     const [imageArray, setImageArray] = useState([]);
     const [parentPreview, setParentPreview] = useState(null)
@@ -45,9 +46,11 @@ const CheckinPictures = ({next}) => {
       
       // const replacement = [...imageArray, {value: res.data.url, url:res.data.url}]
       const replacement = [...imageArray, res.data.url]
+      const idreplacement = [...ids, res.data.public_id]
       setImageArray(replacement)
+      setIds(idreplacement)
       setParentPreview(null)
-     
+      console.log(res.data.public_id)
      
     }
 
@@ -56,6 +59,7 @@ const CheckinPictures = ({next}) => {
     const submitHandler = (e) => {
       e.preventDefault()
       next(imageArray)
+      handlePublicIds(ids)
       
     }
 

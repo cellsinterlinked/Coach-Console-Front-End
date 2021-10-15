@@ -40,9 +40,13 @@ const NewCheckin = () => {
   const [finalFat, setFinalFat] = useState();
   const [finalFatMass, setFinalFatMass] = useState();
   const [finalLeanBodyMass, setFinalLeanBodyMass] = useState();
-
+  const [publicIds, setPublicIds] = useState();
   const client = useParams().clientId;
   const history = useHistory();
+
+  const handlePublicIds = (ids) => {
+    setPublicIds(ids)
+  }
 
   const showInstructionsHandler = () => {
     setShowConfirmModal(true);
@@ -247,7 +251,7 @@ const NewCheckin = () => {
 
   if (formTotal.images) {
     newBody = {...newBody,
-    images: formTotal.images
+    images: formTotal.images, publicId: publicIds
     }
   }
 
@@ -339,7 +343,7 @@ const NewCheckin = () => {
 
       {pageNum === 3 && <CheckInNotes next={fourthNext} />}
 
-      {pageNum === 4 && <CheckInPictures next={fifthNext} />}
+      {pageNum === 4 && <CheckInPictures next={fifthNext} handlePublicIds={handlePublicIds} />}
 
       {pageNum === 5 && <CheckInMeasurements next={sixthNext} />}
 

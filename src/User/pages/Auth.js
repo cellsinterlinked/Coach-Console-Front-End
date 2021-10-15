@@ -83,7 +83,9 @@ const Auth = (props) => {
         );
 
         auth.login(responseData.userId, responseData.token);
-      } catch (err) {}
+      } catch (err) {
+        
+      }
     } else {
       try {
         const responseData = await sendRequest(
