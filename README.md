@@ -86,7 +86,7 @@ Coach console includes the following features:
  </ul>
  <li>Editing or deleting checkins
  <li>Graph display of data from checkins beginning to most recent checkin
- <li>Viewable chack in's compareed to previous check in
+ <li>Viewable check in's compared to previous check in
  <li>Display of total weight/body fat change over time
 </ul>
 
